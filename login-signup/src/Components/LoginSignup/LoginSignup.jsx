@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import './LoginSignup.css'
 
 import email_icon from '../Assests/Email.png'
@@ -8,6 +9,12 @@ import user_icon from '../Assests/Person.png'
 const LoginSignup = () => {
 
     const [action,setAction] = useState('Login');
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate('/home');
+    };
+
     return (
     <div className="container">
         <div className="header">
@@ -35,6 +42,7 @@ const LoginSignup = () => {
             <div className={action==="Login"?"submit gray":"submit"} onClick={() => setAction('Sign Up')}>Sign Up</div>
             <div className={action==="Sign Up"?"submit gray":"submit"} onClick={() => setAction('Login')}>Log In</div>
         </div>
+        <div className="home-button" onClick={goToHome}>Home</div>
     </div>
     )
 }
