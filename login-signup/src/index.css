@@ -6,10 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background: url('C:\Users\HP\Desktop\Signin_and_Signup_React_JS\login-signup\src\Components\Assests\BG3.jpg') no-repeat center center fixed,
+  background: url('Components/Assests/BG3.jpg') no-repeat center center fixed,
+
   linear-gradient(#2A00B7, #42006C);
 background-size: cover;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
