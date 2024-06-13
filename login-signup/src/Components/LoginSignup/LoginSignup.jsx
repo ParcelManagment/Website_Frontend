@@ -61,4 +61,5 @@ export default LoginSignup
 /*
 email_icon.style.width = '25px';
 email_icon.style.height = '25px';
+.
 */
