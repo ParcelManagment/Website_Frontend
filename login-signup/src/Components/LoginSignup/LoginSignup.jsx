@@ -48,7 +48,7 @@ const LoginSignup = () => {
 
         <div className="page-container">
             <div className="page" onClick={goToHome}>Home</div>
-            <div className="page" onClick={goToInsertPage}>Insert-Page</div>
+            <div className="page" onClick={goToInsertPage}>Insert Page</div>
         </div>
     </div>
     )
