@@ -14,6 +14,9 @@ const LoginSignup = () => {
     const goToHome = () => {
         navigate('/home');
     };
+    const goToInsertPage = () => {
+        navigate('/insert');
+    };
 
     return (
     <div className="container">
@@ -42,7 +45,11 @@ const LoginSignup = () => {
             <div className={action==="Login"?"submit gray":"submit"} onClick={() => setAction('Sign Up')}>Sign Up</div>
             <div className={action==="Sign Up"?"submit gray":"submit"} onClick={() => setAction('Login')}>Log In</div>
         </div>
-        <div className="home-button" onClick={goToHome}>Home</div>
+
+        <div className="page-container">
+            <div className="page" onClick={goToHome}>Home</div>
+            <div className="page" onClick={goToInsertPage}>Insert-Page</div>
+        </div>
     </div>
     )
 }

@@ -1,4 +1,4 @@
-.home {
+.insert-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     background: #000; /* Black background */
 }
 
-.home h1 {
+.insert-page h1 {
     color: #fff; /* White text color */
     font-size: 48px;
     font-weight: 700;

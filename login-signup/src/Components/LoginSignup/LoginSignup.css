@@ -94,23 +94,24 @@
     cursor: pointer;
 }
 
+.page-container{
+    display: flex;
+    gap: 30px;
+    margin: 30px auto;
+}   
 
-
-.home-button {
+.page{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 220px;
     height: 59px;
     color: #fff;
-    background: #919f27;
+    background: #8fce4b;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    margin: 30px auto;
-
-
 }
 
 
