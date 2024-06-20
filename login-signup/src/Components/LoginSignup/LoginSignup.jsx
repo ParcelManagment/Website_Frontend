@@ -13,9 +13,85 @@ const LoginSignup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [mobileNumberError, setMobileNumberError] = useState('');
     const navigate = useNavigate();
 
+// Validation functions
+const validateUsername = (username) => {
+    if (username.length < 5) {
+        return "Username must be at least 5 characters long";
+    }
+    if (/\d/.test(username)) {
+        return "Username cannot contain numbers";
+    }
+    return '';
+};
+
+const validateMobileNumber = (mobileNumber) => {
+    if (mobileNumber.length !== 10) {
+        return "Mobile number must be 10 characters long";
+    }
+    if (!mobileNumber.startsWith('0')) {
+        return "Mobile number must start with 0";
+    }
+    return '';
+};
+
+const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(String(email).toLowerCase())) {
+        return "Enter a valid email address";
+    }
+    return '';
+};
+
+const validatePassword = (password) => {
+    if (password.length < 6) {
+        return "Password must be at least 6 characters long";
+    }
+    if (!/\d/.test(password)) {
+        return "Password must contain at least one number";
+    }
+    return '';
+};
+
+const handleUsernameChange = (value) => {
+    setUsername(value);
+    setUsernameError(validateUsername(value));
+};
+
+const handleEmailChange = (value) => {
+    setEmail(value);
+    setEmailError(validateEmail(value));
+};
+
+const handlePasswordChange = (value) => {
+    setPassword(value);
+    setPasswordError(validatePassword(value));
+};
+
+const handleMobileNumberChange = (value) => {
+    setMobileNumber(value);
+    setMobileNumberError(validateMobileNumber(value));
+};
+
     const handleSignup = async () => {
+        const usernameError = validateUsername(username);
+        const emailError = validateEmail(email);
+        const passwordError = validatePassword(password);
+        const mobileNumberError = validateMobileNumber(mobileNumber);
+
+        setUsernameError(usernameError);
+        setEmailError(emailError);
+        setPasswordError(passwordError);
+        setMobileNumberError(mobileNumberError);
+
+
+
+
         if (!username || !email || !password) {
             alert("All fields are required");
             return;
@@ -49,6 +125,10 @@ const LoginSignup = () => {
     };
 
     const handleLogin = async () => {
+        const emailError = validateEmail(email);
+
+        setEmailError(emailError);
+
         if (!email || !password) {
             alert("All fields are required");
             return;
@@ -97,8 +177,9 @@ const LoginSignup = () => {
                             type="text" 
                             placeholder="Name"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => handleUsernameChange(e.target.value)}
                         />
+                        {usernameError && <div className="error-message">{usernameError}</div>}
                     </div>
                 )}
                 <div className="input">
@@ -107,8 +188,9 @@ const LoginSignup = () => {
                         type="email" 
                         placeholder="Email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => handleEmailChange(e.target.value)}
                     />
+                    {emailError && <div className="error-message">{emailError}</div>}
                 </div> 
                 <div className="input">
                     <img src={password_icon} alt="" />
@@ -116,8 +198,9 @@ const LoginSignup = () => {
                         type="password" 
                         placeholder="Password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => handlePasswordChange(e.target.value)}
                     />
+                    {passwordError && <div className="error-message">{passwordError}</div>}
                 </div>
                 {action === "Sign Up" && (
                     <div className="input">
@@ -126,8 +209,9 @@ const LoginSignup = () => {
                             type="text" 
                             placeholder="Mobile Number"
                             value={mobileNumber}
-                            onChange={(e) => setMobileNumber(e.target.value)}
+                            onChange={(e) => handleMobileNumberChange(e.target.value)}
                         />
+                        {mobileNumberError && <div className="error-message">{mobileNumberError}</div>}
                     </div>
                 )}
             </div>
