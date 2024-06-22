@@ -1,0 +1,13 @@
+.insert-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000; /* Black background */
+}
+
+.insert-page h1 {
+    color: #fff; /* White text color */
+    font-size: 48px;
+    font-weight: 700;
+}
