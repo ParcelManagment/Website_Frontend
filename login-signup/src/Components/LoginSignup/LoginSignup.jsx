@@ -14,12 +14,8 @@ axios.defaults.baseURL = 'http://localhost:3001';
 const LoginSignup = () => {
     const [action, setAction] = useState('Login');
     const [employeeId, setEmployeeId] = useState('');
-<<<<<<< Updated upstream
-    const [inputName, setInputName] = useState('');
-=======
     const [first_name,setInputFirstName] = useState('');
     const [last_name,setInputLastName] = useState('');
->>>>>>> Stashed changes
     const [role, setRole] = useState(''); // Added state for role
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState(''); // State for message
@@ -32,12 +28,8 @@ const LoginSignup = () => {
         try {
             const response = await axios.post('/staff/signup', {
                 employee_id: employeeId,
-<<<<<<< Updated upstream
-                name: inputName,
-=======
                 first_name: first_name,
                 last_name: last_name,
->>>>>>> Stashed changes
                 role: role, // Pass role to backend if needed
                 password: password
             });
@@ -122,15 +114,11 @@ const LoginSignup = () => {
                     <>
                         <div className="input">
                             <img src={name_icon} alt="Name" />
-<<<<<<< Updated upstream
-                            <input type="text" placeholder="Name" value={inputName} onChange={(e) => setInputName(e.target.value)} />
-=======
                             <input type="text" placeholder="First Name" value={first_name} onChange={(e) => setInputFirstName(e.target.value)} />
                         </div>
                         <div className="input">
                             <img src={name_icon} alt="Name" />
                             <input type="text" placeholder="Last Name" value={last_name} onChange={(e) => setInputLastName(e.target.value)} />
->>>>>>> Stashed changes
                         </div>
                         <div className="input">
                             <img src={role_icon} alt="Role" />
@@ -184,9 +172,4 @@ const LoginSignup = () => {
     );
 };
 
-<<<<<<< Updated upstream
 export default LoginSignup;
-
-=======
-export default LoginSignup;
->>>>>>> Stashed changes
