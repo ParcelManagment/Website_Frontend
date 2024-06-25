@@ -98,19 +98,7 @@
     display: flex;
     gap: 30px;
     margin: 30px auto;
-<<<<<<< Updated upstream
-}
-
-.validation-message {
-    color: rgb(60, 0, 255);
-    font-size: 12px;
-    margin-top: 5px;
-    margin-left: 60px; /* Adjust this as needed */
-}
-
-=======
 }   
->>>>>>> Stashed changes
 
 .page {
     display: flex;
