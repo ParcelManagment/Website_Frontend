@@ -48,6 +48,7 @@ const LoginSignup = () => {
                 password: password
             });
             setMessage('Login Successful'); // Set success message
+            localStorage.setItem('employee_id', employeeId); // Store employee_id in local storage
             // Navigate to home page or show success message
             navigate('/home');
         } catch (error) {

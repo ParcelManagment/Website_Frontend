@@ -8,6 +8,7 @@ import Home from './Components/Home/Home';
 import InsertPage from './Components/InsertPage/InsertPage';
 import NavigationBar from './Components/NavigationBar/NavigationBar';
 import ViewPage from './Components/ViewPage/ViewPage';
+import ProfilePage from './Components/ProfilePage/ProfilePage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ const MainLayout = () => (
       <Route path="/home" element={<Home />} />
       <Route path="/insert" element={<InsertPage />} />
       <Route path="/view" element={<ViewPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       // Add other routes here 
     </Routes>
   </>

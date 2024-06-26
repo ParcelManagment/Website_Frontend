@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 
 const {connectDb,getConnection, endConnection} = require('../database/database.js')
 
-
 router.post('/signup', async (req, res, next) => {
    
   // database connection
