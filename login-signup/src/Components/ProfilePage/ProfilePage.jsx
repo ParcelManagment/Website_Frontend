@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProfilePage.css';
 import defaultProfilePic from '../Assests/defaultProfilePhoto.png';
@@ -7,6 +8,7 @@ const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -30,6 +32,11 @@ const ProfilePage = () => {
         fetchProfile();
     }, []);
 
+    const handleLogout = () => {
+        localStorage.removeItem('employee_id');
+        navigate('/');
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
@@ -47,6 +54,7 @@ const ProfilePage = () => {
                 <p><strong>Last Name:</strong> {profile.last_name}</p>
                 <p><strong>Role:</strong> {profile.role}</p>
             </div>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );
 };

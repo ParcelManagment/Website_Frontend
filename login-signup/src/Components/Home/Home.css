@@ -1,13 +1,24 @@
 .home {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align to the left */
     align-items: center;
     height: 100vh;
-    background: #000; /* Black background */
+    background: none; /* Black background */
+    padding-left: 20px; /* Add some padding to the left */
 }
 
-.home h1 {
-    color: #fff; /* White text color */
-    font-size: 48px;
-    font-weight: 700;
+.welcome-box {
+    background-color:#a69ed1; /* Transparent black background */
+    padding: 30px;
+    width: 400px; /* Adjust the width as needed */
+    height: 400px;
+    border-radius: 15px; /* Rounded corners */
+    color: #0e0e0e; /* White text color */
+    max-width: 400px; /* Max width of the box */
+
+}
+
+.welcome-box p {
+    margin: 0;
+    font-size: 16px;
 }

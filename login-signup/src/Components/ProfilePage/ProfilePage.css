@@ -47,3 +47,18 @@
 .profile-details p {
     margin-bottom: 10px; /* Add spacing between each detail line */
 }
+
+.logout-button {
+    margin-top: 20px; /* Add spacing above the button */
+    padding: 10px 20px; /* Add padding to the button */
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.logout-button:hover {
+    background-color: #2980b9; /* Darker background on hover */
+}

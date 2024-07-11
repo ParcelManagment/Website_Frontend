@@ -114,6 +114,7 @@
     cursor: pointer;
     position: relative; /* Added for the pseudo-element */
     overflow: hidden; /* Added for the pseudo-element */
+
   }
   
   .submit::before {

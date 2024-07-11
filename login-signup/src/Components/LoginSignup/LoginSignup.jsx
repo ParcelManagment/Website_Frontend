@@ -35,7 +35,8 @@ const LoginSignup = () => {
             });
             setMessage('Registration Successful'); // Set success message
             // Navigate to home page or show success message
-            navigate('/home');
+            setAction('Login');
+            //navigate('/');
         } catch (error) {
             setMessage('Registration Failed: ' + (error.response ? error.response.data.Error : 'Server Error')); // Set error message
         }
