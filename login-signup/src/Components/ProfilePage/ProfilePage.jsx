@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './ProfilePage.css';
+import defaultProfilePic from '../Assests/defaultProfilePhoto.png';
 
 const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
@@ -34,15 +35,18 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-page">
-            <h1>Profile Page</h1>
-            {profile && (
-                <div className="profile-details">
-                    <p><strong>Employee ID:</strong> {profile.employee_id}</p>
-                    <p><strong>First Name:</strong> {profile.first_name}</p>
-                    <p><strong>Last Name:</strong> {profile.last_name}</p>
-                    <p><strong>Role:</strong> {profile.role}</p>
+            <h1>User Details</h1>
+            <div className="profile-photo-container">
+                <div className="profile-photo">
+                    <img src={profile && profile.profile_picture ? profile.profile_picture : defaultProfilePic} alt="Profile" />
                 </div>
-            )}
+            </div>
+            <div className="profile-details">
+                <p><strong>Employee ID:</strong> {profile.employee_id}</p>
+                <p><strong>First Name:</strong> {profile.first_name}</p>
+                <p><strong>Last Name:</strong> {profile.last_name}</p>
+                <p><strong>Role:</strong> {profile.role}</p>
+            </div>
         </div>
     );
 };
