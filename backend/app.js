@@ -4,6 +4,7 @@ const app = express()
 const {connectDb, getConnection} = require('./database/database.js')
 const users = require('./routes/users.js');
 const staff = require('./routes/station_staff.js');
+const employeeRoutes = require('./routes/employee');
 const cookieParser = require('cookie-parser');
 const port = 3001
 
@@ -25,6 +26,7 @@ app.use(cookieParser())
 
 app.use('/users', users);
 app.use('/staff', staff);
+app.use('/employee', employeeRoutes);
 
 app.get('/', (req, res) => {
   res.send('entry point')

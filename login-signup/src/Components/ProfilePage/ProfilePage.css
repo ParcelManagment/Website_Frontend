@@ -2,12 +2,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
-    background: #000; /* Black background */
+    background-color: #909aee; /* Light gray background */
 }
 
 .profile-page h1 {
-    color: #fff; /* White text color */
-    font-size: 48px;
+    color: #333; /* Dark gray text color */
+    font-size: 36px;
     font-weight: 700;
+    margin-bottom: 20px; /* Add some spacing below the heading */
+}
+
+.profile-details {
+    background-color: #e2c8fc; /* White background for details section */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+    width: 400px; /* Adjust width as needed */
+    text-align: left; /* Align text to the left */
+}
+
+.profile-details p {
+    margin-bottom: 10px; /* Add spacing between each detail line */
+}
+
+.profile-photo {
+    width: 150px; /* Adjust size of the profile photo */
+    height: 150px;
+    border-radius: 50%; /* Create circular shape */
+    background-color: #f5f3fa; /* Light gray background for placeholder */
+    margin-bottom: 20px; /* Add spacing below the profile photo */
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Maintain aspect ratio and cover container */
 }
