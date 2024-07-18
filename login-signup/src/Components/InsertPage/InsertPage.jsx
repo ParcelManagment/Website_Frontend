@@ -4,18 +4,22 @@ import './InsertPage.css';
 const InsertPage = () => {
   return (
     <div className="container">
-      <h1>Parcel Details Form</h1>
+      <h1>Package Details Form</h1>
 
       <form>
         <div className="section">
           <h2>Sender Details</h2>
           <div className="form-group">
-            <label htmlFor="senderName">Name</label>
-            <input type="text" id="senderName" name="senderName" required />
+            <label htmlFor="senderFirstName">First Name</label>
+            <input type="text" id="senderFirstName" name="senderFirstName" required />
           </div>
           <div className="form-group">
-            <label htmlFor="senderAddress">Address</label>
-            <input type="text" id="senderAddress" name="senderAddress" required />
+            <label htmlFor="senderLastName">Last Name</label>
+            <input type="text" id="senderLastName" name="senderLastName" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="senderEmail">Email</label>
+            <input type="email" id="senderEmail" name="senderEmail" required />
           </div>
           <div className="form-group">
             <label htmlFor="senderPhone">Phone Number</label>
@@ -24,17 +28,24 @@ const InsertPage = () => {
         </div>
 
         <div className="section">
-          <h2>Parcel Details</h2>
+          <h2>Package Details</h2>
           <div className="form-group">
-            <label htmlFor="parcelType">Type of Parcel</label>
+            <label htmlFor="packageId">Package ID</label>
+            <input type="text" id="packageId" name="packageId" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="parcelType">Type of Package</label>
             <select id="parcelType" name="parcelType">
               <option value="furniture">Furniture</option>
               <option value="vehicle">Vehicle</option>
+              <option value="food">Food</option>
+              <option value="grocery">Grocery</option>
+              <option value="chemical">Chemical</option>
               <option value="other">Other</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="parcelCondition">Condition</label>
+            <label htmlFor="parcelCondition">Package Condition</label>
             <select id="parcelCondition" name="parcelCondition">
               <option value="new">New</option>
               <option value="used">Used</option>
@@ -49,12 +60,16 @@ const InsertPage = () => {
         <div className="section">
           <h2>Receiver Details</h2>
           <div className="form-group">
-            <label htmlFor="receiverName">Name</label>
-            <input type="text" id="receiverName" name="receiverName" required />
+            <label htmlFor="receiverFirstName">First Name</label>
+            <input type="text" id="receiverFirstName" name="receiverFirstName" required />
           </div>
           <div className="form-group">
-            <label htmlFor="receiverAddress">Address</label>
-            <input type="text" id="receiverAddress" name="receiverAddress" required />
+            <label htmlFor="receiverLastName">Last Name</label>
+            <input type="text" id="receiverLastName" name="receiverLastName" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="receiverEmail">Email</label>
+            <input type="email" id="receiverEmail" name="receiverEmail" required />
           </div>
           <div className="form-group">
             <label htmlFor="receiverPhone">Phone Number</label>
@@ -73,7 +88,7 @@ const InsertPage = () => {
             <input type="text" id="trackingId" name="trackingId" required />
           </div>
           <div className="form-group">
-            <label htmlFor="uploadImages">Upload Images</label>
+            <label htmlFor="uploadImages">Upload Images of the package here</label>
             <input type="file" id="uploadImages" name="uploadImages" accept="image/*" />
           </div>
         </div>
