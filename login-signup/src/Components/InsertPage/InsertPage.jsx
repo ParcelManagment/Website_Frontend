@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
 
+const citiesInSriLanka = [
+  'Colombo',
+  'Kandy',
+  'Galle',
+  'Jaffna',
+  'Negombo',
+  'Anuradhapura',
+  'Trincomalee',
+  'Batticaloa',
+  'Matara',
+  'Kurunegala',
+  'Puttalam',	
+  'Vavuniya',	
+  'Polonnaruwa',	
+  'Kilinochchi',	
+  'Mannar',	
+  'Vavuniya',	
+  'Mullaitivu',	
+  // Add more cities as needed
+];
+
 const InsertPage = () => {
+  const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    setFilteredCities(
+      citiesInSriLanka.filter(city =>
+        city.toLowerCase().startsWith(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm]);
+
   return (
     <div className="container">
       <h1>Package Details Form</h1>
@@ -53,7 +85,20 @@ const InsertPage = () => {
           </div>
           <div className="form-group">
             <label htmlFor="destination">Destination</label>
-            <input type="text" id="destination" name="destination" required />
+            <input
+              type="text"
+              id="destination"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              placeholder="Search for a city"
+              list="cities"
+              required
+            />
+            <datalist id="cities">
+              {filteredCities.map((city, index) => (
+                <option key={index} value={city} />
+              ))}
+            </datalist>
           </div>
         </div>
 
@@ -102,5 +147,3 @@ const InsertPage = () => {
 };
 
 export default InsertPage;
-
-
