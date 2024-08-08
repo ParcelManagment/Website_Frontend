@@ -7,6 +7,8 @@ const staff = require('./routes/station_staff.js');
 const employeeRoutes = require('./routes/employee');
 const cookieParser = require('cookie-parser');
 const port = 3001
+require('dotenv').config();
+
 
 
 // development code segment (allow http request with localhost:3001 )
