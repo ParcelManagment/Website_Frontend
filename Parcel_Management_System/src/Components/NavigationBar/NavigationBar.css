@@ -1,0 +1,46 @@
+/* NavigationBar.css */
+.navigation-bar {
+    display: flex;
+    justify-content: center; /* Center navigation items */
+    align-items: center;
+    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Gradient background */
+    padding: 15px 30px; /* Adjust padding for spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    position: fixed; /* Fixed position at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Make sure it is on top of other elements */
+}
+
+.navigation-bar a {
+    color: #ffffff; /* White text color */
+    text-decoration: none;
+    padding: 10px 20px; /* Padding around text */
+    font-size: 18px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.navigation-bar a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.navigation-bar a:active {
+    background-color: rgba(255, 255, 255, 0.4); /* More opaque on click */
+    transform: scale(0.95); /* Slightly reduced scale on click */
+}
+
+.navigation-bar .logo {
+    font-size: 24px; /* Larger font size for the logo */
+    font-weight: bold;
+    color: #ffffff;
+    margin-right: auto; /* Push logo to the left */
+}
+
+.navigation-bar .links {
+    display: flex;
+    gap: 15px; /* Space between links */
+}

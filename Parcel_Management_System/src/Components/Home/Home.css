@@ -1,0 +1,71 @@
+/* Home.css */
+.home {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 100vh;
+    background: url('../Assests/BG3.jpg') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Cover the entire page */
+    padding: 20px;
+    overflow: hidden;
+}
+
+.welcome-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 40px;
+    width: 80%;
+    max-width: 600px; /* Max width for better responsiveness */
+    border-radius: 20px; /* Rounded corners */
+    color: #333333; /* Dark text color for readability */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    text-align: center;
+    transform: translateY(0); /* Initial position for animation */
+    opacity: 0; /* Initial opacity for animation */
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out; /* Smooth transition */
+}
+
+.welcome-box.show {
+    transform: translateY(0); /* Move into position */
+    opacity: 1; /* Fade in */
+}
+
+.welcome-box h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.welcome-box p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.features {
+    margin-top: 40px;
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    background: #e0e0e0; /* Light gray background */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.features li:hover {
+    background: #b0bec5; /* Hover color */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .welcome-box {
+        padding: 20px;
+        width: 90%;
+    }
+}
