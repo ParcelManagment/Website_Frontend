@@ -18,7 +18,7 @@ const Home = () => {
                     <li>Realtime location tracking using mobile app</li>
                     <li>Online registration</li>
                     <li>SMS service</li>
-                    <li>Online chat box</li>
+                    <li>testing </li>
                 </ul>
             </div>
         </div>
