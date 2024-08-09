@@ -1,0 +1,9 @@
+[build]
+command = "npm run build"
+publish = "build"
+
+[[redirects]]
+from = "/api/*"
+to = "http://ec2-13-60-83-24.eu-north-1.compute.amazonaws.com:3000/:splat"
+status = 200
+force = true
