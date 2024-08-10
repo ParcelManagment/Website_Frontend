@@ -63,7 +63,7 @@ const InsertPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/package/new', {
+      const response = await fetch('api/package/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
