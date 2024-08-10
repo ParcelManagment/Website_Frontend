@@ -70,7 +70,7 @@ const InsertPage = () => {
         package_condition: formData.parcelCondition,
         destination: formData.destination,
         price: formData.price,
-        tracking_device_id: formData.trackingId
+        tracking_device_id: formData.tracking_device_id
       },
       sender: {
         email: formData.senderEmail,
@@ -85,6 +85,7 @@ const InsertPage = () => {
         mobile_number: formData.receiverPhone
       }
     };
+    console.log(data)
     try {
       const response = await fetch('api/package/new', {
         method: 'POST',
