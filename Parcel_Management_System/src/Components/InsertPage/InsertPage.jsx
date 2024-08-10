@@ -70,12 +70,12 @@ const InsertPage = () => {
         },
         body: JSON.stringify(formData),
       });
-
+      const result = await response.json();
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok', result);
       }
 
-      const result = await response.json();
+
       console.log('Success:', result);
       // Handle success, e.g., show a success message or redirect
     } catch (error) {
