@@ -62,13 +62,36 @@ const InsertPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const data = {
+      package: {
+        tag_id: formData.packageId,
+        type: formData.parcelType,
+        package_condition: formData.parcelCondition,
+        destination: formData.destination,
+        price: formData.price,
+        tracking_device_id: formData.trackingId
+      },
+      sender: {
+        email: formData.senderEmail,
+        first_name: formData.senderFirstName,
+        last_name: formData.senderLastName,
+        mobile_number: formData.senderPhone
+      },
+      receiver: {
+        email: formData.receiverEmail,
+        first_name: formData.receiverFirstName,
+        last_name: formData.receiverLastName,
+        mobile_number: formData.receiverPhone
+      }
+    };
     try {
       const response = await fetch('api/package/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
        if (response.ok) {
         const result = await response.json();
