@@ -70,17 +70,17 @@ const InsertPage = () => {
         },
         body: JSON.stringify(formData),
       });
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error('Network response was not ok', result);
+       if (response.ok) {
+        const result = await response.json();
+        console.log('Package submitted successfully:', result);
+        alert('Package submitted successfully');
+      } else {
+        console.error('Failed to submit package:', await response.json());
+        alert('Failed to submit package');
       }
-
-
-      console.log('Success:', result);
-      // Handle success, e.g., show a success message or redirect
     } catch (error) {
       console.error('Error:', error);
-      // Handle error, e.g., show an error message
+      alert('An error occurred while submitting the package');
     }
   };
 
