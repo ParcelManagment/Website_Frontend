@@ -4,6 +4,6 @@ publish = "build"
 
 [[redirects]]
 from = "/api/*"
-to = "http://ec2-16-171-173-173.eu-north-1.compute.amazonaws.com/api/:splat"
+to = "http://ec2-13-60-84-104.eu-north-1.compute.amazonaws.com/api/:splat"
 status = 200
 force = true
