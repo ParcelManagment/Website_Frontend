@@ -20,7 +20,7 @@ const ProfilePage = () => {
             }
 
             try {
-                const response = await axios.get(`/employee/profile/${employee_id}`);
+                const response = await axios.get(`/staff/profile/${employee_id}`);
                 setProfile(response.data.employee);
                 setLoading(false);
             } catch (error) {
