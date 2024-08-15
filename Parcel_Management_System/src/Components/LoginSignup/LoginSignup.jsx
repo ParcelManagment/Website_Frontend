@@ -9,13 +9,14 @@ import role_icon from '../Assests/Role.png';
 import password_icon from '../Assests/Password.png';
 
 // Set the base URL for Axios
-axios.defaults.baseURL = 'http://localhost:3001';
+//axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'http://ec2-13-60-83-24.eu-north-1.compute.amazonaws.com:3000';
 
 const LoginSignup = () => {
     const [action, setAction] = useState('Login');
     const [employeeId, setEmployeeId] = useState('');
-    const [first_name,setInputFirstName] = useState('');
-    const [last_name,setInputLastName] = useState('');
+    const [fname,setInputFirstName] = useState('');
+    const [lname,setInputLastName] = useState('');
     const [role, setRole] = useState(''); // Added state for role
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState(''); // State for message
@@ -28,8 +29,8 @@ const LoginSignup = () => {
         try {
             const response = await axios.post('/staff/signup', {
                 employee_id: employeeId,
-                first_name: first_name,
-                last_name: last_name,
+                fname: fname,
+                lname: lname,
                 role: role, // Pass role to backend if needed
                 password: password
             });
@@ -38,6 +39,7 @@ const LoginSignup = () => {
             setAction('Login');
             //navigate('/');
         } catch (error) {
+            console.log(error);
             setMessage('Registration Failed: ' + (error.response ? error.response.data.Error : 'Server Error')); // Set error message
         }
     };
@@ -116,11 +118,11 @@ const LoginSignup = () => {
                     <>
                         <div className="input">
                             <img src={name_icon} alt="Name" />
-                            <input type="text" placeholder="First Name" value={first_name} onChange={(e) => setInputFirstName(e.target.value)} />
+                            <input type="text" placeholder="First Name" value={fname} onChange={(e) => setInputFirstName(e.target.value)} />
                         </div>
                         <div className="input">
                             <img src={name_icon} alt="Name" />
-                            <input type="text" placeholder="Last Name" value={last_name} onChange={(e) => setInputLastName(e.target.value)} />
+                            <input type="text" placeholder="Last Name" value={lname} onChange={(e) => setInputLastName(e.target.value)} />
                         </div>
                         <div className="input">
                             <img src={role_icon} alt="Role" />

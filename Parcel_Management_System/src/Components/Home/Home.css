@@ -4,7 +4,7 @@
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
     height: 100vh;
-    background: url('C:\Users\HP\Desktop\Website_Frontend\login-signup\src\Components\Assests\BG3.jpg') no-repeat center center fixed; /* Background image */
+    background: url('../Assests/BG3.jpg') no-repeat center center fixed; /* Background image */
     background-size: cover; /* Cover the entire page */
     padding: 20px;
     overflow: hidden;
