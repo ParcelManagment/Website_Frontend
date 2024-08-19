@@ -115,7 +115,7 @@ const InsertPage = () => {
         package_condition: formData.parcelCondition,
         destination: formData.destination,
         price: formData.price,
-        tracking_device_id: formData.tracking_device_id
+        tracking_device_id: formData.trackingId
       },
       sender: {
         email: formData.senderEmail,
