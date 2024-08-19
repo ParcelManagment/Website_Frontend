@@ -8,7 +8,7 @@ const NavigationBar = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('api/staff/logout');
+            await axios.post('/staff/logout');
             // Clear any user data in local storage if needed
             localStorage.removeItem('employee_id');
             navigate('/'); // Redirect to the login page
