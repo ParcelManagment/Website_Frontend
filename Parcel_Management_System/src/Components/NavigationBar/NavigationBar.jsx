@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './NavigationBar.css';
 
-axios.defaults.baseURL = '/api';
 const NavigationBar = () => {
     const navigate = useNavigate();
 
