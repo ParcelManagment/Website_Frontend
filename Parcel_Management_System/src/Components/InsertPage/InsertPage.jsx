@@ -132,7 +132,7 @@ const InsertPage = () => {
     };
 
     try {
-      const response = await fetch('http://ec2-13-60-83-24.eu-north-1.compute.amazonaws.com:3000/package/new', {
+      const response = await fetch('/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
