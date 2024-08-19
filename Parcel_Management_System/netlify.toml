@@ -7,3 +7,9 @@ from = "/api/*"
 to = "http://ec2-13-60-84-104.eu-north-1.compute.amazonaws.com/api/:splat"
 status = 200
 force = true
+
+[[redirects]]
+# Handle all other paths and redirect to index.html for React routing
+from = "/*"
+to = "/index.html"
+status = 200
