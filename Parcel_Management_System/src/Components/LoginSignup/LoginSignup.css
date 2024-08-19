@@ -23,15 +23,15 @@
     max-width: 500px;
     padding: 10px;
     background-color: #fff;
-    border-radius: 30px;
+    border-radius: 25px;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 80px;
+    
     
   }
     
 /* Validation message styles */
-.validation-message {
+.validation-message { 
   color: red;
   font-size: 14px;
   margin-top: 5px;
@@ -77,7 +77,7 @@
     display: flex;
     align-items: center;
     margin: auto;
-    width: 100%; /* Make the input width 100% to fit the container */
+    width: 93%; /* Make the input width 100% to fit the container */
     height: 70px;
     background-color: #eaeaea;
     border-radius: 6px;
