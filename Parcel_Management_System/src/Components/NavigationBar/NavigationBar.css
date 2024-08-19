@@ -21,9 +21,10 @@
     font-weight: bold; /* Bold text */
     border-radius: 8px; /* Rounded corners */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-    background: none; /* No background for button */
-    border: none; /* No border for button */
-    cursor: pointer; /* Pointer cursor for button */
+    background: none; /* No background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    margin: 0; /* Ensure no extra margin */
 }
 
 .navigation-bar a:hover,
@@ -48,4 +49,16 @@
 .navigation-bar .links {
     display: flex;
     gap: 15px; /* Space between links */
+}
+
+.logout-button {
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    color: #ffffff; /* White text color */
+    cursor: pointer; /* Pointer cursor */
+    padding: 10px 20px; /* Same padding as links */
+    font-size: 18px; /* Same font size as links */
+    font-weight: bold; /* Same font weight as links */
+    border-radius: 8px; /* Same border radius as links */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
