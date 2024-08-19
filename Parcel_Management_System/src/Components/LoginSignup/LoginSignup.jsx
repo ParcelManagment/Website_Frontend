@@ -11,7 +11,7 @@ import password_icon from '../Assests/Password.png';
 
 // Set the base URL for Axios
 //axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'http://ec2-13-60-83-24.eu-north-1.compute.amazonaws.com:3000';
+axios.defaults.baseURL = '/api';
 
 const LoginSignup = () => {
     const [action, setAction] = useState('Login');
