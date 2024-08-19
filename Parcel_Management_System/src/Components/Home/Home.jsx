@@ -1,4 +1,3 @@
-// Home.js
 import React, { useEffect, useState } from "react";
 import './Home.css';
 
@@ -11,15 +10,26 @@ const Home = () => {
 
     return (
         <div className="home">
-            <div className={`welcome-box ${showBox ? 'show' : ''}`}>
-                <h1>Welcome to the Parcel Management System!</h1>
-                <p>The easier and safest way to deliver your packages.</p>
-                <ul className="features">
-                    <li>Realtime location tracking using mobile app</li>
-                    <li>Online registration</li>
-                    <li>SMS service</li>
-                    <li>Online chat box</li>
-                </ul>
+            <div className="containerhome">
+                <div className={`details-box ${showBox ? 'show' : ''}`}>
+                    <h2>Welcome to the Pracel Management System !</h2>
+                    <br />
+                    <h3>Features</h3>
+                    <br />
+                    <p>Realtime location tracking using mobile app</p>
+                    <p>SMS service</p>
+                    <p>Online chat box</p>
+                </div>
+                <div className="side-boxes">
+                    <div className={`side-box ${showBox ? 'show' : ''}`}>
+                        <h3>Details about the view page</h3>
+                        <button>View Page Button</button>
+                    </div>
+                    <div className={`side-box ${showBox ? 'show' : ''}`}>
+                        <h3>Details about the Insert Page</h3>
+                        <button>Details Page Button</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
