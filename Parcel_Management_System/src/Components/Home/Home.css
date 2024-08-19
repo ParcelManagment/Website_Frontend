@@ -73,7 +73,7 @@
 }
 
 .side-box button:hover {
-    background-color: #555555;
+    background-color: #333333;
 }
 
 @media (max-width: 768px) {
