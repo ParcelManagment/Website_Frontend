@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
 import './LoginSignup.css'
@@ -242,7 +243,7 @@ const LoginSignup = () => {
                 </div>
                 {action === "Login" && (
                     <div className="forgot-password">
-                        Forgot Password? <span>Click Here!</span>
+                        Forgot Password? <span onClick={() => navigate('/forgetpassword')}>Click Here!</span>
                     </div>
                 )}
                 <div className="submit-container">

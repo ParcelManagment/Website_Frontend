@@ -9,6 +9,7 @@ import InsertPage from './Components/InsertPage/InsertPage';
 import NavigationBar from './Components/NavigationBar/NavigationBar';
 import ViewPage from './Components/ViewPage/ViewPage';
 import ProfilePage from './Components/ProfilePage/ProfilePage';
+import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
       <Route path="/" element={<LoginSignup />} />
       <Route path="/*" element={<MainLayout />} />
+      <Route path="/forgetpassword" element={<ForgetPassword />} />
       </Routes>
     </Router>
   );

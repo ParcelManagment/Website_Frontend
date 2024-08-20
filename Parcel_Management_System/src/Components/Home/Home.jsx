@@ -14,7 +14,7 @@ const Home = () => {
                 await axios.get('/staff/profile');
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    navigate('/');
+                    /* navigate('/');*/
                 }
             }
         };
