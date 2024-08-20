@@ -52,11 +52,30 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className="profile-details">
-                <p><strong>Employee ID:</strong> {profile.employee_id}</p>
-                <p><strong>First Name:</strong> {profile.first_name}</p>
-                <p><strong>Last Name:</strong> {profile.last_name}</p>
-                <p><strong>Role:</strong> {profile.role}</p>
-            </div>
+    <div className="detail-row">
+        <strong className="label">Employee ID</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.employee_id}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">First Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.first_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Last Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.last_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Role</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.role} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+
+</div>
+
+
             <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );
