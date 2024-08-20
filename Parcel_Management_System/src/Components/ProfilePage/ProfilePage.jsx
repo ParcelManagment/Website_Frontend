@@ -28,11 +28,16 @@ const ProfilePage = () => {
         };
 
         fetchProfile();
-    }, []);
+    }, [navigate]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('employee_id');
-        navigate('/');
+    const handleLogout = async () => {
+        try {
+            await axios.get('/staff/logout');
+            localStorage.removeItem('employee_id');
+            navigate('/');
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
     };
 
     if (loading) return <div>Loading...</div>;
