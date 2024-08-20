@@ -12,18 +12,17 @@ const citiesInSriLanka = [
   'Batticaloa',
   'Matara',
   'Kurunegala',
-  'Puttalam',	
-  'Vavuniya',	
-  'Polonnaruwa',	
-  'Kilinochchi',	
-  'Mannar',		
-  'Mullaitivu',	
+  'Puttalam',  
+  'Vavuniya',  
+  'Polonnaruwa',  
+  'Kilinochchi',  
+  'Mannar',  
+  'Vavuniya',  
+  'Mullaitivu',  
   // Add more cities as needed
 ];
 
 const InsertPage = () => {
-  const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
-  const [searchTerm, setSearchTerm] = useState('');
   const [formData, setFormData] = useState({
     senderFirstName: '',
     senderLastName: '',
@@ -38,9 +37,12 @@ const InsertPage = () => {
     receiverEmail: '',
     receiverPhone: '',
     price: '',
-    trackingId: '',
+    tracking_device_id: '',
     uploadImages: null,
   });
+
+  const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
+  const [searchTerm, setSearchTerm] = useState('');
 
   
   const [errors, setErrors] = useState({});
@@ -115,7 +117,7 @@ const InsertPage = () => {
         package_condition: formData.parcelCondition,
         destination: formData.destination,
         price: formData.price,
-        tracking_device_id: formData.trackingId
+        tracking_device_id: formData.tracking_device_id
       },
       sender: {
         email: formData.senderEmail,
@@ -155,7 +157,7 @@ const InsertPage = () => {
   };
 
   return (
-    <div className="containeri">
+    <div className="container">
       <h1>Package Details Form</h1>
 
       <form onSubmit={handleSubmit}>
@@ -234,7 +236,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.parcelType}
             >
-              <option value="furniture">furniture</option>
+              <option value="furniture">Furniture</option>
               <option value="vehicle">Vehicle</option>
               <option value="food">Food</option>
               <option value="grocery">Grocery</option>
@@ -250,7 +252,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.parcelCondition}
             >
-              <option value="new">new</option>
+              <option value="new">New</option>
               <option value="used">Used</option>
             </select>
           </div>
@@ -346,10 +348,10 @@ const InsertPage = () => {
             <label htmlFor="trackingId">Tracking Device ID</label>
             <input
               type="text"
-              id="trackingId"
-              name="trackingId"
+              id="tracking_device_id"
+              name="tracking_device_id"
               onChange={handleChange}
-              value={formData.trackingId}
+              value={formData.tracking_device_id}
               required
             />
           </div>
