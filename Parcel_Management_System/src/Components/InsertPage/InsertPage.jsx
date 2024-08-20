@@ -134,7 +134,7 @@ const InsertPage = () => {
     };
 
     try {
-      const response = await fetch('api/package/new', {
+      const response = await fetch('/api/package/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
