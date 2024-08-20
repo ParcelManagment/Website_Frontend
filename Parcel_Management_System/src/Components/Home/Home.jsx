@@ -17,6 +17,8 @@ const Home = () => {
             }
         };
 
+        checkAuthorization();
+
         setTimeout(() => setShowBox(true), 100); // Trigger animation after 100ms
     }, [Navigate]);
 
