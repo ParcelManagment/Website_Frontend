@@ -62,3 +62,8 @@
     border-radius: 8px; /* Same border radius as links */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
+.navigation-bar .links a.active-link {
+    background-color: rgba(255, 255, 255, 0.3); /* Highlight color */
+    color: #ffffff; /* Text color for active link */
+    border-radius: 8px; /* Optional: rounded corners for highlight */
+}
