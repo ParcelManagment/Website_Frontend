@@ -157,7 +157,7 @@ const InsertPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="containerinsert">
       <h1>Package Details Form</h1>
 
       <form onSubmit={handleSubmit}>
