@@ -30,8 +30,8 @@ const InsertPage = () => {
     senderEmail: '',
     senderPhone: '',
     packageId: '',
-    parcelType: 'Furniture',
-    parcelCondition: 'New',
+    parcelType: 'furniture',
+    parcelCondition: 'new',
     destination: '',
     receiverFirstName: '',
     receiverLastName: '',
@@ -234,7 +234,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.parcelType}
             >
-              <option value="furniture">Furniture</option>
+              <option value="furniture">furniture</option>
               <option value="vehicle">Vehicle</option>
               <option value="food">Food</option>
               <option value="grocery">Grocery</option>
@@ -250,7 +250,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.parcelCondition}
             >
-              <option value="new">New</option>
+              <option value="new">new</option>
               <option value="used">Used</option>
             </select>
           </div>
