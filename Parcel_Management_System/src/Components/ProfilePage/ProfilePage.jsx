@@ -18,7 +18,11 @@ const ProfilePage = () => {
                 setProfile(employee);
                 setLoading(false);
             } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    navigate('/');
+                } else {
                 setError('Failed to fetch profile data');
+                }
                 setLoading(false);
             }
         };
