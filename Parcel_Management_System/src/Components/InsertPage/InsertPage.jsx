@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const citiesInSriLanka = [
   'Colombo',
@@ -23,6 +25,46 @@ const citiesInSriLanka = [
 ];
 
 const InsertPage = () => {
+
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const fetchProfile = async () => {
+          try {
+              const response = await axios.get(`/staff/profile`);
+              const { employee } = response.data; // Destructure the employee object from the response
+              setProfile(employee);
+              setLoading(false);
+          } catch (error) {
+              if (error.response && error.response.status === 401) {
+                  navigate('/');
+              } else {
+              setError('Failed to fetch profile data');
+              }
+              setLoading(false);
+          }
+      };
+
+      fetchProfile();
+  }, [navigate]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [formData, setFormData] = useState({
     senderFirstName: '',
     senderLastName: '',

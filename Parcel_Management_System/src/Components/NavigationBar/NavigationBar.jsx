@@ -43,7 +43,7 @@ const NavigationBar = () => {
 
     return (
         <nav className="navigation-bar">
-            <div className="logo">Parcel Management</div>
+            <div className="logo">Parcel Management System</div>
             <div className="links">
                 <Link to="/home" className={getLinkClass('/home')}>Home</Link>
                 <Link to="/insert" className={getLinkClass('/insert')}>Insert</Link>
