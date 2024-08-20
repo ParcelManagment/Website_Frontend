@@ -6,7 +6,7 @@ import axios from "axios";
 const Home = () => {
     const [showBox, setShowBox] = useState(false);
 
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkAuthorization = async () => {
@@ -14,7 +14,7 @@ const Home = () => {
                 await axios.get('/staff/profile');
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    Navigate('/login');
+                    navigate('/');
                 }
             }
         };
@@ -22,7 +22,7 @@ const Home = () => {
         checkAuthorization();
 
         setTimeout(() => setShowBox(true), 100); // Trigger animation after 100ms
-    }, [Navigate]);
+    }, [navigate]);
 
     return (
         <div className="home">
