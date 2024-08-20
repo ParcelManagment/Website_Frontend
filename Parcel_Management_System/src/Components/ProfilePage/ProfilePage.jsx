@@ -12,16 +12,10 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const employee_id = localStorage.getItem('employee_id'); // Get employee_id from localStorage or context
-            if (!employee_id) {
-                setError('Employee ID not found');
-                setLoading(false);
-                return;
-            }
-
             try {
                 const response = await axios.get(`/staff/profile`);
-                setProfile(response.data.employee);
+                const { employee } = response.data; // Destructure the employee object from the response
+                setProfile(employee);
                 setLoading(false);
             } catch (error) {
                 setError('Failed to fetch profile data');
