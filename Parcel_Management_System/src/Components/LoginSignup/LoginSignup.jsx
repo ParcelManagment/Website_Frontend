@@ -8,6 +8,7 @@ import employee_id_icon from '../Assests/EmployeeID.png';
 import name_icon from '../Assests/Name.png';
 import role_icon from '../Assests/Role.png';
 import password_icon from '../Assests/Password.png';
+import website_logo from '../Assests/logo.jpg'; 
 
 // Set the base URL for Axios
 //axios.defaults.baseURL = 'http://localhost:3001';
@@ -171,6 +172,11 @@ const LoginSignup = () => {
     return (
         <div>
             <div className="container">
+                {action === 'Login' && (
+                    <div classname="logo-container">    
+                        <img src={website_logo} alt="Website Logo"  className="website-logo"/>
+                    </div>
+                )}
                 <div className="header">
                     <div className="text">{action}</div>
                     <div className="underline"></div>
