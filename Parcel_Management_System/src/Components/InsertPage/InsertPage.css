@@ -10,7 +10,8 @@
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f4;
-  min-height: 80vh;
+  min-height: calc(100vh - 60px); /* Adjust height based on navigation bar height */
+  margin-top: 60px; /* Space for the fixed navigation bar */
   box-sizing: border-box;
 }
 
@@ -24,7 +25,6 @@
 
 /* Layout for the main form sections */
 form {
-
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Four equal columns */
   gap: 20px;
