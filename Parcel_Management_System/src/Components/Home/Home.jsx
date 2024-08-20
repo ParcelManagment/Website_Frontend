@@ -6,6 +6,8 @@ import axios from "axios";
 const Home = () => {
     const [showBox, setShowBox] = useState(false);
 
+    const Navigate = useNavigate();
+
     useEffect(() => {
         const checkAuthorization = async () => {
             try {
