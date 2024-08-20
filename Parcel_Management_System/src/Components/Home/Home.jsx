@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import './Home.css';
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
     const [showBox, setShowBox] = useState(false);
 
     useEffect(() => {
+        const checkAuthorization = async () => {
+            try {
+                await axios.get('/staff/profile');
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    Navigate('/login');
+                }
+            }
+        };
+
         setTimeout(() => setShowBox(true), 100); // Trigger animation after 100ms
-    }, []);
+    }, [Navigate]);
 
     return (
         <div className="home">
