@@ -42,7 +42,7 @@ const Home = () => {
                         <li>Security and Privacy</li>
                     </ul>
                     <p>
-                        Easily manage package entries, update information, and track the progress of parcels in transit with our intuitive system. Whether you're entering new data or searching for an existing package, our platform provides all the tools you need to ensure smooth operations.
+                        Easily manage package entries, update information, and track the progress of parcels in transit with our intuit+-ive system. Whether you're entering new data or searching for an existing package, our platform provides all the tools you need to ensure smooth operations.
                     </p>
                 </div>
                 <div className="side-boxes">

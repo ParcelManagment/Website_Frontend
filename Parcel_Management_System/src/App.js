@@ -10,6 +10,7 @@ import NavigationBar from './Components/NavigationBar/NavigationBar';
 import ViewPage from './Components/ViewPage/ViewPage';
 import ProfilePage from './Components/ProfilePage/ProfilePage';
 import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
+import Auth from './Components/Authentication/Auth';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ const MainLayout = () => (
       <Route path="/insert" element={<InsertPage />} />
       <Route path="/view" element={<ViewPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/auth" element={<Auth />} />
       // Add other routes here 
     </Routes>
   </>
