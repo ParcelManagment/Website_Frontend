@@ -1,11 +1,9 @@
-/* Auth.css */
 .auth-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 170px;
+    margin-top: 150px; /* Increased margin to add space from the top */
     padding: 20px;
-    
     min-width: 800px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
@@ -14,8 +12,6 @@
     border-radius: 10px;
 }
 
-
-
 .table-container {
     background-color: #ffffff;
     padding: 20px;
@@ -23,13 +19,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 800px;
-    
+    max-height: 400px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .auth-table {
     width: 100%;
     border-collapse: collapse;
-    
 }
 
 .auth-table th,
@@ -42,6 +38,9 @@
 .auth-table th {
     background-color: #2a5298;
     color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Ensure header stays above content */
 }
 
 .auth-table tr:nth-child(even) {
@@ -67,8 +66,7 @@
 }
 
 .auth-container h2 {
-    margin-bottom: 10px; /* Adjust the value to increase or decrease the space */
+    margin-bottom: 10px;
     font-size: 30px;
-    color: #333; /* Optional: Change the color if needed */
+    color: #333;
 }
- 
