@@ -10,7 +10,7 @@ body {
     color: #1e3c72;
     background: url('../Assests/gif1.gif') no-repeat center center fixed;
     background-size: cover;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,13 +18,14 @@ body {
 }
 
 .home {
-    margin-top: 140px;
+    margin-top: 360px;
     padding: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .containerhome {
     display: flex;
@@ -62,6 +63,7 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    padding-bottom: 20px;
 }
 
 .details-box h3 {

@@ -134,6 +134,8 @@ form {
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   form {
+
+
     grid-template-columns: 1fr 1fr; /* Two equal columns on smaller screens */
     grid-template-rows: auto auto; /* Two rows */
   }
