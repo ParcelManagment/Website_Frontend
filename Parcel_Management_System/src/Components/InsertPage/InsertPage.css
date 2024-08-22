@@ -7,9 +7,8 @@
   align-items: center;
   margin-top: 170px;
   padding: 20px;
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
+  background-color: rgba(255, 255, 255, 0.9);
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -54,7 +53,7 @@ form {
   font-size: 20px;
   margin-bottom: 15px;
   color: #555;
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #1e3c72;
   padding-bottom: 5px;
 }
 
@@ -86,7 +85,7 @@ form {
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #007bff;
+  border-color: #1e3c72;
   outline: none;
 }
 
@@ -119,7 +118,7 @@ form {
   padding: 15px 40px;
   font-size: 20px;
   color: #fff;
-  background-color: #007bff;
+  background-color: #1e3c72;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -128,7 +127,7 @@ form {
 }
 
 .submit-button button:active {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   transform: translateY(0);
 }
 

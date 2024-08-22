@@ -28,8 +28,7 @@ const Home = () => {
         <div className="home">
             <div className="containerhome">
             <div className={`details-box ${showBox ? 'show' : ''}`}>
-
-                    <h2>Welcome to the Parcel Management System!</h2>
+                <h2>Welcome to the Parcel Management System!</h2>
                     <p>
                         Our platform streamlines the process of managing packages for train-based transfers, ensuring safe and efficient delivery. Officers can easily input parcel details, track shipments, and manage package conditions, all in one place.
                     </p>
@@ -42,12 +41,17 @@ const Home = () => {
                         <li>Security and Privacy</li>
                     </ul>
                     <p>
-                        Easily manage package entries, update information, and track the progress of parcels in transit with our intuit+-ive system. Whether you're entering new data or searching for an existing package, our platform provides all the tools you need to ensure smooth operations.
+                        Easily manage package entries, update information, and track the progress of parcels in transit with our intuitive system. Whether you're entering new data or searching for an existing package, our platform provides all the tools you need to ensure smooth operations.
                     </p>
                 </div>
+
                 <div className="side-boxes">
+                <div className={`details-box ${showBox ? 'show' : ''}`}>
                     <button onClick={() => navigate('/insert')}>Insert Package Details</button>
+                    </div>
+                    <div className={`details-box ${showBox ? 'show' : ''}`}>
                     <button onClick={() => navigate('/view')}>Search and Manage Packages</button>
+                    </div>
                 </div>
             </div>
         </div>

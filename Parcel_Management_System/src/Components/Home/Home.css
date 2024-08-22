@@ -1,12 +1,29 @@
-.home {
+/* General Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    margin-top: 140px;
+    padding: 0;
+    box-sizing: border-box;
+    color: #1e3c72;
+    background: url('../Assests/gif1.gif') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: url('../Assests/BG3.jpg') no-repeat center center fixed;
-    background-size: cover;
-    padding: 20px;
     overflow: hidden;
+}
+
+.home {
+    margin-top: 140px;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .containerhome {
@@ -14,8 +31,10 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 1400px; /* Adjusted for better fit */
-    gap: 20px; /* Added gap to ensure space between content and buttons */
+    max-width: 1400px;
+    gap: 40px;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .details-box {
@@ -36,69 +55,83 @@
 }
 
 .details-box h2 {
-    color: #444;
-    font-size: 2.5rem;
+    color: #1e3c72;
+    font-size: 2.8rem;
     margin-bottom: 20px;
     text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .details-box h3 {
     font-size: 1.8rem;
     margin-top: 30px;
     margin-bottom: 15px;
-    color: #555;
+    color: #333;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-bottom: 2px solid #1e3c72;
+    padding-bottom: 10px;
 }
 
-.details-box p {
+.details-box p,
+.details-box ul li {
     font-size: 1.2rem;
-    line-height: 1.6;
-    color: #666;
+    line-height: 1.8;
+    color: #555;
     margin-bottom: 20px;
+    font-weight: 400;
 }
 
 .details-box ul {
     list-style-type: disc;
     margin-left: 20px;
-    margin-bottom: 20px;
-    color: #666;
-}
-
-.details-box ul li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
 }
 
 .side-boxes {
+    margin-top: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px; /* Space between buttons */
+    width: 100%; /* Ensure buttons take up full width of container */
 }
 
 .side-boxes button {
     padding: 15px 25px;
-    font-size: 1.1rem;
-    background-color: #007BFF;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
     text-align: center;
+    font-weight: 500;
+    width: 100%; /* Make buttons fill the available width */
+    height: 60px; /* Enforce a uniform height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .side-boxes button:hover {
-    background-color: #0056b3;
-    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.4);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    box-shadow: 0 5px 20px rgba(0, 86, 179, 0.4);
     transform: translateY(-2px);
 }
 
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .containerhome {
         flex-direction: column;
         align-items: center;
-        gap: 20px; /* Space between content and buttons on mobile */
+        gap: 20px;
     }
 
     .details-box {
@@ -108,10 +141,10 @@
 
     .side-boxes {
         width: 100%;
-        flex-direction: column; /* Stack buttons vertically on mobile */
+        flex-direction: column;
     }
 
     .side-boxes button {
-        width: 100%; /* Full width for buttons on mobile */
+        width: 100%;
     }
 }
