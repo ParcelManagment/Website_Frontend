@@ -7,7 +7,7 @@ import './LoginSignup.css'
 
 import employee_id_icon from '../Assests/EmployeeID.png';
 import name_icon from '../Assests/Name.png';
-import role_icon from '../Assests/Role.png';
+import station_icon from '../Assests/station.png';
 import password_icon from '../Assests/Password.png';
 import website_logo from '../Assests/logo.jpg'; 
 
@@ -20,7 +20,7 @@ const LoginSignup = () => {
     const [employeeId, setEmployeeId] = useState('');
     const [fname, setInputFirstName] = useState('');
     const [lname, setInputLastName] = useState('');
-    const [role, setRole] = useState(''); // Added state for role
+    const [station, setStation] = useState(''); // Added state for station
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(''); // State for message
@@ -33,7 +33,7 @@ const LoginSignup = () => {
         employeeId: false,
         fname: false,
         lname: false,
-        role: false,
+        station: false,
         password: false,
     });
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ const LoginSignup = () => {
                 employee_id: employeeId,
                 fname: fname,
                 lname: lname,
-                role: role, // Pass role to backend if needed
+                station: station, // Pass station to backend if needed
                 password: password
             });
             setMessage('Registration Successful'); // Set success message
@@ -139,7 +139,7 @@ const LoginSignup = () => {
     const validateSignupFields = () => {
         const isEmployeeIdValid = validateSignupEmployeeId();
         const isPasswordValid = validatePassword();
-        return isEmployeeIdValid && isPasswordValid && fname !== '' && lname !== '' && role !== '';
+        return isEmployeeIdValid && isPasswordValid && fname !== '' && lname !== '' && station !== '';
     };
 
     // Validation functions for Log In
@@ -218,15 +218,44 @@ const LoginSignup = () => {
                                 />
                             </div>
                             <div className="input">
-                                <img src={role_icon} alt="Role" />
-                                <input
-                                    type="text"
-                                    placeholder="Role"
-                                    value={role}
-                                    onChange={(e) => setRole(e.target.value)}
-                                    onBlur={() => handleBlur('role')}
-                                />
-                            </div>
+                            <img src={station_icon} alt="Station" />
+                                <select
+                                    value={station}
+                                    onChange={(e) => setStation(e.target.value)}
+                                    onBlur={() => handleBlur('station')}
+                                >
+                            <option value="">Select Station</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Fort">Fort</option>
+                            <option value="Kalaniya">Kalaniya</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Nuwaraeliya">Nuwaraeliya</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Monaragala">Monaragala</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            
+                            {
+                            }
+    </select>
+</div>
+
                         </>
                     )}
                     <div className="input">

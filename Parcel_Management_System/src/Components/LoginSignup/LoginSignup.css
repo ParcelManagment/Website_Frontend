@@ -200,3 +200,25 @@
     
   }
 
+/* Dropdown styles */
+input[type="text"], select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #eaeaea;
+  color: #676767;
+  padding: 10px;
+  font-size: 19px;
+  font-weight: 500;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
