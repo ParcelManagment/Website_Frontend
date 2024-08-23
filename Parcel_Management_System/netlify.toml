@@ -10,7 +10,7 @@ force = true
 
 [[redirects]]
 from = "/model/*"
-to = "http://ec2-13-51-162-128.eu-north-1.compute.amazonaws.com/model/:splat"
+to = "http://ec2-13-60-163-193.eu-north-1.compute.amazonaws.com/model/:splat"
 status = 200
 force = true
 
