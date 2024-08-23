@@ -12,13 +12,14 @@ body {
     background-size: cover;
     height: auto;
     display: flex;
+    overflow-y: auto;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
 .home {
-    margin-top: 360px;
+    margin-top: 380px;
     padding: 20px;
     width: 100%;
     display: flex;
@@ -34,6 +35,7 @@ body {
     width: 100%;
     max-width: 1400px;
     gap: 40px;
+    overflow-y: auto;
     padding: 20px;
     border-radius: 15px;
 }
