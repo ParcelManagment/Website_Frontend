@@ -29,6 +29,8 @@ const ViewPage = () => {
             console.log("Failed to fetch data", err);
         }
     };
+    
+   
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -196,11 +198,11 @@ const ViewPage = () => {
                         </div>
                         <div className="form-group">
                             <label>Package Condition:</label>
-                            <input type="text" name="parcelCondition" value={parcelData.package.package_condition || ''} readOnly />
+                            <input type="text" name="parcelCondition" value={parcelData.package.package_condition || ''} readOnly/>
                         </div>
                         <div className="form-group">
                             <label>Destination:</label>
-                            <input type="text" name="parcelDestination" value={parcelData.package.destination || ''} readOnly />
+                            <input type="text" name="parcelDestination"  value={parcelData.package.destination || ''} readOnly />
                         </div>
                     </div>
 
@@ -208,7 +210,7 @@ const ViewPage = () => {
                         <h2>Additional Details</h2>
                         <div className="form-group">
                             <label>Price:</label>
-                            <input type="text" name="price" value={parcelData.package.price || ''} readOnly />
+                            <input type="text" name="price"  value={parcelData.package.price || ''} readOnly/>
                         </div>
                         <div className="form-group">
                             <label>Tracking Device ID:</label>
@@ -232,6 +234,7 @@ const ViewPage = () => {
                 </form>
             </div>
             )}
+           
         </div>
     );
 };

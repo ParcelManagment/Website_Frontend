@@ -1,4 +1,4 @@
-/* NavigationBar.css */
+
 .navigation-bar {
     display: flex;
     justify-content: center; /* Center navigation items */
@@ -13,7 +13,8 @@
     z-index: 1000; /* Make sure it is on top of other elements */
 }
 
-.navigation-bar a {
+.navigation-bar a,
+.navigation-bar .logout-button {
     color: #ffffff; /* White text color */
     text-decoration: none;
     padding: 10px 20px; /* Padding around text */
@@ -21,14 +22,20 @@
     font-weight: bold; /* Bold text */
     border-radius: 8px; /* Rounded corners */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    background: none; /* No background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    margin: 0; /* Ensure no extra margin */
 }
 
-.navigation-bar a:hover {
+.navigation-bar a:hover,
+.navigation-bar .logout-button:hover {
     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
     transform: scale(1.05); /* Slight scale effect on hover */
 }
 
-.navigation-bar a:active {
+.navigation-bar a:active,
+.navigation-bar .logout-button:active {
     background-color: rgba(255, 255, 255, 0.4); /* More opaque on click */
     transform: scale(0.95); /* Slightly reduced scale on click */
 }
@@ -43,4 +50,48 @@
 .navigation-bar .links {
     display: flex;
     gap: 15px; /* Space between links */
+}
+
+.logout-button {
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    color: #ffffff; /* White text color */
+    cursor: pointer; /* Pointer cursor */
+    padding: 10px 20px; /* Same padding as links */
+    font-size: 18px; /* Same font size as links */
+    font-weight: bold; /* Same font weight as links */
+    border-radius: 8px; /* Same border radius as links */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+.navigation-bar .links a.active-link {
+    background-color: rgba(255, 255, 255, 0.3); /* Highlight color */
+    color: #ffffff; /* Text color for active link */
+    border-radius: 8px; /* Optional: rounded corners for highlight */
+
+
+
+
+}
+@media (max-width: 600px) {
+    .navigation-bar {
+        justify-content: space-around; /* Space items evenly */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .navigation-bar .links a[href="/auth"] {
+        display: none; /* Hide the "Authentication" button */
+    }
+    .navigation-bar .logo {
+        display: none; /* Hide the logo */
+    }
+
+    .navigation-bar .links {
+        gap: 4px; /* Reduce space between links */
+    }
+
+    .navigation-bar a,
+    .navigation-bar .logout-button {
+        padding: 8px 12px; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Reduce font size */
+    }
 }

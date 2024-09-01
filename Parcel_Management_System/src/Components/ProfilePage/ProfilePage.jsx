@@ -12,29 +12,32 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const employee_id = localStorage.getItem('employee_id'); // Get employee_id from localStorage or context
-            if (!employee_id) {
-                setError('Employee ID not found');
-                setLoading(false);
-                return;
-            }
-
             try {
                 const response = await axios.get(`/staff/profile`);
-                setProfile(response.data.employee);
+                const { employee } = response.data; // Destructure the employee object from the response
+                setProfile(employee);
                 setLoading(false);
             } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    navigate('/');
+                } else {
                 setError('Failed to fetch profile data');
+                }
                 setLoading(false);
             }
         };
 
         fetchProfile();
-    }, []);
+    }, [navigate]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('employee_id');
-        navigate('/');
+    const handleLogout = async () => {
+        try {
+            await axios.get('/staff/logout');
+            localStorage.removeItem('employee_id');
+            navigate('/');
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
     };
 
     if (loading) return <div>Loading...</div>;
@@ -49,11 +52,30 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className="profile-details">
-                <p><strong>Employee ID:</strong> {profile.employee_id}</p>
-                <p><strong>First Name:</strong> {profile.first_name}</p>
-                <p><strong>Last Name:</strong> {profile.last_name}</p>
-                <p><strong>Role:</strong> {profile.role}</p>
-            </div>
+    <div className="detail-row">
+        <strong className="label">Employee ID</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.employee_id}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">First Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.first_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Last Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.last_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Role</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.role} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+
+</div>
+
+
             <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );

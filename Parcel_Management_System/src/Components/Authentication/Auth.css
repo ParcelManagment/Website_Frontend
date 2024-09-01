@@ -1,0 +1,72 @@
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; /* Increased margin to add space from the top */
+    padding: 20px;
+    min-width: 800px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 80vh;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.table-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    max-height: 400px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.auth-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.auth-table th,
+.auth-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.auth-table th {
+    background-color: #2a5298;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Ensure header stays above content */
+}
+
+.auth-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.auth-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.approve-button {
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.approve-button:hover {
+    background-color: #218838;
+}
+
+.auth-container h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: #333;
+}
