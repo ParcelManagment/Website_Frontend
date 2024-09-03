@@ -93,12 +93,22 @@ const InsertPage = () => {
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: type === 'file' ? files[0] : value
-    }));
+    if (name === 'destination') {
+      // Handle destination field differently
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+      setSearchTerm(value); // Keep searchTerm synced for filtering
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: type === 'file' ? files[0] : value
+      }));
+    }
     validate(name, value);
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -312,7 +322,7 @@ const InsertPage = () => {
               id="destination"
               name="destination"
               onChange={handleChange}
-              value={searchTerm}
+              value={formData.destination}
               list="cities"
               required
               className="form-control"
