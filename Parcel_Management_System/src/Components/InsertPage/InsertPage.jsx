@@ -61,11 +61,10 @@ const InsertPage = () => {
       case 'senderLastName':
       case 'receiverFirstName':
       case 'receiverLastName':
-        if (!/^[a-zA-Z\s]+$/.test(value)) {
-          error = 'Name must contain only letters and spaces';
-        }
         if (!value.trim()) {
           error = 'This field is required';
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+          error = 'Name must contain only letters and spaces';
         }
         break;
       case 'senderPhone':
@@ -81,7 +80,7 @@ const InsertPage = () => {
         }
         break;
       case 'price':
-        if (value <= 0) {
+        if (Number(value) <= 0) {
           error = 'Price must be greater than zero';
         }
         break;
@@ -98,6 +97,15 @@ const InsertPage = () => {
       [name]: type === 'file' ? files[0] : value
     }));
     validate(name, value);
+  };
+
+  const handleDestinationChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setFormData(prevState => ({
+      ...prevState,
+      destination: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -168,23 +176,21 @@ const InsertPage = () => {
         });
         setSearchTerm('');
       } else {
-        // Format the error message
         const errorText = await response.text();
-        const formattedMessage = `Error ${response.status}: ${errorText.trim()}`;
+        let formattedMessage;
+        try {
+          const errorJson = JSON.parse(errorText);
+          formattedMessage = `Error ${response.status}: ${errorJson.message || errorText.trim()}`;
+        } catch {
+          formattedMessage = `Error ${response.status}: ${errorText.trim()}`;
+        }
         setSubmitError(formattedMessage);
-        alert(formattedMessage); // Display error in a pop-up
+        alert(formattedMessage);
       }
     } catch (error) {
-      // Format and display network or JSON parsing errors
-      let formattedMessage = 'An unexpected error occurred.';
-
-      if (error.message.includes('Unexpected token')) {
-        formattedMessage = 'Error: Invalid JSON response from server';
-      } else {
-        formattedMessage = `Error: ${error.message}`;
-      }
+      const formattedMessage = `Error: ${error.message}`;
       setSubmitError(formattedMessage);
-      alert(formattedMessage); // Display error in a pop-up
+      alert(formattedMessage);
       console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
@@ -304,7 +310,7 @@ const InsertPage = () => {
               type="text"
               id="destination"
               name="destination"
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleDestinationChange}
               value={searchTerm}
               list="cities"
               required
@@ -315,6 +321,30 @@ const InsertPage = () => {
                 <option key={city} value={city} />
               ))}
             </datalist>
+          </div>
+          <div className="form-group">
+            <label htmlFor="price">Price (in LKR)</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              onChange={handleChange}
+              value={formData.price}
+              required
+              className="form-control"
+            />
+            {errors.price && <span className="error">{errors.price}</span>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="tracking_device_id">Tracking Device ID</label>
+            <input
+              type="text"
+              id="tracking_device_id"
+              name="tracking_device_id"
+              onChange={handleChange}
+              value={formData.tracking_device_id}
+              className="form-control"
+            />
           </div>
         </div>
 
@@ -375,54 +405,14 @@ const InsertPage = () => {
           </div>
         </div>
 
-        {/* Price and Tracking Details */}
-        <div className="section tracking-details col-12 col-md-6 col-lg-3">
-          <h2>Price and Tracking</h2>
+        {/* Submit Button */}
+        <div className="col-12 col-md-6 col-lg-3 align-self-end">
           <div className="form-group">
-            <label htmlFor="price">Price (LKR)</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              onChange={handleChange}
-              value={formData.price}
-              required
-              className="form-control"
-            />
-            {errors.price && <span className="error">{errors.price}</span>}
+            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
           </div>
-          <div className="form-group">
-            <label htmlFor="tracking_device_id">Tracking Device ID</label>
-            <input
-              type="text"
-              id="tracking_device_id"
-              name="tracking_device_id"
-              onChange={handleChange}
-              value={formData.tracking_device_id}
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="uploadImages">Upload Images</label>
-            <input
-              type="file"
-              id="uploadImages"
-              name="uploadImages"
-              onChange={handleChange}
-              accept="image/*"
-              className="form-control-file"
-            />
-          </div>
-        </div>
-
-        <div className="form-group col-12">
-          <button 
-            type="submit" 
-            className="btn btn-primary btn-block"
-            disabled={isSubmitting} // Disable button if submitting
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-          </button>
+          {submitError && <div className="alert alert-danger">{submitError}</div>}
         </div>
       </form>
     </div>
@@ -430,4 +420,5 @@ const InsertPage = () => {
 };
 
 export default InsertPage;
+
 
