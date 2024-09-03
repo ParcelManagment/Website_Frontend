@@ -61,10 +61,11 @@ const InsertPage = () => {
       case 'senderLastName':
       case 'receiverFirstName':
       case 'receiverLastName':
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
+          error = 'Name must contain only letters and spaces';
+        }
         if (!value.trim()) {
           error = 'This field is required';
-        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
-          error = 'Name must contain only letters and spaces';
         }
         break;
       case 'senderPhone':
@@ -97,15 +98,6 @@ const InsertPage = () => {
       [name]: type === 'file' ? files[0] : value
     }));
     validate(name, value);
-  };
-
-  const handleDestinationChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setFormData(prevState => ({
-      ...prevState,
-      destination: value,
-    }));
   };
 
   const handleSubmit = async (e) => {
@@ -176,6 +168,7 @@ const InsertPage = () => {
         });
         setSearchTerm('');
       } else {
+        // Format the error message
         const errorText = await response.text();
         let formattedMessage;
         try {
@@ -184,13 +177,21 @@ const InsertPage = () => {
         } catch {
           formattedMessage = `Error ${response.status}: ${errorText.trim()}`;
         }
+
         setSubmitError(formattedMessage);
-        alert(formattedMessage);
+        alert(formattedMessage); // Display error in a pop-up
       }
     } catch (error) {
-      const formattedMessage = `Error: ${error.message}`;
+      // Format and display network or JSON parsing errors
+      let formattedMessage = 'An unexpected error occurred.';
+
+      if (error.message.includes('Unexpected token')) {
+        formattedMessage = 'Error: Invalid JSON response from server';
+      } else {
+        formattedMessage = `Error: ${error.message}`;
+      }
       setSubmitError(formattedMessage);
-      alert(formattedMessage);
+      alert(formattedMessage); // Display error in a pop-up
       console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
@@ -310,7 +311,7 @@ const InsertPage = () => {
               type="text"
               id="destination"
               name="destination"
-              onChange={handleDestinationChange}
+              onChange={handleChange}
               value={searchTerm}
               list="cities"
               required
@@ -321,30 +322,6 @@ const InsertPage = () => {
                 <option key={city} value={city} />
               ))}
             </datalist>
-          </div>
-          <div className="form-group">
-            <label htmlFor="price">Price (in LKR)</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              onChange={handleChange}
-              value={formData.price}
-              required
-              className="form-control"
-            />
-            {errors.price && <span className="error">{errors.price}</span>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="tracking_device_id">Tracking Device ID</label>
-            <input
-              type="text"
-              id="tracking_device_id"
-              name="tracking_device_id"
-              onChange={handleChange}
-              value={formData.tracking_device_id}
-              className="form-control"
-            />
           </div>
         </div>
 
@@ -405,14 +382,54 @@ const InsertPage = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
-        <div className="col-12 col-md-6 col-lg-3 align-self-end">
+        {/* Price and Tracking Details */}
+        <div className="section tracking-details col-12 col-md-6 col-lg-3">
+          <h2>Price and Tracking</h2>
           <div className="form-group">
-            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
+            <label htmlFor="price">Price (LKR)</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              onChange={handleChange}
+              value={formData.price}
+              required
+              className="form-control"
+            />
+            {errors.price && <span className="error">{errors.price}</span>}
           </div>
-          {submitError && <div className="alert alert-danger">{submitError}</div>}
+          <div className="form-group">
+            <label htmlFor="tracking_device_id">Tracking Device ID</label>
+            <input
+              type="text"
+              id="tracking_device_id"
+              name="tracking_device_id"
+              onChange={handleChange}
+              value={formData.tracking_device_id}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="uploadImages">Upload Images</label>
+            <input
+              type="file"
+              id="uploadImages"
+              name="uploadImages"
+              onChange={handleChange}
+              accept="image/*"
+              className="form-control-file"
+            />
+          </div>
+        </div>
+
+        <div className="form-group col-12">
+          <button 
+            type="submit" 
+            className="btn btn-primary btn-block"
+            disabled={isSubmitting} // Disable button if submitting
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
         </div>
       </form>
     </div>
@@ -420,5 +437,4 @@ const InsertPage = () => {
 };
 
 export default InsertPage;
-
 
