@@ -135,3 +135,36 @@
 .submit_button:hover {
     background-color: #4682B4; 
 }
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Adjust the gap as needed to move buttons closer */
+    margin-top: 20px; /* Add some space above the buttons if necessary */
+}
+.delete_button {
+    margin-left:1050px; /* Adjust the margin to overlap the buttons slightly */
+}
+
+.delete_button,
+.submit_button {
+    width: 120px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: #87CEFA;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+.submit_button:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+}
+
+.submit_button:hover,
+.delete_button:hover {
+    background-color: #4682B4;
+}
