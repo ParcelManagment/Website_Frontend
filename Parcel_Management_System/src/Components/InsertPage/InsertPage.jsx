@@ -282,7 +282,7 @@ const InsertPage = () => {
               <option value="food">Food</option>
               <option value="grocery">Grocery</option>
               <option value="chemical">Chemical</option>
-              <option value="medicine">Medicine</option>
+              <option value="other">Other</option>
             </select>
           </div>
           <div className="form-group">

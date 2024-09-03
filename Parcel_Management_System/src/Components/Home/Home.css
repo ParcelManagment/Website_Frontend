@@ -24,6 +24,7 @@ body {
 }
 
 .content-wrapper {
+    margin-top: 170px;
     display: flex;
     flex-direction: row;
     gap: 20px;
