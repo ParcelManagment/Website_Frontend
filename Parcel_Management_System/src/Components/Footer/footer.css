@@ -3,27 +3,25 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /* Wrapper around all content except footer */
 .page-wrapper {
-    min-height: 10vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 /* The main content area */
 .content {
+    flex: 1 0 auto; /* This makes the content area take up all available vertical space */
     padding-bottom: 50px; /* Adjust this value based on your footer height */
-    flex-grow: 1; /* This makes the content area take up all available vertical space */
 }
 
 /* Footer specific styles */
 .footer-wrapper {
     width: 100vw;
     background: linear-gradient(90deg, #1e3c72, #2a5298);
-    margin-top: auto; /* Pushes the footer to the bottom */
 }
 
 /* Ensure footer content is centered and spaced properly */
@@ -31,14 +29,13 @@ html, body {
     color: white;
     padding: 20px 0;
     background: linear-gradient(90deg, #1e3c72, #2a5298); /* Ensure consistent footer background */
-    text-align: center;
-    width: 100%;
 }
 
 .footer .container-fluid {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .footer .row {
@@ -94,4 +91,3 @@ html, body {
 .footer-social a:hover {
     color: #ddd;
 }
-
