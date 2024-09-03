@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaShippingFast, FaMapMarkedAlt, FaUserPlus, FaDatabase, FaLock } from 'react-icons/fa'; // Importing icons
 
 const Home = () => {
     const [showBox, setShowBox] = useState(false);
+    const [expandedFeature, setExpandedFeature] = useState(null);
 
     const navigate = useNavigate();
 
@@ -24,33 +27,56 @@ const Home = () => {
         setTimeout(() => setShowBox(true), 100); // Trigger animation after 100ms
     }, [navigate]);
 
+    const handleFeatureClick = (index) => {
+        setExpandedFeature(expandedFeature === index ? null : index);
+    };
+
     return (
-        <div className="home">
-            <div className="containerhome">
-            <div className={`details-box ${showBox ? 'show' : ''}`}>
-                <h2>Welcome to the Parcel Management System!</h2>
+        <div className="home container-fluid d-flex justify-content-center align-items-center">
+            <div className="content-wrapper">
+                <div className={`left-section ${showBox ? 'show' : ''}`}>
+                    <h2 className="text-center">Welcome to the Parcel Management System!</h2>
                     <p>
-                        Our platform streamlines the process of managing packages for train-based transfers, ensuring safe and efficient delivery. Officers can easily input parcel details, track shipments, and manage package conditions, all in one place.
+                        Our platform is designed to simplify the process of managing packages for train-based transfers, ensuring that package deliveries are safe, efficient, and seamlessly tracked.
                     </p>
                     <h3>Features</h3>
                     <ul>
-                        <li>Efficient Parcel Management</li>
-                        <li>Real-time Tracking Integration</li>
-                        <li>Easy Insert and Search Functions</li>
-                        <li>Comprehensive Data Management</li>
-                        <li>Security and Privacy</li>
+                        {[
+                            { text: 'Efficient Parcel Management', icon: <FaShippingFast /> },
+                            { text: 'Real-time Tracking Integration', icon: <FaMapMarkedAlt /> },
+                            { text: 'User-Friendly Insert and Search Functions', icon: <FaUserPlus /> },
+                            { text: 'Comprehensive Data Management', icon: <FaDatabase /> },
+                            { text: 'Security and Privacy', icon: <FaLock /> }
+                        ].map((feature, index) => (
+                            <li
+                                key={index}
+                                className={`feature-item ${expandedFeature === index ? 'expanded' : ''}`}
+                                onClick={() => handleFeatureClick(index)}
+                            >
+                                <div className="feature-content">
+                                    {feature.icon} {feature.text}
+                                </div>
+                                <div className="feature-description">
+                                    {expandedFeature === index && (
+                                        <p>
+                                            This is a brief description of {feature.text}. It provides more details on how this feature enhances the parcel management system.
+                                        </p>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
                     </ul>
-                    <p>
-                        Easily manage package entries, update information, and track the progress of parcels in transit with our intuitive system. Whether you're entering new data or searching for an existing package, our platform provides all the tools you need to ensure smooth operations.
-                    </p>
                 </div>
 
-                <div className="side-boxes">
-                <div className={`details-box ${showBox ? 'show' : ''}`}>
-                    <button onClick={() => navigate('/insert')}>Insert Package Details</button>
+                <div className={`right-section ${showBox ? 'show' : ''}`}>
+                    <div className="details-box">
+                        <h3>Ready to get started?</h3>
+                        <p>Add new package information quickly and easily.</p>
+                        <button className="custom-button mb-3" onClick={() => navigate('/insert')}>Insert Package Details</button>
                     </div>
-                    <div className={`details-box ${showBox ? 'show' : ''}`}>
-                    <button onClick={() => navigate('/view')}>Search and Manage Packages</button>
+                    <div className="details-box">
+                        <p>Find and manage existing packages with just a few clicks.</p>
+                        <button className="custom-button" onClick={() => navigate('/view')}>Search and Manage Packages</button>
                     </div>
                 </div>
             </div>
@@ -59,3 +85,7 @@ const Home = () => {
 }
 
 export default Home;
+
+
+
+

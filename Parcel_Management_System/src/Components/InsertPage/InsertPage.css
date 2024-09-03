@@ -1,165 +1,143 @@
-/* InsertPage.css */
+/* Importing the same font as in Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* Container for the entire form */
+/* Container styling */
 .containerinsert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 170px;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgba(255, 255, 255, 0.9);
-  min-height: 100vh;
-  box-sizing: border-box;
+  color: #1e3c72;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Title of the form */
-.container h1 {
+/* Main form heading styling */
+h1 {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 40px;
-  font-size: 28px;
-  color: #333;
+  margin-bottom: 2rem;
+  font-size: 1.8rem; /* Match the right-side h3 */
+  color: #1e3c72; /* Consistent color */
+  font-weight: 700; /* Bold as the right-side h3 */
+  text-transform: uppercase;
+  border-bottom: 2px solid #1e3c72; /* Underline for consistency */
 }
 
-/* Layout for the main form sections */
-form {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
-  gap: 20px;
-  width: 100%;
-  max-width: 1600px;
-  background-color: #ffffff;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Layout container for sections */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure equal spacing */
+  gap: 1rem; /* Adjust gap between the boxes */
 }
 
-/* Each section of the form */
+/* Section box styling */
 .section {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background-color: #fafafa;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Titles within each section */
-.section h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #555;
-  border-bottom: 2px solid #1e3c72;
-  padding-bottom: 5px;
-}
-
-/* Styling for form groups */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-/* Labels for the input fields */
-.form-group label {
-  margin-bottom: 8px;
-  font-size: 14px;
+  background-color: #b8d7be;
+  padding: 1.5rem;
+  border: 1px solid #87d094;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(25% - 1rem); /* Each section takes up 25% minus the gap */
+  font-size: 1rem;
   color: #333;
+  margin: 0.5rem; /* Small margin to ensure spacing */
 }
 
-/* Input fields and select dropdowns */
-.form-group input,
-.form-group select {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Spacing between form groups */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Error messages */
+.error {
+  color: red;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Submit button styling */
+.btn-block {
   width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 400;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  border-color: #1e3c72;
+.btn-block:hover {
+  background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.4);
+  transform: translateY(-2px);
+  border: 2px solid #1e3c72;
+}
+
+.btn-block:focus {
   outline: none;
 }
 
-/* Data list styling */
-.form-group input[list] {
-  padding-right: 0;
+.btn-block:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
-/* Upload button */
-.form-group input[type="file"] {
-  padding: 5px;
-  font-size: 14px;
+/* Label and input field styling */
+label {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #1e3c72;
 }
 
-.error {
-  color: red;
-  font-size: 0.875em; /* Smaller font size */
-  margin-top: 5px;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #87d094;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Submit button at the bottom center */
-.submit-button {
-  grid-column: 1 / 5; /* Span all four columns */
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #1e3c72;
+  box-shadow: 0 0 0 0.2rem rgba(30, 60, 114, 0.25);
 }
 
-.submit-button button {
-  padding: 15px 40px;
-  font-size: 20px;
-  color: #fff;
-  background-color: #1e3c72;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+/* Section topics heading */
+.section h2 {
+  font-size: 1.6rem; /* Match left-side h3 */
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+  border-bottom: 2px solid #1e3c72; /* Underline for consistency */
+  padding-bottom: 8px;
 }
 
-.submit-button button:active {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  transform: translateY(0);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  form {
-
-
-    grid-template-columns: 1fr 1fr; /* Two equal columns on smaller screens */
-    grid-template-rows: auto auto; /* Two rows */
+/* Responsive adjustments for smaller screens */
+@media (max-width: 992px) {
+  .form {
+    flex-direction: column; /* Stack vertically on smaller screens */
   }
 
-  .submit-button {
-    grid-column: 1 / 3; /* Span both columns */
+  .section {
+    width: 100%;
+    margin: 0.5rem 0; /* Adjust vertical margin */
   }
-}
-
-@media (max-width: 768px) {
-  form {
-    grid-template-columns: 1fr; /* Single column on small screens */
-    grid-template-rows: auto;
-  }
-
-  .submit-button {
-    grid-column: 1;
-  }
-}
-
-/* Smooth animations */
-.section,
-.form-group input,
-.form-group select,
-.submit-button button {
-  transition: all 0.3s ease;
 }

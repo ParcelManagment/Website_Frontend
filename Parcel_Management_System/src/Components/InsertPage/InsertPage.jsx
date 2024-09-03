@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const citiesInSriLanka = [
   'Colombo',
@@ -12,14 +13,12 @@ const citiesInSriLanka = [
   'Batticaloa',
   'Matara',
   'Kurunegala',
-  'Puttalam',  
-  'Vavuniya',  
-  'Polonnaruwa',  
-  'Kilinochchi',  
-  'Mannar',  
-  'Vavuniya',  
-  'Mullaitivu',  
-  // Add more cities as needed
+  'Puttalam',
+  'Vavuniya',
+  'Polonnaruwa',
+  'Kilinochchi',
+  'Mannar',
+  'Mullaitivu',
 ];
 
 const InsertPage = () => {
@@ -43,9 +42,9 @@ const InsertPage = () => {
 
   const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
   const [searchTerm, setSearchTerm] = useState('');
-
-  
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     setFilteredCities(
@@ -104,12 +103,15 @@ const InsertPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic client-side validation check
     const hasErrors = Object.values(errors).some(error => error);
     if (hasErrors) {
       alert('Please fix the errors before submitting');
       return;
     }
+
+    setIsSubmitting(true);
+    setSubmitError(''); // Clear previous error message
+
     const data = {
       package: {
         tag_id: formData.packageId,
@@ -146,13 +148,46 @@ const InsertPage = () => {
         const result = await response.json();
         console.log('Package submitted successfully:', result);
         alert('Package submitted successfully');
+        // Reset the form
+        setFormData({
+          senderFirstName: '',
+          senderLastName: '',
+          senderEmail: '',
+          senderPhone: '',
+          packageId: '',
+          parcelType: 'furniture',
+          parcelCondition: 'new',
+          destination: '',
+          receiverFirstName: '',
+          receiverLastName: '',
+          receiverEmail: '',
+          receiverPhone: '',
+          price: '',
+          tracking_device_id: '',
+          uploadImages: null,
+        });
+        setSearchTerm('');
       } else {
-        console.error('Failed to submit package:', await response.json());
-        alert('Failed to submit package');
+        // Format the error message
+        const errorText = await response.text();
+        const formattedMessage = `Error ${response.status}: ${errorText.trim()}`;
+        setSubmitError(formattedMessage);
+        alert(formattedMessage); // Display error in a pop-up
       }
     } catch (error) {
+      // Format and display network or JSON parsing errors
+      let formattedMessage = 'An unexpected error occurred.';
+
+      if (error.message.includes('Unexpected token')) {
+        formattedMessage = 'Error: Invalid JSON response from server';
+      } else {
+        formattedMessage = `Error: ${error.message}`;
+      }
+      setSubmitError(formattedMessage);
+      alert(formattedMessage); // Display error in a pop-up
       console.error('Error:', error);
-      alert('An error occurred while submitting the package');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -160,9 +195,9 @@ const InsertPage = () => {
     <div className="containerinsert">
       <h1>Package Details Form</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="row">
         {/* Sender Details */}
-        <div className="section sender-details">
+        <div className="section sender-details col-12 col-md-6 col-lg-3">
           <h2>Sender Details</h2>
           <div className="form-group">
             <label htmlFor="senderFirstName">First Name</label>
@@ -173,6 +208,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.senderFirstName}
               required
+              className="form-control"
             />
             {errors.senderFirstName && <span className="error">{errors.senderFirstName}</span>}
           </div>
@@ -185,6 +221,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.senderLastName}
               required
+              className="form-control"
             />
             {errors.senderLastName && <span className="error">{errors.senderLastName}</span>}
           </div>
@@ -197,6 +234,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.senderEmail}
               required
+              className="form-control"
             />
             {errors.senderEmail && <span className="error">{errors.senderEmail}</span>}
           </div>
@@ -209,13 +247,14 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.senderPhone}
               required
+              className="form-control"
             />
             {errors.senderPhone && <span className="error">{errors.senderPhone}</span>}
           </div>
         </div>
 
         {/* Package Details */}
-        <div className="section package-details">
+        <div className="section package-details col-12 col-md-6 col-lg-3">
           <h2>Package Details</h2>
           <div className="form-group">
             <label htmlFor="packageId">Package ID</label>
@@ -226,6 +265,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.packageId}
               required
+              className="form-control"
             />
           </div>
           <div className="form-group">
@@ -235,22 +275,24 @@ const InsertPage = () => {
               name="parcelType"
               onChange={handleChange}
               value={formData.parcelType}
+              className="form-control"
             >
               <option value="furniture">Furniture</option>
               <option value="vehicle">Vehicle</option>
               <option value="food">Food</option>
               <option value="grocery">Grocery</option>
               <option value="chemical">Chemical</option>
-              <option value="other">Other</option>
+              <option value="medicine">Medicine</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="parcelCondition">Package Condition</label>
+            <label htmlFor="parcelCondition">Condition</label>
             <select
               id="parcelCondition"
               name="parcelCondition"
               onChange={handleChange}
               value={formData.parcelCondition}
+              className="form-control"
             >
               <option value="new">New</option>
               <option value="used">Used</option>
@@ -262,22 +304,22 @@ const InsertPage = () => {
               type="text"
               id="destination"
               name="destination"
+              onChange={(e) => setSearchTerm(e.target.value)}
               value={searchTerm}
-              onChange={(e) => { setSearchTerm(e.target.value); handleChange(e); }}
-              placeholder="Search for a city"
               list="cities"
               required
+              className="form-control"
             />
             <datalist id="cities">
-              {filteredCities.map((city, index) => (
-                <option key={index} value={city} />
+              {filteredCities.map(city => (
+                <option key={city} value={city} />
               ))}
             </datalist>
           </div>
         </div>
 
         {/* Receiver Details */}
-        <div className="section receiver-details">
+        <div className="section receiver-details col-12 col-md-6 col-lg-3">
           <h2>Receiver Details</h2>
           <div className="form-group">
             <label htmlFor="receiverFirstName">First Name</label>
@@ -288,6 +330,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.receiverFirstName}
               required
+              className="form-control"
             />
             {errors.receiverFirstName && <span className="error">{errors.receiverFirstName}</span>}
           </div>
@@ -300,6 +343,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.receiverLastName}
               required
+              className="form-control"
             />
             {errors.receiverLastName && <span className="error">{errors.receiverLastName}</span>}
           </div>
@@ -312,6 +356,7 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.receiverEmail}
               required
+              className="form-control"
             />
             {errors.receiverEmail && <span className="error">{errors.receiverEmail}</span>}
           </div>
@@ -324,16 +369,17 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.receiverPhone}
               required
+              className="form-control"
             />
             {errors.receiverPhone && <span className="error">{errors.receiverPhone}</span>}
           </div>
         </div>
 
-        {/* Additional Details */}
-        <div className="section additional-details">
-          <h2>Additional Details</h2>
+        {/* Price and Tracking Details */}
+        <div className="section tracking-details col-12 col-md-6 col-lg-3">
+          <h2>Price and Tracking</h2>
           <div className="form-group">
-            <label htmlFor="price">Price</label>
+            <label htmlFor="price">Price (LKR)</label>
             <input
               type="number"
               id="price"
@@ -341,33 +387,42 @@ const InsertPage = () => {
               onChange={handleChange}
               value={formData.price}
               required
+              className="form-control"
             />
             {errors.price && <span className="error">{errors.price}</span>}
           </div>
           <div className="form-group">
-            <label htmlFor="trackingId">Tracking Device ID</label>
+            <label htmlFor="tracking_device_id">Tracking Device ID</label>
             <input
               type="text"
               id="tracking_device_id"
               name="tracking_device_id"
               onChange={handleChange}
               value={formData.tracking_device_id}
-              required
+              className="form-control"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="uploadImages">Upload Images of the package here</label>
+            <label htmlFor="uploadImages">Upload Images</label>
             <input
               type="file"
               id="uploadImages"
               name="uploadImages"
               onChange={handleChange}
+              accept="image/*"
+              className="form-control-file"
             />
           </div>
         </div>
 
-        <div className="submit-button">
-          <button type="submit">Submit</button>
+        <div className="form-group col-12">
+          <button 
+            type="submit" 
+            className="btn btn-primary btn-block"
+            disabled={isSubmitting} // Disable button if submitting
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
         </div>
       </form>
     </div>
@@ -375,3 +430,4 @@ const InsertPage = () => {
 };
 
 export default InsertPage;
+
