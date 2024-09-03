@@ -178,23 +178,31 @@ const InsertPage = () => {
         });
         setSearchTerm('');
       } else {
-        // Format the error message
+        // Extract and format error message
         const errorText = await response.text();
-        let formattedMessage;
+        let formattedMessage = 'An error occurred.';
+  
         try {
           const errorJson = JSON.parse(errorText);
-          formattedMessage = `Error ${response.status}: ${errorJson.message || errorText.trim()}`;
+          // Extract errors array and create a readable message
+          if (errorJson.errors && Array.isArray(errorJson.errors)) {
+            formattedMessage = errorJson.errors
+              .map(err => err.msg) // Extract the message field from each error
+              .join(', '); // Join all messages with commas
+          } else {
+            formattedMessage = errorText.trim(); // Use raw text if JSON parsing fails
+          }
         } catch {
-          formattedMessage = `Error ${response.status}: ${errorText.trim()}`;
+          formattedMessage = errorText.trim(); // Fallback for non-JSON responses
         }
-
+  
         setSubmitError(formattedMessage);
         alert(formattedMessage); // Display error in a pop-up
       }
     } catch (error) {
       // Format and display network or JSON parsing errors
       let formattedMessage = 'An unexpected error occurred.';
-
+  
       if (error.message.includes('Unexpected token')) {
         formattedMessage = 'Error: Invalid JSON response from server';
       } else {

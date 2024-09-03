@@ -1,0 +1,64 @@
+html, body {
+    height: 100%; /* Ensure the body takes up the full height */
+    margin: 0;
+}
+
+.main-content {
+    min-height: 100vh; /* Ensure content takes up at least the full viewport height */
+    padding-bottom: 60px; /* Height of the footer to prevent overlap */
+    box-sizing: border-box;
+}
+
+.footer {
+    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Gradient background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+.footer-links {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-social {
+    margin: 10px 0;
+}
+
+.footer-social a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.footer-social a:hover {
+    color: #ddd;
+}
