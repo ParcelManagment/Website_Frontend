@@ -27,7 +27,7 @@ function App() {
 }
 
 const MainLayout = () => (
-  <div className="main-layout">
+  <div className="page-wrapper">
     <NavigationBar />
     <main className="content">
       <Routes>

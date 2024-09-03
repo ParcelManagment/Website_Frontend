@@ -1,64 +1,97 @@
+/* Ensure the entire page takes up the full height of the viewport */
 html, body {
-    height: 100%; /* Ensure the body takes up the full height */
+    height: 100%;
     margin: 0;
-}
-
-.main-content {
-    min-height: 100vh; /* Ensure content takes up at least the full viewport height */
-    padding-bottom: 60px; /* Height of the footer to prevent overlap */
+    padding: 0;
     box-sizing: border-box;
 }
 
+/* Wrapper around all content except footer */
+.page-wrapper {
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The main content area */
+.content {
+    padding-bottom: 50px; /* Adjust this value based on your footer height */
+    flex-grow: 1; /* This makes the content area take up all available vertical space */
+}
+
+/* Footer specific styles */
+.footer-wrapper {
+    width: 100vw;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+/* Ensure footer content is centered and spaced properly */
 .footer {
-    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Gradient background */
+    color: white;
+    padding: 20px 0;
+    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Ensure consistent footer background */
+    text-align: center;
+    width: 100%;
+}
+
+.footer .container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer .row {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px;
-    color: white;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 0;
-    left: 0;
 }
 
+.footer .col-md-4 {
+    margin-bottom: 20px; /* Space between sections */
+    max-width: 400px; /* Optional: Restrict the width of each column */
+}
 
-.footer-content {
+.footer p {
+    margin-bottom: 10px;
+}
+
+.footer h4 {
+    margin-top: 20px;
+    font-size: 1.25rem;
+}
+
+/* Footer links styling */
+.footer-links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-}
-
-.footer-info p {
-    margin: 5px 0;
-}
-
-.footer-links {
-    margin: 10px 0;
 }
 
 .footer-links a {
-    color: white;
     text-decoration: none;
-    margin: 0 10px;
+    color: white;
+    margin: 5px 0;
 }
 
 .footer-links a:hover {
     text-decoration: underline;
 }
 
+/* Footer social icons styling */
 .footer-social {
-    margin: 10px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .footer-social a {
-    color: white;
     font-size: 20px;
+    color: white;
     margin: 0 10px;
 }
 
 .footer-social a:hover {
     color: #ddd;
 }
+

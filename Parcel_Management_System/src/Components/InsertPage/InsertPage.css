@@ -3,28 +3,33 @@
 
 /* Container styling */
 .containerinsert {
-  margin-top: 100px;
+  margin-top: 600px;
   color: #1e3c72;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
 }
 
 /* Main form heading styling */
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 1.8rem; /* Match the right-side h3 */
-  color: #1e3c72; /* Consistent color */
-  font-weight: 700; /* Bold as the right-side h3 */
+  font-size: 1.8rem;
+  color: #1e3c72;
+  font-weight: 700;
   text-transform: uppercase;
-  border-bottom: 2px solid #1e3c72; /* Underline for consistency */
+  border-bottom: 2px solid #1e3c72;
 }
 
 /* Layout container for sections */
 .form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Ensure equal spacing */
-  gap: 1rem; /* Adjust gap between the boxes */
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 /* Section box styling */
@@ -34,10 +39,10 @@ h1 {
   border: 1px solid #87d094;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1 1 calc(25% - 1rem); /* Each section takes up 25% minus the gap */
+  flex: 1 1 calc(25% - 1rem);
   font-size: 1rem;
   color: #333;
-  margin: 0.5rem; /* Small margin to ensure spacing */
+  margin: 0.5rem;
 }
 
 /* Spacing between form groups */
@@ -49,7 +54,7 @@ h1 {
 .error {
   color: red;
   font-size: 0.875rem;
-  font-weight: 400; /* Ensure normal weight for error messages */
+  font-weight: 400;
 }
 
 /* Submit button styling */
@@ -89,7 +94,7 @@ h1 {
 
 /* Label and input field styling */
 label {
-  font-weight: 400; /* Normal weight for labels */
+  font-weight: 400;
   font-size: 0.9rem;
   color: #1e3c72;
 }
@@ -107,12 +112,12 @@ textarea {
   font-size: 1rem;
   color: #333;
   font-family: 'Roboto', sans-serif;
-  font-weight: 400; /* Ensure normal weight for input text */
+  font-weight: 400;
 }
 
 /* Override Bootstrap's default styles */
 .form-control {
-  font-weight: 400 !important; /* Ensure input text is not bold */
+  font-weight: 400 !important;
 }
 
 /* Input fields focus styling */
@@ -128,25 +133,25 @@ textarea:focus {
 
 /* Section topics heading */
 .section h2 {
-  font-size: 1.6rem; /* Match left-side h3 */
+  font-size: 1.6rem;
   margin-bottom: 10px;
   color: #333;
   font-weight: 500;
   text-align: center;
   text-transform: capitalize;
-  border-bottom: 2px solid #1e3c72; /* Underline for consistency */
+  border-bottom: 2px solid #1e3c72;
   padding-bottom: 8px;
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 992px) {
   .form {
-    flex-direction: column; /* Stack vertically on smaller screens */
+    flex-direction: column;
   }
 
   .section {
     width: 100%;
-    margin: 0.5rem 0; /* Adjust vertical margin */
+    margin: 0.5rem 0;
   }
 }
 
@@ -154,3 +159,4 @@ textarea:focus {
 .form-control-file {
   padding: 0.5rem;
 }
+

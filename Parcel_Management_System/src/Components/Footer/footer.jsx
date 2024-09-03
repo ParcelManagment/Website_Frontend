@@ -4,30 +4,38 @@ import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <div>
-      <div className="main-content">
-        {/* Your main page content here */}
-      </div>
-      <div className="footer">
-        <div className="footer-content">
-          <div className="footer-info">
-            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-            <p>Address: 123 Your Street, Colombo, Sri Lanka</p>
-            <p>Email: contact@yourcompany.com</p>
-          </div>
-          <div className="footer-links">
-            <a href="/about">About Us</a>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-            <a href="/help">Help Center</a>
-          </div>
-          <div className="footer-social">
-            <a href="https://www.facebook.com/yourcompany" aria-label="Facebook"><FaFacebook /></a>
-            <a href="https://twitter.com/yourcompany" aria-label="Twitter"><FaTwitter /></a>
-            <a href="https://www.linkedin.com/company/yourcompany" aria-label="LinkedIn"><FaLinkedin /></a>
+    <div className="footer-wrapper">
+      <footer className="footer bg-dark text-white">
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-md-4 text-center text-md-start mb-3 mb-md-0">
+              <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+            </div>
+
+            <div className="col-md-4 text-center mb-3 mb-md-0">
+              <h4>About Us</h4>
+              <p>
+                We are dedicated to providing efficient train package management solutions to stations. Our platform helps streamline the process of inserting, viewing, updating, and deleting package details.
+              </p>
+            </div>
+
+            <div className="col-md-4 text-center mb-3 mb-md-0">
+              <h4>Contact Us</h4>
+              <p>Email: contact@yourcompany.com</p>
+              <p>Address: 123 Your Street, Colombo, Sri Lanka</p>
+              <p>Phone: +94 123 456 789</p>
+            </div>
+            
+            <div className="col-md-4 text-center text-md-end">
+              <div className="footer-social">
+                <a href="https://www.facebook.com/yourcompany" aria-label="Facebook" className="text-white mx-2"><FaFacebook /></a>
+                <a href="https://twitter.com/yourcompany" aria-label="Twitter" className="text-white mx-2"><FaTwitter /></a>
+                <a href="https://www.linkedin.com/company/yourcompany" aria-label="LinkedIn" className="text-white mx-2"><FaLinkedin /></a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
