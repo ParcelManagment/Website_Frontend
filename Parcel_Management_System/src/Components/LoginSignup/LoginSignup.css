@@ -147,51 +147,7 @@
     width: 30%; /* Make the submit button width 100% to fit the container */
   }
   
-  .submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Make the submit button width 100% to fit the container */
-    height: 50px;
-    color: #fff;
-    background-color: #4c00b4;
-    border-radius: 50px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    position: relative; /* Added for the pseudo-element */
-    overflow: hidden; /* Added for the pseudo-element */
 
-  }
-  
-  .submit::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
-    transition: width 0.2s ease, height 0.2s ease, top 0.2s ease, left 0.2s ease;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    pointer-events: none; /* Ensure it doesn't block clicks */
-  }
-  
-  .submit:hover::before {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .submit.gray {
-    background-color: #EAEAEA;
-    color: #676767;
-  }
-
-  .gray {
-    background-color: #EAEAEA;
-    color: #3c009d
-  }
 
   .message{
     color: red;
