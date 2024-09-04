@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -187,7 +188,7 @@ const InsertPage = () => {
           // Extract errors array and create a readable message
           if (errorJson.errors && Array.isArray(errorJson.errors)) {
             formattedMessage = errorJson.errors
-              .map(err => err.msg) // Extract the message field from each error
+              .map(err => err.msg) // Extract only the 'msg' field from each error
               .join(', '); // Join all messages with commas
           } else {
             formattedMessage = errorText.trim(); // Use raw text if JSON parsing fails
