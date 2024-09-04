@@ -144,6 +144,7 @@
     display: flex;
     gap: 30px;
     margin: 30px auto;
+    width: 30%; /* Make the submit button width 100% to fit the container */
   }
   
   .submit {
