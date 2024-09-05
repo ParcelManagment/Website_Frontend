@@ -113,16 +113,16 @@ const InsertPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const hasErrors = Object.values(errors).some(error => error);
     if (hasErrors) {
       alert('Please fix the errors before submitting');
       return;
     }
-
+  
     setIsSubmitting(true);
     setSubmitError(''); // Clear previous error message
-
+  
     const data = {
       package: {
         tag_id: formData.packageId,
@@ -145,7 +145,7 @@ const InsertPage = () => {
         mobile_number: formData.receiverPhone
       }
     };
-
+  
     try {
       const response = await fetch('/api/package/new', {
         method: 'POST',
@@ -154,7 +154,7 @@ const InsertPage = () => {
         },
         body: JSON.stringify(data),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
         console.log('Package submitted successfully:', result);
@@ -185,23 +185,22 @@ const InsertPage = () => {
   
         try {
           const errorJson = JSON.parse(errorText);
-          // Extract errors array and create a readable message
+          // Check if errorJson.errors exists and is an array
           if (errorJson.errors && Array.isArray(errorJson.errors)) {
-            formattedMessage = errorJson.errors
-              .map(err => err.msg) // Extract only the 'msg' field from each error
-              .join(', '); // Join all messages with commas
+            // Extract the msg field from each error and join them with commas
+            formattedMessage = errorJson.errors.map(err => err.msg).join(', ');
           } else {
-            formattedMessage = errorText.trim(); // Use raw text if JSON parsing fails
+            formattedMessage = errorText.trim(); // Fallback in case the structure is different
           }
-        } catch {
-          formattedMessage = errorText.trim(); // Fallback for non-JSON responses
+        } catch (error) {
+          formattedMessage = errorText.trim(); // Fallback if JSON parsing fails
         }
   
         setSubmitError(formattedMessage);
-        alert(formattedMessage); // Display error in a pop-up
+        alert(formattedMessage); // Show only the error message(s)
       }
     } catch (error) {
-      // Format and display network or JSON parsing errors
+      // Handle network or unexpected errors
       let formattedMessage = 'An unexpected error occurred.';
   
       if (error.message.includes('Unexpected token')) {
@@ -216,6 +215,7 @@ const InsertPage = () => {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <div className="containerinsert">
