@@ -276,26 +276,7 @@ const LoginSignup = () => {
                     </div>
                 )}
                 <div className="submit-container">
-                    <div
-                        className={action === "Login" ? "submit gray" : "submit"}
-                        onClick={() => {
-                            if (!loading) {
-                                if (action === 'Sign Up') {
-                                    if (validateSignupFields()) {
-                                        handleSignup();
-                                    } else {
-                                        setMessage('Please fill in all fields');
-                                    }
-                                } else {
-                                    setAction('Sign Up');
-                                    clearMessages();
-                                }
-                            }
-                        }}
-                        disabled={loading} // Disable the button while loading
-                    >
-                        Sign Up
-                    </div>
+
                     <div
                         className={action === "Sign Up" ? "submit gray" : "submit"}
                         onClick={() => {

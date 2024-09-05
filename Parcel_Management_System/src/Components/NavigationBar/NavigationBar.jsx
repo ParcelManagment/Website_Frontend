@@ -49,7 +49,7 @@ const NavigationBar = () => {
                 <Link to="/insert" className={getLinkClass('/insert')}>Insert</Link>
                 <Link to="/view" className={getLinkClass('/view')}>View</Link>
                 <Link to="/profile" className={getLinkClass('/profile')}>Profile</Link>
-                <Link to="/auth" className={getLinkClass('/auth')}>Authentication</Link>
+                
                 <button onClick={handleLoginLogout} className="logout-button">
                     {isLoggedIn ? 'Logout' : 'Login'}
                 </button>
@@ -57,5 +57,7 @@ const NavigationBar = () => {
         </nav>
     );
 };
+
+// <Link to="/auth" className={getLinkClass('/auth')}>Authentication</Link>
 
 export default NavigationBar;

@@ -13,7 +13,7 @@ const ViewPage = () => {
         setError(null); 
     
         try {
-            const response = await fetch(`http://localhost:3000/package/fetchbyid/${searchTerm}`);
+            const response = await fetch(`/api/package/fetchbyid/${searchTerm}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
