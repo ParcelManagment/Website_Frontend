@@ -43,7 +43,7 @@ const InsertPage = () => {
 
   const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
   const [searchTerm, setSearchTerm] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
@@ -179,28 +179,28 @@ const InsertPage = () => {
         });
         setSearchTerm('');
       } else {
-        // Extract and format error message
+        // Extract error message and display only the `msg` part
         const errorText = await response.text();
         let formattedMessage = 'An error occurred.';
   
         try {
           const errorJson = JSON.parse(errorText);
-          // Check if errorJson.errors exists and is an array
+          // Check if there's an errors array in the response
           if (errorJson.errors && Array.isArray(errorJson.errors)) {
-            // Extract the msg field from each error and join them with commas
+            // Extract only the `msg` field from each error
             formattedMessage = errorJson.errors.map(err => err.msg).join(', ');
           } else {
-            formattedMessage = errorText.trim(); // Fallback in case the structure is different
+            formattedMessage = errorText.trim(); // Fallback for non-JSON or non-array responses
           }
-        } catch (error) {
+        } catch {
           formattedMessage = errorText.trim(); // Fallback if JSON parsing fails
         }
   
         setSubmitError(formattedMessage);
-        alert(formattedMessage); // Show only the error message(s)
+        alert(formattedMessage); // Show the extracted error message
       }
     } catch (error) {
-      // Handle network or unexpected errors
+      // Handle unexpected errors like network issues or invalid responses
       let formattedMessage = 'An unexpected error occurred.';
   
       if (error.message.includes('Unexpected token')) {
@@ -209,13 +209,12 @@ const InsertPage = () => {
         formattedMessage = `Error: ${error.message}`;
       }
       setSubmitError(formattedMessage);
-      alert(formattedMessage); // Display error in a pop-up
+      alert(formattedMessage);
       console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
     }
-  };
-  
+  };   
 
   return (
     <div className="containerinsert">
