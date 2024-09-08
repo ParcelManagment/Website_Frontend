@@ -13,13 +13,6 @@ function Footer() {
             </div>
 
             <div className="col-md-4 text-center mb-3 mb-md-0">
-              <h4>About Us</h4>
-              <p>
-                We are dedicated to providing efficient train package management solutions to stations. Our platform helps streamline the process of inserting, viewing, updating, and deleting package details.
-              </p>
-            </div>
-
-            <div className="col-md-4 text-center mb-3 mb-md-0">
               <h4>Contact Us</h4>
               <p>Email: contact@yourcompany.com</p>
               <p>Address: 123 Your Street, Colombo, Sri Lanka</p>

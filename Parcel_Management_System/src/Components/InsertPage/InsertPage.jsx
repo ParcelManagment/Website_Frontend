@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -42,7 +43,7 @@ const InsertPage = () => {
 
   const [filteredCities, setFilteredCities] = useState(citiesInSriLanka);
   const [searchTerm, setSearchTerm] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
@@ -112,16 +113,16 @@ const InsertPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const hasErrors = Object.values(errors).some(error => error);
     if (hasErrors) {
       alert('Please fix the errors before submitting');
       return;
     }
-
+  
     setIsSubmitting(true);
     setSubmitError(''); // Clear previous error message
-
+  
     const data = {
       package: {
         tag_id: formData.packageId,
@@ -144,7 +145,7 @@ const InsertPage = () => {
         mobile_number: formData.receiverPhone
       }
     };
-
+  
     try {
       const response = await fetch('/api/package/new', {
         method: 'POST',
@@ -153,7 +154,7 @@ const InsertPage = () => {
         },
         body: JSON.stringify(data),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
         console.log('Package submitted successfully:', result);
@@ -178,29 +179,28 @@ const InsertPage = () => {
         });
         setSearchTerm('');
       } else {
-        // Extract and format error message
+        // Extract error message and display only the `msg` part
         const errorText = await response.text();
         let formattedMessage = 'An error occurred.';
   
         try {
           const errorJson = JSON.parse(errorText);
-          // Extract errors array and create a readable message
+          // Check if there's an errors array in the response
           if (errorJson.errors && Array.isArray(errorJson.errors)) {
-            formattedMessage = errorJson.errors
-              .map(err => err.msg) // Extract the message field from each error
-              .join(', '); // Join all messages with commas
+            // Extract only the `msg` field from each error
+            formattedMessage = errorJson.errors.map(err => err.msg).join(', ');
           } else {
-            formattedMessage = errorText.trim(); // Use raw text if JSON parsing fails
+            formattedMessage = errorText.trim(); // Fallback for non-JSON or non-array responses
           }
         } catch {
-          formattedMessage = errorText.trim(); // Fallback for non-JSON responses
+          formattedMessage = errorText.trim(); // Fallback if JSON parsing fails
         }
   
         setSubmitError(formattedMessage);
-        alert(formattedMessage); // Display error in a pop-up
+        alert(formattedMessage); // Show the extracted error message
       }
     } catch (error) {
-      // Format and display network or JSON parsing errors
+      // Handle unexpected errors like network issues or invalid responses
       let formattedMessage = 'An unexpected error occurred.';
   
       if (error.message.includes('Unexpected token')) {
@@ -209,12 +209,12 @@ const InsertPage = () => {
         formattedMessage = `Error: ${error.message}`;
       }
       setSubmitError(formattedMessage);
-      alert(formattedMessage); // Display error in a pop-up
+      alert(formattedMessage);
       console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };   
 
   return (
     <div className="containerinsert">

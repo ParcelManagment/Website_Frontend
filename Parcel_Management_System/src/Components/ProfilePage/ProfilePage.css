@@ -1,32 +1,35 @@
+/* Ensure the profile page is not hidden under the navigation bar */
 .profile-page {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh; /* Ensure content covers the viewport height */
     background-color: #ffffff;
     border-radius: 20px;
     padding: 20px;
     width: 100%;
-    height: 60%;
-    margin-top: 50px;
+    margin-top: 50px; /* Adjust the margin as needed */
+    padding-top: 480px; /* Add padding to account for the height of the navbar */
+    box-sizing: border-box;
+    height: auto; /* Adjust this to prevent content cut-off */
 }
 
+/* Ensure the top part of the profile is not cut off */
 .profile-page h1 {
-    color: #333;
-    font-size: 32px; /* Slightly reduce font size for better spacing */
+    color: #4c41a2;
+    font-size: 32px;
     font-weight: 700;
-    margin-top: 0px;
-    margin-bottom: 10px; /* Reduce margin to decrease height */
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .profile-photo-container {
-    margin-bottom: 20px; /* Reduce spacing below the profile photo */
+    margin-bottom: 20px;
     margin-top: 10px;
 }
 
 .profile-photo {
-    width: 120px; /* Reduce size of the profile photo */
+    width: 120px;
     height: 120px;
     border-radius: 50%;
     background-color: #b6b2e5;
@@ -39,22 +42,21 @@
     object-fit: cover;
 }
 
+
 .profile-details {
     background-color: #c0b9dc;
     padding: 20px;
-    border-radius: 16px; /* Make corners more circular */
+    border-radius: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px; /* Adjust width for better spacing */
+    width: 350px !important; /* Adjust the width as desired */
     font-size: 18px;
     text-align: left;
+    margin: 0 auto; /* Center the box horizontally */
 }
 
-.profile-details p {
-    margin-bottom: 8px; /* Reduce spacing between each detail line */
-}
 
 .logout-button {
-    margin-top: 15px; /* Reduce spacing above the button */
+    margin-top: 15px;
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -68,29 +70,30 @@
 .logout-button:hover {
     background-color: #2980b9;
 }
+
 .profile-details {
-    width: 100%; /* Ensure the details take up the full width */
+    width: 100%;
 }
 
 .detail-row {
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 10px; /* Add spacing between lines */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #000000;
 }
 
 .label {
-    min-width: 120px; /* Set a fixed width for labels */
-    text-align: left; /* Align labels to the left */
+    min-width: 120px;
+    text-align: left;
 }
 
 .colon {
-    margin-right: 10px; /* Space between the colon and the value */
-    text-align: center; /* Center the colon */
-    flex-shrink: 0; /* Prevent the colon from shrinking */
+    margin-right: 10px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .value {
-    flex-grow: 1; /* Make the value take up remaining space */
-    text-align: left; /* Align the value to the left */
+    flex-grow: 1;
+    text-align: left;
 }
-
