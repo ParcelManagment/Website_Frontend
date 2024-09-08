@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ViewPage.css';
-import Search_img from '../Assests/search3.png'; 
+import Search_img from '../Assets/search3.png'; 
 
 const ViewPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -29,15 +29,13 @@ const ViewPage = () => {
             console.log("Failed to fetch data", err);
         }
     };
-    
-   
 
     const handleDelete = async (e) => {
         e.preventDefault();
         setError(null);
 
         try {
-            const response = await fetch(`http://localhost:3000/package/deletepackage/${searchTerm}`, {
+            const response = await fetch(`/api/package/deletepackage/${searchTerm}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
@@ -51,13 +49,13 @@ const ViewPage = () => {
             console.log("Failed to delete data", err);
         }
     };
-    
+
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
 
         try {
-            const response =await fetch(`http://localhost:3000/package/edituser/${searchTerm}`, {
+            const response = await fetch(`/api/package/edituser/${searchTerm}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -102,6 +100,7 @@ const ViewPage = () => {
             {parcelData && (
             <div className="form-container">
                 <form>
+                    {/* Sender Details */}
                     <div className="form-section">
                         <h2>Sender Details</h2>
                         <div className="form-group">
@@ -109,8 +108,8 @@ const ViewPage = () => {
                             <input type="text" name="senderName" value={parcelData.sender.sender_first_name || ''} readOnly />
                         </div>
                         <div className="form-group">
-                            <label>Second Name:</label>
-                            <input type="text" name="secondName" value={parcelData.sender.sender_last_name || ''} readOnly />
+                            <label>Last Name:</label>
+                            <input type="text" name="senderLastName" value={parcelData.sender.sender_last_name || ''} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Email:</label>
@@ -122,6 +121,7 @@ const ViewPage = () => {
                         </div>
                     </div>
 
+                    {/* Receiver Details */}
                     <div className="form-section">
                         <h2>Receiver Details</h2>
                         <div className="form-group">
@@ -190,51 +190,18 @@ const ViewPage = () => {
                         </div>
                     </div>
 
-                    <div className="form-section">
-                        <h2>Package Details</h2>
-                        <div className="form-group">
-                            <label>Type of Package:</label>
-                            <input type="text" name="parcelType" value={parcelData.package.type || ''} readOnly />
-                        </div>
-                        <div className="form-group">
-                            <label>Package Condition:</label>
-                            <input type="text" name="parcelCondition" value={parcelData.package.package_condition || ''} readOnly/>
-                        </div>
-                        <div className="form-group">
-                            <label>Destination:</label>
-                            <input type="text" name="parcelDestination"  value={parcelData.package.destination || ''} readOnly />
-                        </div>
-                    </div>
-
-                    <div className="form-section">
-                        <h2>Additional Details</h2>
-                        <div className="form-group">
-                            <label>Price:</label>
-                            <input type="text" name="price"  value={parcelData.package.price || ''} readOnly/>
-                        </div>
-                        <div className="form-group">
-                            <label>Tracking Device ID:</label>
-                            <input type="text" name="trackingID" value={parcelData.package.tracking_device_id || ''} readOnly />
-                        </div>
-                    </div>
-                    
-                    <div className="button-container">
-                        
-                            <button type="button" onClick={handleDelete} className="delete_button">Delete</button>
-                        
-                        
-                            <button type="button" onClick={() => setIsEditing(!isEditing)} className="submit_button">
-                                {isEditing ? 'Cancel' : 'Edit'}
-                            </button>
-                            {isEditing && (
-                                <button type="button" onClick={handleUpdate} className="submit_button">Update</button>
-                            )}
-                        
+                    {/* Edit / Save button */}
+                    <div className="form-actions">
+                        {!isEditing ? (
+                            <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
+                        ) : (
+                            <button type="submit" onClick={handleUpdate}>Save</button>
+                        )}
+                        <button type="button" onClick={handleDelete}>Delete</button>
                     </div>
                 </form>
             </div>
             )}
-           
         </div>
     );
 };
