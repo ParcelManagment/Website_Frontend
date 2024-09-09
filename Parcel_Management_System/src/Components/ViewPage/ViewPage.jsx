@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ViewPage.css';
+
 import Search_img from '../Assets/search3.png'; 
 
 const ViewPage = () => {
@@ -14,6 +15,7 @@ const ViewPage = () => {
     
         try {
             const response = await fetch(`/api/package/fetchbyid/${searchTerm}`);
+            console.log(response)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
