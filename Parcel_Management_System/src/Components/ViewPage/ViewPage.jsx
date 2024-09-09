@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ViewPage.css';
+import axios from 'axios';
 
 import Search_img from '../Assets/search3.png'; 
 
@@ -11,20 +12,15 @@ const ViewPage = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        setError(null); 
-    
+        setError(null);
+
         try {
-            const response = await fetch(`/api/package/fetchbyid/${searchTerm}`);
-            console.log(response)
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            if (!data || Object.keys(data).length === 0) {
+            const response = await axios.get(`/api/package/fetchbyid/${searchTerm}`);
+            if (!response.data || Object.keys(response.data).length === 0) {
                 alert('No data found for the given Parcel ID.');
                 setParcelData(null);
             } else {
-                setParcelData(data);
+                setParcelData(response.data);
             }
         } catch (err) {
             setError('Failed to fetch parcel data. Please try again.');
@@ -32,17 +28,11 @@ const ViewPage = () => {
         }
     };
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
+    const handleDelete = async () => {
         setError(null);
 
         try {
-            const response = await fetch(`/api/package/deletepackage/${searchTerm}`, {
-                method: 'DELETE',
-            });
-            if (!response.ok) {
-                throw new Error('Failed to delete the package');
-            }
+            const response = await axios.delete(`/api/package/deletepackage/${searchTerm}`);
             alert('Package deleted successfully');
             setParcelData(null);
             setSearchTerm('');
@@ -57,24 +47,14 @@ const ViewPage = () => {
         setError(null);
 
         try {
-            const response = await fetch(`/api/package/edituser/${searchTerm}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    receiver_first_name: parcelData.receiver.receiver_first_name,
-                    receiver_last_name: parcelData.receiver.receiver_last_name,
-                    receiver_email: parcelData.receiver.receiver_email,
-                    receiver_mobile_number: parcelData.receiver.receiver_mobile_number,
-                }),
+            await axios.put(`/api/package/edituser/${searchTerm}`, {
+                receiver_first_name: parcelData.receiver.receiver_first_name,
+                receiver_last_name: parcelData.receiver.receiver_last_name,
+                receiver_email: parcelData.receiver.receiver_email,
+                receiver_mobile_number: parcelData.receiver.receiver_mobile_number,
             });
-            if (!response.ok) {
-                throw new Error('Failed to update the package');
-            }
             alert('Package updated successfully');
             setIsEditing(false);
-            setSearchTerm(''); 
         } catch (err) {
             setError('Failed to update the package. Please try again.');
             console.log("Failed to update data", err);
