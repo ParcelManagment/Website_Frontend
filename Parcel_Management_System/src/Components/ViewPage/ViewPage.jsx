@@ -82,6 +82,24 @@ const ViewPage = () => {
             {parcelData && (
             <div className="form-container">
                 <form>
+
+{/* Package Details */}
+<div className="form-section">
+                        <h2>Package Details</h2>
+                        <div className="form-group">
+                            <label>Type of Package:</label>
+                            <input type="text" name="type" value={parcelData.package.type || ''} readOnly />
+                        </div>
+                        <div className="form-group">
+                            <label>Condition of Package:</label>
+                            <input type="text" name="packageCondition" value={parcelData.package.package_condition || ''} readOnly />
+                        </div>
+                        <div className="form-group">
+                            <label>Destination:</label>
+                            <input type="text" name="destination" value={parcelData.package.destination || ''} readOnly />
+                        </div>
+                    </div>
+
                     {/* Sender Details */}
                     <div className="form-section">
                         <h2>Sender Details</h2>
@@ -172,74 +190,7 @@ const ViewPage = () => {
                         </div>
                     </div>
 
- {/* Package Details */}
- <div className="form-section">
-                        <h2>Package Details</h2>
-                        <div className="form-group">
-                            <label>Package Condition:</label>
-                            <input
-                                type="text"
-                                name="packageCondition"
-                                value={parcelData.package.package_condition || ''}
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    package: {
-                                        ...prevData.package,
-                                        package_condition: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Destination:</label>
-                            <input
-                                type="text"
-                                name="destination"
-                                value={parcelData.package.destination || ''}
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    package: {
-                                        ...prevData.package,
-                                        destination: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Price (LKR):</label>
-                            <input
-                                type="number"
-                                name="price"
-                                value={parcelData.package.price || ''}
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    package: {
-                                        ...prevData.package,
-                                        price: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Tracking Device ID:</label>
-                            <input
-                                type="text"
-                                name="trackingDeviceId"
-                                value={parcelData.package.tracking_device_id || ''}
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    package: {
-                                        ...prevData.package,
-                                        tracking_device_id: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                    </div>
+
 
 
                     {/* Edit / Save button */}
