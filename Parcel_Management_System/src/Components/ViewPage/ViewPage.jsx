@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ViewPage.css';
 import axios from 'axios';
 
-import Search_img from '../Assets/search3.png'; 
+import Search_img from '../Assests/search3.png'; 
 
 const ViewPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
