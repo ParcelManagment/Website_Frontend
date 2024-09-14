@@ -15,7 +15,7 @@ const ViewPage = () => {
         setError(null);
 
         try {
-            const response = await axios.get(`/api/package/fetchbyid/${searchTerm}`);
+            const response = await axios.get(`/package/fetchbyid/${searchTerm}`);
             if (!response.data || Object.keys(response.data).length === 0) {
                 alert('No data found for the given Parcel ID.');
                 setParcelData(null);
