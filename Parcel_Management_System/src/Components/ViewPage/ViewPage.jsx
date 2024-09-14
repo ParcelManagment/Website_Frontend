@@ -28,19 +28,19 @@ const ViewPage = () => {
         }
     };
 
-    const handleDelete = async () => {
-        setError(null);
+    // const handleDelete = async () => {
+    //     setError(null);
 
-        try {
-            const response = await axios.delete(`/api/package/deletepackage/${searchTerm}`);
-            alert('Package deleted successfully');
-            setParcelData(null);
-            setSearchTerm('');
-        } catch (err) {
-            setError('Failed to delete the package. Please try again.');
-            console.log("Failed to delete data", err);
-        }
-    };
+    //     try {
+    //         const response = await axios.delete(`/api/package/deletepackage/${searchTerm}`);
+    //         alert('Package deleted successfully');
+    //         setParcelData(null);
+    //         setSearchTerm('');
+    //     } catch (err) {
+    //         setError('Failed to delete the package. Please try again.');
+    //         console.log("Failed to delete data", err);
+    //     }
+    // };
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -87,19 +87,19 @@ const ViewPage = () => {
                         <h2>Sender Details</h2>
                         <div className="form-group">
                             <label>First Name:</label>
-                            <input type="text" name="senderName" value={parcelData.sender.sender_first_name || ''} readOnly />
+                            <input type="text" name="senderName" value={parcelData.sender.first_name || ''} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Last Name:</label>
-                            <input type="text" name="senderLastName" value={parcelData.sender.sender_last_name || ''} readOnly />
+                            <input type="text" name="senderLastName" value={parcelData.sender.last_name || ''} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Email:</label>
-                            <input type="text" name="senderEmail" value={parcelData.sender.sender_email || ''} readOnly />
+                            <input type="text" name="senderEmail" value={parcelData.sender.email || ''} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Phone Number:</label>
-                            <input type="text" name="senderPhone" value={parcelData.sender.sender_mobile_number || ''} readOnly />
+                            <input type="text" name="senderPhone" value={parcelData.sender.mobile_number || ''} readOnly />
                         </div>
                     </div>
 
@@ -111,12 +111,12 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverName"
-                                value={parcelData.receiver.receiver_first_name || ''}
+                                value={parcelData.receiver.first_name || ''}
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_first_name: e.target.value,
+                                        first_name: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -127,12 +127,12 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverLastName"
-                                value={parcelData.receiver.receiver_last_name || ''}
+                                value={parcelData.receiver.last_name || ''}
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_last_name: e.target.value,
+                                        last_name: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -143,12 +143,12 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverEmail"
-                                value={parcelData.receiver.receiver_email || ''}
+                                value={parcelData.receiver.email || ''}
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_email: e.target.value,
+                                        email: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -159,12 +159,12 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverPhone"
-                                value={parcelData.receiver.receiver_mobile_number || ''}
+                                value={parcelData.receiver.mobile_number || ''}
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_mobile_number: e.target.value,
+                                        mobile_number: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -179,7 +179,7 @@ const ViewPage = () => {
                         ) : (
                             <button type="submit" onClick={handleUpdate}>Save</button>
                         )}
-                        <button type="button" onClick={handleDelete}>Delete</button>
+                        <button type="button" ></button>
                     </div>
                 </form>
             </div>
