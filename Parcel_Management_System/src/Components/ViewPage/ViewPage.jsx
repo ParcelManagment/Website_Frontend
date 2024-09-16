@@ -55,7 +55,7 @@ const ViewPage = () => {
                     mobile_number: parcelData.receiver.mobile_number,
                 },
             };
-            await axios.put(`/package/update/${searchTerm}`, updatedData);
+            await axios.put(`/package/edituser/${searchTerm}`, updatedData);
             alert('Receiver details updated successfully.');
             setIsEditing(false); // Turn off editing mode after saving
         } catch (err) {
