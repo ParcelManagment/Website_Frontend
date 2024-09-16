@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ViewPage.css';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Search_img from '../Assests/search3.png'; 
 
@@ -81,43 +82,43 @@ const ViewPage = () => {
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
-                <form>
+                <form  className="row">
 
-{/* Package Details */}
-<div className="form-section">
+                {/* Package Details */}
+                    <div className="form-section package-details col-12 col-md-6 col-lg-3">
                         <h2>Package Details</h2>
                         <div className="form-group">
-                            <label>Type of Package:</label>
-                            <input type="text" name="type" value={parcelData.package.type || ''} readOnly />
+                            <label htmlFor="type" >Type of Package:</label>
+                            <input type="text" name="type" value={parcelData.package.type || ''} readOnly className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label>Condition of Package:</label>
-                            <input type="text" name="packageCondition" value={parcelData.package.package_condition || ''} readOnly />
+                            <label htmlFor="packageCondition">Condition of Package:</label>
+                            <input type="text" name="packageCondition" value={parcelData.package.package_condition || ''} readOnly className="form-control" />
                         </div>
-                        <div className="form-group">
-                            <label>Destination:</label>
-                            <input type="text" name="destination" value={parcelData.package.destination || ''} readOnly />
+                        <div className="form-group"> 
+                            <label htmlFor='destination'>Destination:</label>
+                            <input type="text" name="destination" value={parcelData.package.destination || ''} readOnly  className="form-control"/>
                         </div>
                     </div>
 
                     {/* Sender Details */}
-                    <div className="form-section">
+                    <div className="form-section sender-details col-12 col-md-6 col-lg-3">
                         <h2>Sender Details</h2>
                         <div className="form-group">
                             <label>First Name:</label>
-                            <input type="text" name="senderName" value={parcelData.sender.first_name || ''} readOnly />
+                            <input type="text" name="senderName" value={parcelData.sender.first_name || ''} readOnly className="form-control" />
                         </div>
                         <div className="form-group">
                             <label>Last Name:</label>
-                            <input type="text" name="senderLastName" value={parcelData.sender.last_name || ''} readOnly />
+                            <input type="text" name="senderLastName" value={parcelData.sender.last_name || ''} readOnly className="form-control"/>
                         </div>
                         <div className="form-group">
                             <label>Email:</label>
-                            <input type="text" name="senderEmail" value={parcelData.sender.email || ''} readOnly />
+                            <input type="text" name="senderEmail" value={parcelData.sender.email || ''} readOnly className="form-control" />
                         </div>
                         <div className="form-group">
                             <label>Phone Number:</label>
-                            <input type="text" name="senderPhone" value={parcelData.sender.mobile_number || ''} readOnly />
+                            <input type="text" name="senderPhone" value={parcelData.sender.mobile_number || ''} readOnly className="form-control"/>
                         </div>
                     </div>
 
@@ -130,6 +131,7 @@ const ViewPage = () => {
                                 type="text"
                                 name="receiverName"
                                 value={parcelData.receiver.first_name || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
@@ -146,6 +148,7 @@ const ViewPage = () => {
                                 type="text"
                                 name="receiverLastName"
                                 value={parcelData.receiver.last_name || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
@@ -162,6 +165,7 @@ const ViewPage = () => {
                                 type="text"
                                 name="receiverEmail"
                                 value={parcelData.receiver.email || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
@@ -178,6 +182,7 @@ const ViewPage = () => {
                                 type="text"
                                 name="receiverPhone"
                                 value={parcelData.receiver.mobile_number || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
@@ -194,13 +199,13 @@ const ViewPage = () => {
 
 
                     {/* Edit / Save button */}
-                    <div className="form-actions">
+                    <div className="form-group col-12 ">
                         {!isEditing ? (
-                            <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
+                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
                         ) : (
-                            <button type="submit" onClick={handleUpdate}>Save</button>
+                            <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
-                        <button type="button" ></button>
+                        <button type="button" className="btn btn-primary btn-block" >Delete</button>
                     </div>
                 </form>
             </div>
