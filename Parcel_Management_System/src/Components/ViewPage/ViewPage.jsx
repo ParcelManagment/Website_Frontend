@@ -42,20 +42,43 @@ const ViewPage = () => {
         }
     };
 
+    // const handleUpdate = async (e) => {
+    //     e.preventDefault();
+    //     setError(null);
+        
+    //     try {
+    //         const updatedData = {
+    //             receiver: {
+    //                 first_name: parcelData.receiver.first_name,
+    //                 last_name: parcelData.receiver.last_name,
+    //                 email: parcelData.receiver.email,
+    //                 mobile_number: parcelData.receiver.mobile_number,
+    //             },
+    //         };
+    //         await axios.put(`/package/edituser/${searchTerm}`, updatedData);
+    //         alert('Receiver details updated successfully.');
+    //         setIsEditing(false); // Turn off editing mode after saving
+    //     } catch (err) {
+    //         setError('Failed to update receiver details. Please try again.');
+    //         console.log("Error updating receiver details", err);
+    //     }
+    // };
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
         
         try {
+            // Construct the data object with the receiver's updated details
             const updatedData = {
-                receiver: {
-                    first_name: parcelData.receiver.first_name,
-                    last_name: parcelData.receiver.last_name,
-                    email: parcelData.receiver.email,
-                    mobile_number: parcelData.receiver.mobile_number,
-                },
+                receiver_first_name: parcelData.receiver.first_name,
+                receiver_last_name: parcelData.receiver.last_name,
+                receiver_email: parcelData.receiver.email,
+                receiver_mobile_number: parcelData.receiver.mobile_number,
             };
+    
+            // Make the PUT request to update the receiver details
             await axios.put(`/package/edituser/${searchTerm}`, updatedData);
+            
             alert('Receiver details updated successfully.');
             setIsEditing(false); // Turn off editing mode after saving
         } catch (err) {
@@ -63,6 +86,7 @@ const ViewPage = () => {
             console.log("Error updating receiver details", err);
         }
     };
+    
 
     return (
         <div className="search-form-container">
