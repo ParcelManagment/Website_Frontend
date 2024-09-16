@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './ViewPage.css';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Search_img from '../Assests/search3.png'; 
 
 const ViewPage = () => {
@@ -46,9 +45,7 @@ const ViewPage = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
-console.log("update ");
         
-
         try {
             const updatedData = {
                 receiver: {
@@ -56,20 +53,16 @@ console.log("update ");
                     last_name: parcelData.receiver.last_name,
                     email: parcelData.receiver.email,
                     mobile_number: parcelData.receiver.mobile_number,
-            
-            },
-        };
+                },
+            };
             await axios.put(`/package/update/${searchTerm}`, updatedData);
-            alert('Parcel details updated successfully.');
-            setIsEditing(false);
-
-            
+            alert('Receiver details updated successfully.');
+            setIsEditing(false); // Turn off editing mode after saving
         } catch (err) {
             setError('Failed to update receiver details. Please try again.');
             console.log("Error updating receiver details", err);
         }
     };
-
 
     return (
         <div className="search-form-container">
@@ -91,13 +84,13 @@ console.log("update ");
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
-                <form  className="row">
+                <form onSubmit={handleUpdate} className="row">
 
                 {/* Package Details */}
                     <div className="form-section package-details col-12 col-md-6 col-lg-3">
                         <h2>Package Details</h2>
                         <div className="form-group">
-                            <label htmlFor="type" >Type of Package:</label>
+                            <label htmlFor="type">Type of Package:</label>
                             <input type="text" name="type" value={parcelData.package.type || ''} readOnly className="form-control" />
                         </div>
                         <div className="form-group">
@@ -132,7 +125,7 @@ console.log("update ");
                     </div>
 
                     {/* Receiver Details */}
-                    {/* <div className="form-section">
+                    <div className="form-section receiver-details col-12 col-md-6 col-lg-3">
                         <h2>Receiver Details</h2>
                         <div className="form-group">
                             <label>First Name:</label>
@@ -202,93 +195,15 @@ console.log("update ");
                                 readOnly={!isEditing}
                             />
                         </div>
-                    </div> */}
-                     <div className="form-section col-12 col-md-6 col-lg-3">
-                        <h2>Receiver Details</h2>
-                        <div className="form-group">
-                            <label>First Name:</label>
-                            <input
-                                type="text"
-                                name="receiverName"
-                                value={parcelData.receiver.first_name || ''}
-                                className="form-control"
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    receiver: {
-                                        ...prevData.receiver,
-                                        first_name: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Last Name:</label>
-                            <input
-                                type="text"
-                                name="receiverLastName"
-                                value={parcelData.receiver.last_name || ''}
-                                className="form-control"
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    receiver: {
-                                        ...prevData.receiver,
-                                        last_name: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input
-                                type="text"
-                                name="receiverEmail"
-                                value={parcelData.receiver.email || ''}
-                                className="form-control"
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    receiver: {
-                                        ...prevData.receiver,
-                                        email: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Phone Number:</label>
-                            <input
-                                type="text"
-                                name="receiverPhone"
-                                value={parcelData.receiver.mobile_number || ''}
-                                className="form-control"
-                                onChange={(e) => setParcelData(prevData => ({
-                                    ...prevData,
-                                    receiver: {
-                                        ...prevData.receiver,
-                                        mobile_number: e.target.value,
-                                    },
-                                }))}
-                                readOnly={!isEditing}
-                            />
-                        </div>
-                        </div>
-
-
-
+                    </div>
 
                     {/* Edit / Save button */}
-                    <div className="form-group col-12 ">
-                    {!isEditing ? (
-                            <button className="btn btn-primary btn-block"
-                             type="button"
-                              onClick={() => setIsEditing(true)}>Edit
-                            </button>
+                    <div className="form-group col-12">
+                        {!isEditing ? (
+                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
                         ) : (
-                            <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
+                            <button className="btn btn-primary btn-block" type="submit">Save</button>
                         )}
-
                         <br />
                         <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
                     </div>
