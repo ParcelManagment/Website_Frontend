@@ -202,7 +202,7 @@ const ViewPage = () => {
                         {!isEditing ? (
                             <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
                         ) : (
-                            <button className="btn btn-primary btn-block" type="submit">Save</button>
+                            <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
                         <br />
                         <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
