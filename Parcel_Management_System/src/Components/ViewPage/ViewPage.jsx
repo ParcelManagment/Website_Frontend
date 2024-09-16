@@ -29,33 +29,33 @@ const ViewPage = () => {
         }
     };
 
-    // const handleDelete = async () => {
-    //     setError(null);
+    const handleDelete = async () => {
+        setError(null);  
 
-    //     try {
-    //         const response = await axios.delete(`/api/package/deletepackage/${searchTerm}`);
-    //         alert('Package deleted successfully');
-    //         setParcelData(null);
-    //         setSearchTerm('');
-    //     } catch (err) {
-    //         setError('Failed to delete the package. Please try again.');
-    //         console.log("Failed to delete data", err);
-    //     }
-    // };
+        try {
+            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
+            alert('Package cancelled successfully');
+            setParcelData(null);  
+            setSearchTerm('');    
+        } catch (err) {
+            setError('Failed to cancel the package. Please try again.');
+            console.log("Error cancelling package", err);
+        }
+    };
 
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
 
         try {
-            await axios.put(`/api/package/edituser/${searchTerm}`, {
-                receiver_first_name: parcelData.receiver.receiver_first_name,
-                receiver_last_name: parcelData.receiver.receiver_last_name,
-                receiver_email: parcelData.receiver.receiver_email,
-                receiver_mobile_number: parcelData.receiver.receiver_mobile_number,
+            await axios.put(`/package/edituser/${searchTerm}`, {
+                receiver_first_name: parcelData.receiver.first_name,
+                receiver_last_name: parcelData.receiver.last_name,
+                receiver_email: parcelData.receiver.email,
+                receiver_mobile_number: parcelData.receiver.mobile_number,
             });
             alert('Package updated successfully');
-            setIsEditing(false);
+            setIsEditing(false);  // Disable editing mode after successful update
         } catch (err) {
             setError('Failed to update the package. Please try again.');
             console.log("Failed to update data", err);
@@ -201,13 +201,13 @@ const ViewPage = () => {
                     {/* Edit / Save button */}
                     <div className="form-group col-12 ">
                         {!isEditing ? (
-                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
+                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Update</button>
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
 
                         <br />
-                        <button type="button" className="btn btn-primary btn-block" >Delete</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
                     </div>
                 </form>
             </div>

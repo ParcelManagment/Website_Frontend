@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 1500px;
     color: #1e3c72;
     max-width: 1200px;
     margin-left: auto;
@@ -22,7 +22,7 @@
 .input_wrapper {
     position: relative;
     width: 50%;
-    margin-top: 200px;
+    margin-top: 50px;
     flex-wrap: wrap;
 }
 
@@ -66,10 +66,11 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f8ff;
+    background-color: #68aae4;
     color: #000000;
     border-radius: 8px;
     position: relative; 
+    margin-top: 150px;
     
 
 }
