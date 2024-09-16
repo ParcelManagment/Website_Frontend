@@ -48,6 +48,7 @@ const ViewPage = () => {
         setError(null);
 
         try {
+            // Sending PUT request to update the receiver data
             await axios.put(`/package/edituser/${searchTerm}`, {
                 receiver_first_name: parcelData.receiver.first_name,
                 receiver_last_name: parcelData.receiver.last_name,
@@ -200,8 +201,8 @@ const ViewPage = () => {
 
                     {/* Edit / Save button */}
                     <div className="form-group col-12 ">
-                        {!isEditing ? (
-                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Update</button>
+                    {!isEditing ? (
+                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
