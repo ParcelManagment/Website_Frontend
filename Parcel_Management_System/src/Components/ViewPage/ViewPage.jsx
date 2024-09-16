@@ -47,21 +47,26 @@ const ViewPage = () => {
         e.preventDefault();
         setError(null);
 
+        const { first_name, last_name, email, mobile_number } = parcelData.receiver;
+
         try {
-            // Sending PUT request to update the receiver data
-            await axios.put(`/package/edituser/${searchTerm}`, {
-                receiver_first_name: parcelData.receiver.first_name,
-                receiver_last_name: parcelData.receiver.last_name,
-                receiver_email: parcelData.receiver.email,
-                receiver_mobile_number: parcelData.receiver.mobile_number,
+            const response = await axios.put(`/edituser/${parcelData.receiver.id}`, {
+                receiver_first_name: first_name,
+                receiver_last_name: last_name,
+                receiver_email: email,
+                receiver_mobile_number: mobile_number
             });
-            alert('Package updated successfully');
-            setIsEditing(false);  // Disable editing mode after successful update
+
+            if (response.status === 200) {
+                alert('Receiver details updated successfully.');
+                setIsEditing(false); // Disable editing after saving
+            }
         } catch (err) {
-            setError('Failed to update the package. Please try again.');
-            console.log("Failed to update data", err);
+            setError('Failed to update receiver details. Please try again.');
+            console.log("Error updating receiver details", err);
         }
     };
+
 
     return (
         <div className="search-form-container">
