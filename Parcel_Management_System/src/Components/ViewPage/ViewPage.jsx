@@ -46,21 +46,24 @@ const ViewPage = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
-
-        const { first_name, last_name, email, mobile_number } = parcelData.receiver;
+console.log("update ");
+        
 
         try {
-            const response = await axios.put(`/edituser/${parcelData.receiver.id}`, {
-                receiver_first_name: first_name,
-                receiver_last_name: last_name,
-                receiver_email: email,
-                receiver_mobile_number: mobile_number
-            });
+            const updatedData = {
+                receiver: {
+                    first_name: parcelData.receiver.first_name,
+                    last_name: parcelData.receiver.last_name,
+                    email: parcelData.receiver.email,
+                    mobile_number: parcelData.receiver.mobile_number,
+            
+            },
+        };
+            await axios.put(`/package/update/${searchTerm}`, updatedData);
+            alert('Parcel details updated successfully.');
+            setIsEditing(false);
 
-            if (response.status === 200) {
-                alert('Receiver details updated successfully.');
-                setIsEditing(false); // Disable editing after saving
-            }
+            
         } catch (err) {
             setError('Failed to update receiver details. Please try again.');
             console.log("Error updating receiver details", err);
@@ -129,7 +132,7 @@ const ViewPage = () => {
                     </div>
 
                     {/* Receiver Details */}
-                    <div className="form-section">
+                    {/* <div className="form-section">
                         <h2>Receiver Details</h2>
                         <div className="form-group">
                             <label>First Name:</label>
@@ -199,7 +202,78 @@ const ViewPage = () => {
                                 readOnly={!isEditing}
                             />
                         </div>
-                    </div>
+                    </div> */}
+                     <div className="form-section col-12 col-md-6 col-lg-3">
+                        <h2>Receiver Details</h2>
+                        <div className="form-group">
+                            <label>First Name:</label>
+                            <input
+                                type="text"
+                                name="receiverName"
+                                value={parcelData.receiver.first_name || ''}
+                                className="form-control"
+                                onChange={(e) => setParcelData(prevData => ({
+                                    ...prevData,
+                                    receiver: {
+                                        ...prevData.receiver,
+                                        first_name: e.target.value,
+                                    },
+                                }))}
+                                readOnly={!isEditing}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Last Name:</label>
+                            <input
+                                type="text"
+                                name="receiverLastName"
+                                value={parcelData.receiver.last_name || ''}
+                                className="form-control"
+                                onChange={(e) => setParcelData(prevData => ({
+                                    ...prevData,
+                                    receiver: {
+                                        ...prevData.receiver,
+                                        last_name: e.target.value,
+                                    },
+                                }))}
+                                readOnly={!isEditing}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input
+                                type="text"
+                                name="receiverEmail"
+                                value={parcelData.receiver.email || ''}
+                                className="form-control"
+                                onChange={(e) => setParcelData(prevData => ({
+                                    ...prevData,
+                                    receiver: {
+                                        ...prevData.receiver,
+                                        email: e.target.value,
+                                    },
+                                }))}
+                                readOnly={!isEditing}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Phone Number:</label>
+                            <input
+                                type="text"
+                                name="receiverPhone"
+                                value={parcelData.receiver.mobile_number || ''}
+                                className="form-control"
+                                onChange={(e) => setParcelData(prevData => ({
+                                    ...prevData,
+                                    receiver: {
+                                        ...prevData.receiver,
+                                        mobile_number: e.target.value,
+                                    },
+                                }))}
+                                readOnly={!isEditing}
+                            />
+                        </div>
+                        </div>
 
 
 
@@ -207,7 +281,10 @@ const ViewPage = () => {
                     {/* Edit / Save button */}
                     <div className="form-group col-12 ">
                     {!isEditing ? (
-                            <button className="btn btn-primary btn-block" type="button" onClick={() => setIsEditing(true)}>Edit</button>
+                            <button className="btn btn-primary btn-block"
+                             type="button"
+                              onClick={() => setIsEditing(true)}>Edit
+                            </button>
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
