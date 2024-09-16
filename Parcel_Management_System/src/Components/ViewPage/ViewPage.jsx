@@ -66,6 +66,7 @@ const ViewPage = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
+        console.log("ssss");
         
         try {
             // Construct the data object with the receiver's updated details
