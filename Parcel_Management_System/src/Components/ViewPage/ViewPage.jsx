@@ -33,7 +33,7 @@ const ViewPage = () => {
         setError(null);  
 
         try {
-            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
+            await axios.delete(`/package/deletepackage/${searchTerm}`);
             alert('Package cancelled successfully');
             setParcelData(null);  
             setSearchTerm('');    
