@@ -205,6 +205,8 @@ const ViewPage = () => {
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
                         )}
+
+                        <br />
                         <button type="button" className="btn btn-primary btn-block" >Delete</button>
                     </div>
                 </form>
