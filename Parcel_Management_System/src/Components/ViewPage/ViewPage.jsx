@@ -63,20 +63,10 @@ const ViewPage = () => {
     };
 
     const handleDelete = async () => {
-        if (!parcelData || !parcelData.package) {
-            alert("No package data available to delete!");
-            return;
-        }
-    
-        const packageId = parcelData.package.package_id; // Ensure the correct path to the package ID
-    
-        if (!packageId) {
-            alert("Package ID is missing!");
-            return;
-        }
+        console.log(searchTerm);
     
         try {
-            const response = await axios.delete(`/package/deletepackage/${packageId}`);
+            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
             
             if (response.status === 200) {
                 alert('Package deleted successfully');
