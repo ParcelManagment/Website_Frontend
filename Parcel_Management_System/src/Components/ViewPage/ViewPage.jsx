@@ -28,6 +28,10 @@ const ViewPage = () => {
         }
     };
 
+    const handleEdit = () => {
+        console.log("edit")
+        setIsEditing(true);
+    };
 
     return (
         <div className="search-form-container">
@@ -162,12 +166,12 @@ const ViewPage = () => {
                         </div>
                     </div>
 
-                    {/* Edit / Save button */}
+                    
                     <div className="form-group col-12">
                         {!isEditing ? (
                             <button className="btn btn-primary btn-block" 
                             type="button" 
-                            onClick={() => setIsEditing(true)}>Edit</button>
+                            onClick={handleEdit}>Edit</button>
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" >Save</button>
                         )}
