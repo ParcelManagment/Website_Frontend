@@ -28,42 +28,6 @@ const ViewPage = () => {
         }
     };
 
-    const handleDelete = async () => {
-        setError(null);  
-        try {
-            await axios.delete(`/package/deletepackage/${searchTerm}`);
-            alert('Package cancelled successfully');
-            setParcelData(null);  
-            setSearchTerm('');    
-        } catch (err) {
-            setError('Failed to cancel the package. Please try again.');
-            console.log("Error cancelling package", err);
-        }
-    };
-
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        setError(null);
-        
-        try {
-            // Construct the data object with the receiver's updated details
-            const updatedData = {
-                receiver_first_name: parcelData.receiver.first_name,
-                receiver_last_name: parcelData.receiver.last_name,
-                receiver_email: parcelData.receiver.email,
-                receiver_mobile_number: parcelData.receiver.mobile_number,
-            };
-
-            // Make the PUT request to update the receiver details
-            await axios.put(`/package/edituser/${searchTerm}`, updatedData);
-            
-            alert('Receiver details updated successfully.');
-            setIsEditing(false); // Turn off editing mode after saving
-        } catch (err) {
-            setError('Failed to update receiver details. Please try again.');
-            console.log("Error updating receiver details", err);
-        }
-    };
 
     return (
         <div className="search-form-container">
@@ -85,7 +49,7 @@ const ViewPage = () => {
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
-                <form onSubmit={handleUpdate} className="row">
+                <form className="row">
 
                     {/* Package Details */}
                     <div className="form-section package-details col-12 col-md-6 col-lg-3">
@@ -205,10 +169,10 @@ const ViewPage = () => {
                             type="button" 
                             onClick={() => setIsEditing(true)}>Edit</button>
                         ) : (
-                            <button className="btn btn-primary btn-block" type="submit" onClick={handleUpdate}>Save</button>
+                            <button className="btn btn-primary btn-block" type="submit" >Save</button>
                         )}
                         <br />
-                        <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="btn btn-primary btn-block">Delete</button>
                     </div>
                 </form>
             </div>
