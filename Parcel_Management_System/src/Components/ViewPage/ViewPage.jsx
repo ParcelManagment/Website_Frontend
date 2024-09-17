@@ -30,7 +30,6 @@ const ViewPage = () => {
 
     const handleDelete = async () => {
         setError(null);  
-
         try {
             await axios.delete(`/package/deletepackage/${searchTerm}`);
             alert('Package cancelled successfully');
@@ -42,31 +41,9 @@ const ViewPage = () => {
         }
     };
 
-    // const handleUpdate = async (e) => {
-    //     e.preventDefault();
-    //     setError(null);
-        
-    //     try {
-    //         const updatedData = {
-    //             receiver: {
-    //                 first_name: parcelData.receiver.first_name,
-    //                 last_name: parcelData.receiver.last_name,
-    //                 email: parcelData.receiver.email,
-    //                 mobile_number: parcelData.receiver.mobile_number,
-    //             },
-    //         };
-    //         await axios.put(`/package/edituser/${searchTerm}`, updatedData);
-    //         alert('Receiver details updated successfully.');
-    //         setIsEditing(false); // Turn off editing mode after saving
-    //     } catch (err) {
-    //         setError('Failed to update receiver details. Please try again.');
-    //         console.log("Error updating receiver details", err);
-    //     }
-    // };
     const handleUpdate = async (e) => {
         e.preventDefault();
         setError(null);
-        console.log("ssss");
         
         try {
             // Construct the data object with the receiver's updated details
@@ -76,7 +53,7 @@ const ViewPage = () => {
                 receiver_email: parcelData.receiver.email,
                 receiver_mobile_number: parcelData.receiver.mobile_number,
             };
-    
+
             // Make the PUT request to update the receiver details
             await axios.put(`/package/edituser/${searchTerm}`, updatedData);
             
@@ -87,7 +64,6 @@ const ViewPage = () => {
             console.log("Error updating receiver details", err);
         }
     };
-    
 
     return (
         <div className="search-form-container">
@@ -111,7 +87,7 @@ const ViewPage = () => {
             <div className="form-container">
                 <form onSubmit={handleUpdate} className="row">
 
-                {/* Package Details */}
+                    {/* Package Details */}
                     <div className="form-section package-details col-12 col-md-6 col-lg-3">
                         <h2>Package Details</h2>
                         <div className="form-group">
