@@ -63,14 +63,18 @@ const ViewPage = () => {
     };
 
     const handleDelete = async () => {
-        console.log(searchTerm);
-    
+        if (!searchTerm) {
+            alert('Please enter a Parcel ID.');
+            return;
+        }
+
         try {
             const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
-            
+
             if (response.status === 200) {
                 alert('Package deleted successfully');
                 setParcelData(null); // Clear the parcel data after deletion
+                setSearchTerm('');    // Clear the search field after deletion
             } else {
                 alert('Failed to delete package');
             }
