@@ -37,7 +37,7 @@ const ViewPage = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`/package/edituser/${searchTerm}`, {
+            const response = await axios.put(`/package/edituser/${parcelData.receiver.id}`, {
                 receiver_first_name: parcelData.receiver.first_name,
                 receiver_last_name: parcelData.receiver.last_name,
                 receiver_email: parcelData.receiver.email,
