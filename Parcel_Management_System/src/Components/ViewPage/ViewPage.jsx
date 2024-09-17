@@ -61,15 +61,16 @@ const ViewPage = () => {
             alert('Failed to update user details');
         }
     };
+
     const handleDelete = async () => {
-        const packageId = parcelData.package.package_id;
-        if (!packageId) {
-            alert("Package ID is missing!");
-            return;
-        }
+        // const packageId = parcelData.package.package_id;
+        // if (!packageId) {
+        //     alert("Package ID is missing!");
+        //     return;
+        // }
 
         try {
-            const response = await axios.delete(`/package/deletepackage/${packageId}`);
+            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
 
             if (response.status === 200) {
                 alert("Package deleted successfully");
