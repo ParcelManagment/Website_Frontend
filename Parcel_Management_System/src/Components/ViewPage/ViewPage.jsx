@@ -29,7 +29,6 @@ const ViewPage = () => {
     };
 
     const handleEdit = () => {
-        console.log("edit")
         setIsEditing(true);
     };
 
@@ -53,8 +52,7 @@ const ViewPage = () => {
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
-                <form className="row">
-
+                <form className="row" onSubmit={(e) => e.preventDefault()}>
                     {/* Package Details */}
                     <div className="form-section package-details col-12 col-md-6 col-lg-3">
                         <h2>Package Details</h2>
@@ -166,12 +164,10 @@ const ViewPage = () => {
                         </div>
                     </div>
 
-                    
+                    {/* Edit / Save button */}
                     <div className="form-group col-12">
                         {!isEditing ? (
-                            <button className="btn btn-primary btn-block" 
-                            type="button" 
-                            onClick={handleEdit}>Edit</button>
+                            <button className="btn btn-primary btn-block" type="button" onClick={handleEdit}>Edit</button>
                         ) : (
                             <button className="btn btn-primary btn-block" type="submit" >Save</button>
                         )}
