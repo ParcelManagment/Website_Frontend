@@ -34,11 +34,16 @@ const ViewPage = () => {
 
 
     const handleUpdate = async (e) => {
-        console.log(parcelData.receiver.id);
         e.preventDefault();
 
+        const receiverId = parcelData.package.receiver_id;
+        if (!receiverId) {
+            alert("Receiver ID is missing!");
+            return;
+        }
+
         try {
-            const response = await axios.put(`/package/edituser/${parcelData.receiver.id}`, {
+            const response = await axios.put(`/package/edituser/${receiverId}}`, {
                 receiver_first_name: parcelData.receiver.first_name,
                 receiver_last_name: parcelData.receiver.last_name,
                 receiver_email: parcelData.receiver.email,
