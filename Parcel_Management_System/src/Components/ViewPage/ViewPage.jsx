@@ -32,6 +32,30 @@ const ViewPage = () => {
         setIsEditing(true);
     };
 
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.put(`/package/edituser/${parcelData.id}`, {
+                receiver_first_name: parcelData.receiver.first_name,
+                receiver_last_name: parcelData.receiver.last_name,
+                receiver_email: parcelData.receiver.email,
+                receiver_mobile_number: parcelData.receiver.mobile_number
+            });
+
+            if (response.status === 200) {
+                alert('User details updated successfully');
+                setIsEditing(false);
+            } else {
+                alert('Failed to update user details');
+            }
+        } catch (err) {
+            console.error("Error updating user:", err);
+            alert('Failed to update user details');
+        }
+    };
+
     return (
         <div className="search-form-container">
             <form className="form" onSubmit={handleSearch}>
@@ -169,7 +193,7 @@ const ViewPage = () => {
                         {!isEditing ? (
                             <button className="btn btn-primary btn-block" type="button" onClick={handleEdit}>Edit</button>
                         ) : (
-                            <button className="btn btn-primary btn-block" type="submit" >Save</button>
+                            <button className="btn btn-primary btn-block" type="submit"onClick={handleUpdate} >Save</button>
                         )}
                         <br />
                         <button type="button" className="btn btn-primary btn-block">Delete</button>
