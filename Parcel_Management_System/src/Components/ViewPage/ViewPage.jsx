@@ -34,6 +34,7 @@ const ViewPage = () => {
 
 
     const handleUpdate = async (e) => {
+        console.log(parcelData.receiver.id);
         e.preventDefault();
 
         try {
