@@ -61,6 +61,27 @@ const ViewPage = () => {
             alert('Failed to update user details');
         }
     };
+    const handleDelete = async () => {
+        const packageId = parcelData.package.package_id;
+        if (!packageId) {
+            alert("Package ID is missing!");
+            return;
+        }
+
+        try {
+            const response = await axios.delete(`/package/deletepackage/${packageId}`);
+
+            if (response.status === 200) {
+                alert("Package deleted successfully");
+                setParcelData(null);  
+            } else {
+                alert("Failed to delete the package");
+            }
+        } catch (err) {
+            console.error("Error deleting package:", err);
+            alert("Error occurred while deleting the package");
+        }
+    };
 
     return (
         <div className="search-form-container">
@@ -202,7 +223,7 @@ const ViewPage = () => {
                             <button className="btn btn-primary btn-block" type="submit"onClick={handleUpdate} >Save</button>
                         )}
                         <br />
-                        <button type="button" className="btn btn-primary btn-block">Delete</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
                     </div>
                 </form>
             </div>
