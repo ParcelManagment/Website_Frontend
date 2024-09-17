@@ -63,31 +63,33 @@ const ViewPage = () => {
     };
 
     const handleDelete = async () => {
-        if (!parcelData) {
-            alert('No parcel data available to delete.');
+        if (!parcelData || !parcelData.package) {
+            alert("No package data available to delete!");
             return;
         }
-
-        const packageId = parcelData.package.package_id;
+    
+        const packageId = parcelData.package.package_id; // Ensure the correct path to the package ID
+    
         if (!packageId) {
-            alert('Package ID is missing!');
+            alert("Package ID is missing!");
             return;
         }
-
+    
         try {
             const response = await axios.delete(`/package/deletepackage/${packageId}`);
+            
             if (response.status === 200) {
-                alert('Package cancelled successfully');
-                setParcelData(null); // Clear parcel data after successful deletion
+                alert('Package deleted successfully');
+                setParcelData(null); // Clear the parcel data after deletion
             } else {
-                alert('Failed to cancel package');
+                alert('Failed to delete package');
             }
         } catch (err) {
             console.error("Error deleting package:", err);
-            alert('Failed to cancel package');
+            alert('Failed to delete package');
         }
     };
-
+    
 
     return (
         <div className="search-form-container">
