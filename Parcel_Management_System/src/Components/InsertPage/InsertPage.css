@@ -32,19 +32,6 @@ h1 {
   gap: 1rem;
 }
 
-/* Section box styling */
-.section {
-  background-color: #EFEFEF;
-  padding: 1.5rem;
-  border: 1px solid #87d094;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1 1 calc(25% - 1rem);
-  font-size: 1rem;
-  color: #333;
-  margin: 0.5rem;
-}
-
 /* Spacing between form groups */
 .form-group {
   margin-bottom: 1.25rem;
@@ -159,4 +146,49 @@ textarea:focus {
 /* Styling for file input */
 .form-control-file {
   padding: 0.5rem;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: gives a slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add this to your section class */
+.section {
+  background-color: #EFEFEF;
+  padding: 1.5rem;
+  border: 1px solid #87d094;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(25% - 1rem);
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem;
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 0.5s forwards; /* Add animation */
+  animation-delay: 0s; /* Default delay, will be updated in JS */
+}
+
+/* Animation delay to stagger the sections */
+.section:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.section:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.section:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.section:nth-child(4) {
+  animation-delay: 0.5s;
 }
