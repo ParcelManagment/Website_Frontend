@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProfilePage.css';
-import defaultProfilePic from '../Assests/defaultProfilePhoto.png';
+
 
 const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
@@ -44,13 +44,8 @@ const ProfilePage = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="profile-page">
+        <div className="profile-page1">
             <h1>User Details</h1>
-            <div className="profile-photo-container">
-                <div className="profile-photo">
-                    <img src={profile && profile.profile_picture ? profile.profile_picture : defaultProfilePic} alt="Profile" />
-                </div>
-            </div>
             <div className="profile-details">
     <div className="detail-row">
         <strong className="label">Employee ID</strong>

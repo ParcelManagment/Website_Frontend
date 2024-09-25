@@ -40,7 +40,7 @@ const LoginSignup = () => {
 
     useEffect(() => {
         validateLoginEmployeeId();
-        validatePassword();
+        /*validatePassword();*/
     }, [employeeId, password]);
 
     const handleSignup = async () => {
@@ -99,6 +99,7 @@ const LoginSignup = () => {
     };
 
     // Validation functions for Sign Up
+    /*
     const validateSignupEmployeeId = () => {
         if (employeeId.length !== 5) {
             setSignupEmployeeIdError('Employee ID must be 5 digits');
@@ -135,13 +136,15 @@ const LoginSignup = () => {
             return true;
         }
     };
-
+    */
+    
+    /*
     const validateSignupFields = () => {
         const isEmployeeIdValid = validateSignupEmployeeId();
         const isPasswordValid = validatePassword();
         return isEmployeeIdValid && isPasswordValid && fname !== '' && lname !== '' && station !== '';
     };
-
+    */
     // Validation functions for Log In
     const validateLoginEmployeeId = () => {
         if (employeeId.length !== 5) {
@@ -164,9 +167,9 @@ const LoginSignup = () => {
         if (field === 'employeeId') {
             validateLoginEmployeeId();
         } else if (field === 'password') {
-            validatePassword();
+            /*validatePassword();*/
         } else if (field === 'signupEmployeeId') {
-            validateSignupEmployeeId();
+            /*validateSignupEmployeeId();*/
         }
     };
 
@@ -271,17 +274,27 @@ const LoginSignup = () => {
                     {passwordError && touched.password && <div className="validation-message">{passwordError}</div>}
                 </div>
                 {action === "Login" && (
-                    <div className="forgot-password">
-                        Forgot Password? <span onClick={() => navigate('/forgetpassword')}>Click Here!</span>
-                    </div>
-                )}
+                <div className="forgot-password">
+                    Admin Login? 
+                    <a 
+                    href="http://ec2-13-53-200-229.eu-north-1.compute.amazonaws.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="admin-login-link"
+                    >
+                Click Here!
+                    </a>
+             </div>
+)}
+
+
                 <div className="submit-container">
 
                     <div
                         className={action === "Sign Up" ? "submit gray" : "submit"}
                         onClick={() => {
                             if (!loading) {
-                                if (action === 'Login' && isLoginEmployeeIdValid && isLoginPasswordValid) {
+                                if (action === 'Login' && isLoginEmployeeIdValid) {
                                     handleLogin();
                                 } else if (action === 'Login') {
                                     setMessage('Please enter valid employee ID and password');
@@ -291,7 +304,7 @@ const LoginSignup = () => {
                                 }
                             }
                         }}
-                        disabled={loading || !isLoginEmployeeIdValid || !isLoginPasswordValid} // Disable the button while loading or if validation fails
+                        disabled={loading || !isLoginEmployeeIdValid} // Disable the button while loading or if validation fails
                     >
                         Log In
                     </div>
