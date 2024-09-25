@@ -6,10 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background: url('Components/Assests/BG3.jpg') no-repeat center center fixed,
-
-  linear-gradient(#2A00B7, #42006C);
-background-size: cover;
 }
 
 

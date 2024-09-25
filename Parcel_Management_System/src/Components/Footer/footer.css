@@ -21,14 +21,15 @@ html, body {
 /* Footer specific styles */
 .footer-wrapper {
     width: 100vw;
-    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    background: #f8f8f8; /* Matching the navigation bar background color */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow to elevate the footer */
 }
 
 /* Ensure footer content is centered and spaced properly */
 .footer {
-    color: white;
+    color: #1e3c72 ; /* Matching the dark blue text from the navigation bar */
     padding: 20px 0;
-    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Ensure consistent footer background */
+    background: #f8f8f8 !important; /* Ensure consistent footer background */
 }
 
 .footer .container-fluid {
@@ -50,13 +51,19 @@ html, body {
     max-width: 400px; /* Optional: Restrict the width of each column */
 }
 
-.footer p {
-    margin-bottom: 10px;
-}
-
+/* Stylish headings for footer sections */
 .footer h4 {
     margin-top: 20px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    color: #1e3c72;
+    border-bottom: 3px solid; /* Add a green gradient border under headings */
+    border-image: linear-gradient(90deg, #87d094, #66b68a) 1;
+}
+
+/* Footer text and contact details */
+.footer p {
+    margin-bottom: 10px;
+    color: #1e3c72; /* Matching the dark blue text color */
 }
 
 /* Footer links styling */
@@ -68,26 +75,42 @@ html, body {
 
 .footer-links a {
     text-decoration: none;
-    color: white;
+    color: #1e3c72 !important; /* Blue color for links */
     margin: 5px 0;
 }
 
 .footer-links a:hover {
     text-decoration: underline;
+    color: #66b68a !important; /* Green hover effect on links */
 }
 
 /* Footer social icons styling */
 .footer-social {
     display: flex;
     justify-content: center;
+    
 }
 
 .footer-social a {
-    font-size: 20px;
-    color: white;
+    font-size: 24px;
+    color: #1e3c72 !important; /* Blue color for icons */
     margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition effect */
 }
 
 .footer-social a:hover {
-    color: #ddd;
+    color: #66b68a !important; /* Green hover effect on social icons */
+    transform: scale(1.1); /* Slight enlargement on hover for interactivity */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .footer .row {
+        flex-direction: column;
+    }
+
+    .footer .col-md-4 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }

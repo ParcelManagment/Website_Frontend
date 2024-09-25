@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 import './App.css';
+import './Components/Footer/footer.css';
 import LoginSignup from './Components/LoginSignup/LoginSignup';
 import Home from './Components/Home/Home';
 import InsertPage from './Components/InsertPage/InsertPage';

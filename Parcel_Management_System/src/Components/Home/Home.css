@@ -222,3 +222,37 @@ body {
         height: 45px;
     }
 }
+
+/* Animation for sliding in from left */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation for sliding in from right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Applying the animation to the respective sections */
+.left-section.slide-in-left {
+    animation: slideInLeft 1s forwards; /* Duration of the animation */
+}
+
+.right-section.slide-in-right {
+    animation: slideInRight 1s forwards; /* Duration of the animation */
+}
+

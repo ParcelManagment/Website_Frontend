@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaShippingFast, FaMapMarkedAlt, FaUserPlus, FaDatabase, FaLock } from 'react-icons/fa'; // Importing icons
+import { FaShippingFast, FaMapMarkedAlt, FaUserPlus, FaDatabase, FaLock } from 'react-icons/fa';
 
 const Home = () => {
     const [showBox, setShowBox] = useState(false);
@@ -34,7 +34,7 @@ const Home = () => {
     return (
         <div className="home container-fluid d-flex justify-content-center align-items-center">
             <div className="content-wrapper">
-                <div className={`left-section ${showBox ? 'show' : ''}`}>
+                <div className={`left-section ${showBox ? 'slide-in-left' : ''}`}>
                     <h2 className="text-center">Welcome to the Parcel Management System!</h2>
                     <p>
                         Our platform is designed to simplify the process of managing packages for train-based transfers, ensuring that package deliveries are safe, efficient, and seamlessly tracked.
@@ -88,7 +88,7 @@ const Home = () => {
                     </ul>
                 </div>
 
-                <div className={`right-section ${showBox ? 'show' : ''}`}>
+                <div className={`right-section ${showBox ? 'slide-in-right' : ''}`}>
                     <div className="details-box">
                         <h3>Ready to get started?</h3>
                         <p>Add new package information quickly and easily.</p>
@@ -105,7 +105,3 @@ const Home = () => {
 }
 
 export default Home;
-
-
-
-
