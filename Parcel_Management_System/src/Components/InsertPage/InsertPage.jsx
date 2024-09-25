@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -37,7 +36,6 @@ const InsertPage = () => {
     receiverEmail: '',
     receiverPhone: '',
     price: '',
-    tracking_device_id: '',
     uploadImages: null,
   });
 
@@ -129,8 +127,7 @@ const InsertPage = () => {
         type: formData.parcelType,
         package_condition: formData.parcelCondition,
         destination: formData.destination,
-        price: formData.price,
-        tracking_device_id: formData.tracking_device_id
+        price: formData.price
       },
       sender: {
         email: formData.senderEmail,
@@ -174,7 +171,6 @@ const InsertPage = () => {
           receiverEmail: '',
           receiverPhone: '',
           price: '',
-          tracking_device_id: '',
           uploadImages: null,
         });
         setSearchTerm('');
@@ -214,7 +210,7 @@ const InsertPage = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };   
+  };  
 
   return (
     <div className="containerinsert">
@@ -416,17 +412,7 @@ const InsertPage = () => {
             />
             {errors.price && <span className="error">{errors.price}</span>}
           </div>
-          <div className="form-group">
-            <label htmlFor="tracking_device_id">Tracking Device ID</label>
-            <input
-              type="text"
-              id="tracking_device_id"
-              name="tracking_device_id"
-              onChange={handleChange}
-              value={formData.tracking_device_id}
-              className="form-control"
-            />
-          </div>
+          
           <div className="form-group">
             <label htmlFor="uploadImages">Upload Images</label>
             <input

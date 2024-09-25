@@ -42,11 +42,31 @@ const Home = () => {
                     <h3>Features</h3>
                     <ul>
                         {[
-                            { text: 'Efficient Parcel Management', icon: <FaShippingFast /> },
-                            { text: 'Real-time Tracking Integration', icon: <FaMapMarkedAlt /> },
-                            { text: 'User-Friendly Insert and Search Functions', icon: <FaUserPlus /> },
-                            { text: 'Comprehensive Data Management', icon: <FaDatabase /> },
-                            { text: 'Security and Privacy', icon: <FaLock /> }
+                            { 
+                                text: 'Efficient Parcel Management', 
+                                icon: <FaShippingFast />, 
+                                description: 'Streamline your parcel management process with intuitive features that reduce time and increase productivity. Easily categorize and organize parcels for quick access.' 
+                            },
+                            { 
+                                text: 'Real-time Tracking Integration', 
+                                icon: <FaMapMarkedAlt />, 
+                                description: 'Keep track of your parcels in real-time with integrated tracking systems. Get updates on the current location and status of your packages at any time.' 
+                            },
+                            { 
+                                text: 'User-Friendly Insert and Search Functions', 
+                                icon: <FaUserPlus />, 
+                                description: 'Easily insert new package details or search for existing ones. Our user-friendly interface ensures that anyone can navigate the system without hassle.' 
+                            },
+                            { 
+                                text: 'Comprehensive Data Management', 
+                                icon: <FaDatabase />, 
+                                description: 'Manage all your data efficiently in one place. Store, retrieve, and analyze package information with advanced data management tools.' 
+                            },
+                            { 
+                                text: 'Security and Privacy', 
+                                icon: <FaLock />, 
+                                description: 'Rest easy knowing that your data is secure. Our platform uses top-notch security measures to protect your information and ensure privacy at all times.' 
+                            }
                         ].map((feature, index) => (
                             <li
                                 key={index}
@@ -59,7 +79,7 @@ const Home = () => {
                                 <div className="feature-description">
                                     {expandedFeature === index && (
                                         <p>
-                                            This is a brief description of {feature.text}. It provides more details on how this feature enhances the parcel management system.
+                                            {feature.description}
                                         </p>
                                     )}
                                 </div>
@@ -85,6 +105,7 @@ const Home = () => {
 }
 
 export default Home;
+
 
 
 

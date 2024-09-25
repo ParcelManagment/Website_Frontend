@@ -7,7 +7,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     color: #1e3c72;
-    background: #caefd1;
+    background: #EFEFEF;
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -36,22 +36,8 @@ body {
     justify-content: center;
 }
 
-.left-section {
-    background-color: #b8d7be;
-    border: 1px solid #87d094;
-    flex: 1;
-    border-radius: 12px;
-    color: #333;
-    padding: 30px;
-    background-size: cover;
-    background-position: center;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-}
-
-.right-section {
-    background-color: #b8d7be;
+.left-section, .right-section {
+    background-color: #EFEFEF;
     border: 1px solid #87d094;
     flex: 1;
     border-radius: 12px;
@@ -167,9 +153,9 @@ body {
 .custom-button {
     padding: 12px 20px;
     font-size: 1.1rem;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #fff;
-    border: none;
+    background: #EFEFEF; /* Match the background color */
+    color: #1e3c72; /* Text color */
+    border: 1px solid #87d094; /* Border similar to containers */
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
@@ -196,10 +182,10 @@ body {
 }
 
 .custom-button:hover {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: #EFEFEF; /* Maintain the background color on hover */
     box-shadow: 0 4px 15px rgba(0, 86, 179, 0.4);
     transform: translateY(-2px);
-    border: 2px solid #1e3c72; /* Add border on hover */
+    border: 2px solid #1e3c72; /* Add a darker border on hover */
 }
 
 .custom-button:hover::before {

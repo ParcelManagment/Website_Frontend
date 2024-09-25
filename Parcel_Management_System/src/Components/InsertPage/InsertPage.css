@@ -3,7 +3,7 @@
 
 /* Container styling */
 .containerinsert {
-  margin-top: 450px;
+  margin-top: 170px;
   color: #1e3c72;
   font-family: 'Roboto', sans-serif;
   width: 100%;
@@ -34,7 +34,7 @@ h1 {
 
 /* Section box styling */
 .section {
-  background-color: #b8d7be;
+  background-color: #EFEFEF;
   padding: 1.5rem;
   border: 1px solid #87d094;
   border-radius: 8px;
@@ -59,37 +59,38 @@ h1 {
 
 /* Submit button styling */
 .btn-block {
-  width: 100%;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 400;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    width: 100%;
+    background: #EFEFEF; /* Match the background color */
+    color: #1e3c72; /* Text color */
+    font-size: 1.1rem;
+    font-weight: 400;
+    border: 1px solid #87d094; /* Border similar to containers */
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .btn-block:hover {
-  background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.4);
-  transform: translateY(-2px);
-  border: 2px solid #1e3c72;
+    background: #EFEFEF; /* Maintain the background color on hover */
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.4);
+    transform: translateY(-2px);
+    border: 2px solid #1e3c72; /* Add a darker border on hover */
+    color: #1e3c72; /* Ensure text color remains the same on hover */
 }
 
 .btn-block:focus {
-  outline: none;
+    outline: none;
 }
 
 .btn-block:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 /* Label and input field styling */
@@ -159,4 +160,3 @@ textarea:focus {
 .form-control-file {
   padding: 0.5rem;
 }
-
