@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './ViewPage.css';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Search_img from '../Assests/search3.png'; 
 
 const ViewPage = () => {
@@ -10,76 +12,79 @@ const ViewPage = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        setError(null); 
-    
+        setError(null);
+
         try {
-            const response = await fetch(`/api/package/fetchbyid/${searchTerm}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            if (!data || Object.keys(data).length === 0) {
+            const response = await axios.get(`/package/fetchbyid/${searchTerm}`);
+            if (!response.data || Object.keys(response.data).length === 0) {
                 alert('No data found for the given Parcel ID.');
                 setParcelData(null);
             } else {
-                setParcelData(data);
+                setParcelData(response.data);
             }
         } catch (err) {
             setError('Failed to fetch parcel data. Please try again.');
             console.log("Failed to fetch data", err);
         }
     };
-    
-   
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        setError(null);
-
-        try {
-            const response = await fetch(`http://localhost:3000/package/deletepackage/${searchTerm}`, {
-                method: 'DELETE',
-            });
-            if (!response.ok) {
-                throw new Error('Failed to delete the package');
-            }
-            alert('Package deleted successfully');
-            setParcelData(null);
-            setSearchTerm('');
-        } catch (err) {
-            setError('Failed to delete the package. Please try again.');
-            console.log("Failed to delete data", err);
-        }
+    const handleEdit = () => {
+        setIsEditing(true);
     };
-    
+
+
     const handleUpdate = async (e) => {
         e.preventDefault();
-        setError(null);
+
+        const receiverId = parcelData.package.receiver_id;
+        if (!receiverId) {
+            alert("Receiver ID is missing!");
+            return;
+        }
 
         try {
-            const response =await fetch(`http://localhost:3000/package/edituser/${searchTerm}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    receiver_first_name: parcelData.receiver.receiver_first_name,
-                    receiver_last_name: parcelData.receiver.receiver_last_name,
-                    receiver_email: parcelData.receiver.receiver_email,
-                    receiver_mobile_number: parcelData.receiver.receiver_mobile_number,
-                }),
+            const response = await axios.put(`/package/edituser/${receiverId}}`, {
+                receiver_first_name: parcelData.receiver.first_name,
+                receiver_last_name: parcelData.receiver.last_name,
+                receiver_email: parcelData.receiver.email,
+                receiver_mobile_number: parcelData.receiver.mobile_number
             });
-            if (!response.ok) {
-                throw new Error('Failed to update the package');
+
+            if (response.status === 200) {
+                alert('User details updated successfully');
+                setIsEditing(false);
+            } else {
+                alert('Failed to update user details');
             }
-            alert('Package updated successfully');
-            setIsEditing(false);
-            setSearchTerm(''); 
         } catch (err) {
-            setError('Failed to update the package. Please try again.');
-            console.log("Failed to update data", err);
+            console.error("Error updating user:", err);
+            alert('Failed to update user details');
         }
     };
+
+    const handleDelete = async () => {
+        if (!searchTerm) {
+            alert('Please enter a Parcel ID.');
+            return;
+        }
+        console.log(searchTerm)
+
+        try {
+            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
+
+            if (response.status === 200) {
+                alert('Package deleted successfully');
+                setParcelData(null); // Clear the parcel data after deletion
+                setSearchTerm('');    // Clear the search field after deletion
+            } else {
+                alert('Failed to delete package');
+            }
+        } catch (err) {
+            console.error("Error deleting package:", err);
+            alert('Failed to delete package');
+        }
+    };
+    
 
     return (
         <div className="search-form-container">
@@ -101,40 +106,60 @@ const ViewPage = () => {
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
-                <form>
-                    <div className="form-section">
-                        <h2>Sender Details</h2>
+                <form className="row" onSubmit={(e) => e.preventDefault()}>
+                    {/* Package Details */}
+                    <div className="form-section package-details col-12 col-md-6 col-lg-3">
+                        <h2>Package Details</h2>
                         <div className="form-group">
-                            <label>First Name:</label>
-                            <input type="text" name="senderName" value={parcelData.sender.sender_first_name || ''} readOnly />
+                            <label htmlFor="type">Type of Package:</label>
+                            <input type="text" name="type" value={parcelData.package.type || ''} readOnly className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label>Second Name:</label>
-                            <input type="text" name="secondName" value={parcelData.sender.sender_last_name || ''} readOnly />
+                            <label htmlFor="packageCondition">Condition of Package:</label>
+                            <input type="text" name="packageCondition" value={parcelData.package.package_condition || ''} readOnly className="form-control" />
                         </div>
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input type="text" name="senderEmail" value={parcelData.sender.sender_email || ''} readOnly />
-                        </div>
-                        <div className="form-group">
-                            <label>Phone Number:</label>
-                            <input type="text" name="senderPhone" value={parcelData.sender.sender_mobile_number || ''} readOnly />
+                        <div className="form-group"> 
+                            <label htmlFor='destination'>Destination:</label>
+                            <input type="text" name="destination" value={parcelData.package.destination || ''} readOnly  className="form-control"/>
                         </div>
                     </div>
 
-                    <div className="form-section">
+                    {/* Sender Details */}
+                    <div className="form-section sender-details col-12 col-md-6 col-lg-3">
+                        <h2>Sender Details</h2>
+                        <div className="form-group">
+                            <label>First Name:</label>
+                            <input type="text" name="senderName" value={parcelData.sender.first_name || ''} readOnly className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" name="senderLastName" value={parcelData.sender.last_name || ''} readOnly className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label>Email:</label>
+                            <input type="text" name="senderEmail" value={parcelData.sender.email || ''} readOnly className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label>Phone Number:</label>
+                            <input type="text" name="senderPhone" value={parcelData.sender.mobile_number || ''} readOnly className="form-control"/>
+                        </div>
+                    </div>
+
+                    {/* Receiver Details */}
+                    <div className="form-section receiver-details col-12 col-md-6 col-lg-3">
                         <h2>Receiver Details</h2>
                         <div className="form-group">
                             <label>First Name:</label>
                             <input
                                 type="text"
                                 name="receiverName"
-                                value={parcelData.receiver.receiver_first_name || ''}
+                                value={parcelData.receiver.first_name || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_first_name: e.target.value,
+                                        first_name: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -145,12 +170,13 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverLastName"
-                                value={parcelData.receiver.receiver_last_name || ''}
+                                value={parcelData.receiver.last_name || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_last_name: e.target.value,
+                                        last_name: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -161,12 +187,13 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverEmail"
-                                value={parcelData.receiver.receiver_email || ''}
+                                value={parcelData.receiver.email || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_email: e.target.value,
+                                        email: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -177,12 +204,13 @@ const ViewPage = () => {
                             <input
                                 type="text"
                                 name="receiverPhone"
-                                value={parcelData.receiver.receiver_mobile_number || ''}
+                                value={parcelData.receiver.mobile_number || ''}
+                                className="form-control"
                                 onChange={(e) => setParcelData(prevData => ({
                                     ...prevData,
                                     receiver: {
                                         ...prevData.receiver,
-                                        receiver_mobile_number: e.target.value,
+                                        mobile_number: e.target.value,
                                     },
                                 }))}
                                 readOnly={!isEditing}
@@ -190,51 +218,19 @@ const ViewPage = () => {
                         </div>
                     </div>
 
-                    <div className="form-section">
-                        <h2>Package Details</h2>
-                        <div className="form-group">
-                            <label>Type of Package:</label>
-                            <input type="text" name="parcelType" value={parcelData.package.type || ''} readOnly />
-                        </div>
-                        <div className="form-group">
-                            <label>Package Condition:</label>
-                            <input type="text" name="parcelCondition" value={parcelData.package.package_condition || ''} readOnly/>
-                        </div>
-                        <div className="form-group">
-                            <label>Destination:</label>
-                            <input type="text" name="parcelDestination"  value={parcelData.package.destination || ''} readOnly />
-                        </div>
-                    </div>
-
-                    <div className="form-section">
-                        <h2>Additional Details</h2>
-                        <div className="form-group">
-                            <label>Price:</label>
-                            <input type="text" name="price"  value={parcelData.package.price || ''} readOnly/>
-                        </div>
-                        <div className="form-group">
-                            <label>Tracking Device ID:</label>
-                            <input type="text" name="trackingID" value={parcelData.package.tracking_device_id || ''} readOnly />
-                        </div>
-                    </div>
-                    
-                    <div className="button-container">
-                        
-                            <button type="button" onClick={handleDelete} className="delete_button">Delete</button>
-                        
-                        
-                            <button type="button" onClick={() => setIsEditing(!isEditing)} className="submit_button">
-                                {isEditing ? 'Cancel' : 'Edit'}
-                            </button>
-                            {isEditing && (
-                                <button type="button" onClick={handleUpdate} className="submit_button">Update</button>
-                            )}
-                        
+                    {/* Edit / Save button */}
+                    <div className="form-group col-12">
+                        {!isEditing ? (
+                            <button className="btn btn-primary btn-block" type="button" onClick={handleEdit}>Edit</button>
+                        ) : (
+                            <button className="btn btn-primary btn-block" type="submit"onClick={handleUpdate} >Save</button>
+                        )}
+                        <br />
+                        <button type="button" className="btn btn-primary btn-block" onClick={handleDelete}>Delete</button>
                     </div>
                 </form>
             </div>
             )}
-           
         </div>
     );
 };

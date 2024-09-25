@@ -2,7 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 1500px;
+    color: #1e3c72;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
 }
 
 .form {
@@ -17,16 +22,18 @@
 .input_wrapper {
     position: relative;
     width: 50%;
+    margin-top: 50px;
+    flex-wrap: wrap;
 }
 
 .input_box {
     width: 100%;
     height: 45px;
-    border-radius: 25px;
+    border-radius: 8px;
     padding-left: 15px;
     box-sizing: border-box;
     font-size: 18px;
-    border: 2px solid #87CEFA;
+    border: 2px solid #1e3c72;
     background-color: #f0f8ff;
 }
 
@@ -37,17 +44,17 @@
     width: 50px;
     height: 45px;
     border: none;
-    border-radius: 25px;
+    border-radius:8px;
     cursor: pointer;
     justify-content: center;
     align-items: center;
     display: flex;
-    background-color: #87CEFA;
+    background-color: #6bb3e0;
     transform: translateY(-50%);
 }
 
 .search_button:hover {
-    background-color: #4682B4; 
+    background-color: #2f4d84; 
 }
 
 .search_img {
@@ -59,10 +66,11 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f8ff;
+    background-color: #68aae4;
     color: #000000;
     border-radius: 8px;
     position: relative; 
+    margin-top: 150px;
     
 
 }
@@ -74,16 +82,15 @@
 }
 
 .form-section {
-    margin-bottom: 20px;
-    width: 22%;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 3%;
-    border: 1px solid #d3d3d3;
+    border:  1px solid #87d094;
     border-radius: 8px;
-    background-color: #f8f8f8; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    padding: 15px;
+    background-color: #b8d7be; 
+    box-shadow:0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 1.5rem;
+    flex:  1 1 calc(25% - 1rem);
+    font-size: 1rem;
+    color: #333;
+    margin: 0.5rem;
 }
 
 .form-section:nth-child(4n) {
@@ -92,12 +99,12 @@
 
 .form-section h2 {
     font-size: 18px;
-    border-bottom: 1px solid #87CEFA;
+    border-bottom: 1px solid #074165;
     padding-bottom: 5px;
 }
 
 .form-group {
-    margin: 10px 0;
+    margin-bottom: 1.25rem;
 }
 
 .form-group label {
@@ -168,3 +175,6 @@
 .delete_button:hover {
     background-color: #4682B4;
 }
+.form-control {
+    font-weight: 400 !important;
+  }
