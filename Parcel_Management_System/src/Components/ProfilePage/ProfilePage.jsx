@@ -44,7 +44,7 @@ const ProfilePage = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="profile-page">
+        <div className="profile-page1">
             <h1>User Details</h1>
             <div className="profile-details">
     <div className="detail-row">
