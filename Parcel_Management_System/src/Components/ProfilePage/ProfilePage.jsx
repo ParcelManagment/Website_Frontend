@@ -46,11 +46,6 @@ const ProfilePage = () => {
     return (
         <div className="profile-page">
             <h1>User Details</h1>
-            <div className="profile-photo-container">
-                <div className="profile-photo">
-                    <img src={profile && profile.profile_picture ? profile.profile_picture : defaultProfilePic} alt="Profile" />
-                </div>
-            </div>
             <div className="profile-details">
     <div className="detail-row">
         <strong className="label">Employee ID</strong>
