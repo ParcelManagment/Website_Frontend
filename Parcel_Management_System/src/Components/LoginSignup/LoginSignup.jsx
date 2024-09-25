@@ -294,7 +294,7 @@ const LoginSignup = () => {
                         className={action === "Sign Up" ? "submit gray" : "submit"}
                         onClick={() => {
                             if (!loading) {
-                                if (action === 'Login' && isLoginEmployeeIdValid && isLoginPasswordValid) {
+                                if (action === 'Login' && isLoginEmployeeIdValid) {
                                     handleLogin();
                                 } else if (action === 'Login') {
                                     setMessage('Please enter valid employee ID and password');
@@ -304,7 +304,7 @@ const LoginSignup = () => {
                                 }
                             }
                         }}
-                        disabled={loading || !isLoginEmployeeIdValid || !isLoginPasswordValid} // Disable the button while loading or if validation fails
+                        disabled={loading || !isLoginEmployeeIdValid} // Disable the button while loading or if validation fails
                     >
                         Log In
                     </div>
