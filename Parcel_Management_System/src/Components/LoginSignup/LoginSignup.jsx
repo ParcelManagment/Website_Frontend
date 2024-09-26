@@ -8,10 +8,9 @@ import employee_id_icon from '../Assests/EmployeeID.png';
 import password_icon from '../Assests/Password.png';
 import website_logo from '../Assests/logo.jpg'; 
 
-// Set the base URL for Axios
 axios.defaults.baseURL = '/api';
 
-const LoginSignup = () => {
+const LoginSignup = ({ closeModal }) => {
     const [employeeId, setEmployeeId] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -44,6 +43,7 @@ const LoginSignup = () => {
             setMessage('Login Successful');
             localStorage.setItem('employee_id', employeeId); // Store employee_id in local storage
             navigate('/home');
+            if (closeModal) closeModal();  // Close the modal after successful login
         } catch (error) {
             setMessage('Login Failed: ' + (error.response ? error.response.data.Error : 'Server Error'));
         } finally {
@@ -107,17 +107,6 @@ const LoginSignup = () => {
                         />
                     </div>
                 </div>
-                <div className="forgot-password">
-                    Admin Login? 
-                    <a 
-                    href="http://ec2-13-53-200-229.eu-north-1.compute.amazonaws.com/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="admin-login-link"
-                    >
-                    Click Here!
-                    </a>
-                </div>
                 <div className="submit-container">
                     <div
                         className="submit"
@@ -150,4 +139,3 @@ const LoginSignup = () => {
 };
 
 export default LoginSignup;
-

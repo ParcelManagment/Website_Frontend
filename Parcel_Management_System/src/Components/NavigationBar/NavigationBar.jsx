@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { Modal } from 'react-bootstrap';
+import LoginSignup from '../LoginSignup/LoginSignup';  // Import the login component
 import './NavigationBar.css';
 
 const NavigationBar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [showLoginModal, setShowLoginModal] = useState(false);  // State to control the modal
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -16,7 +19,6 @@ const NavigationBar = () => {
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     setIsLoggedIn(false);
-                    // navigate('/'); // Redirect to the login page if unauthorized
                 }
             }
         };
@@ -30,14 +32,15 @@ const NavigationBar = () => {
                 await axios.get('/staff/logout');
                 localStorage.removeItem('employee_id');
                 setIsLoggedIn(false);
-                //navigate('/'); // Redirect to the login page
             } catch (error) {
                 console.error('Logout failed:', error);
             }
         } else {
-            navigate('/');  // Redirect to the login page
+            setShowLoginModal(true);  // Show login modal if not logged in
         }
     };
+
+    const handleCloseModal = () => setShowLoginModal(false);  // Close modal
 
     const getLinkClass = (path) => location.pathname === path ? 'active-link' : '';
 
@@ -54,10 +57,19 @@ const NavigationBar = () => {
                     {isLoggedIn ? 'Logout' : 'Login'}
                 </button>
             </div>
+
+            {/* Login Modal */}
+            <Modal show={showLoginModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <LoginSignup closeModal={handleCloseModal} />
+                </Modal.Body>
+            </Modal>
         </nav>
     );
 };
 
-// <Link to="/auth" className={getLinkClass('/auth')}>Authentication</Link>
-
 export default NavigationBar;
+
