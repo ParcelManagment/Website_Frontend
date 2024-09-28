@@ -20,7 +20,7 @@
 
 .input_wrapper {
     position: relative;
-    width: 50%;
+    width: 80%;
     margin-top: 50px;
     flex-wrap: wrap;
 }
@@ -68,7 +68,7 @@
     color: #000000;
     border-radius: 8px;
     position: relative; 
-    margin-top: 150px;
+    margin-top: 15px;
     
 
 }
