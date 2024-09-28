@@ -7,7 +7,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 15px;
-    
 }
 
 .form {
@@ -15,12 +14,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 30px; 
 }
 
 .input_wrapper {
-    position: absolute;
+    position: relative;
     width: 100%;
     margin-top: 50px;
     flex-wrap: wrap;
