@@ -37,6 +37,7 @@ const ViewPage = () => {
         e.preventDefault();
     
         const receiverId = parcelData.package.receiver_id;
+        console.log(receiverId)
         if (!receiverId) {
             alert("Receiver ID is missing!");
             return;
