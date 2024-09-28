@@ -10,23 +10,53 @@ const ViewPage = () => {
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
 
+    // const handleSearch = async (e) => {
+    //     e.preventDefault();
+    //     setError(null);
+
+    //     try {
+    //         const response = await axios.get(`/package/fetchbyid/${searchTerm}`);
+    //         if (!response.data || Object.keys(response.data).length === 0) {
+    //             alert('No data found for the given Parcel ID.');
+    //             setParcelData(null);
+    //         } else {
+    //             setParcelData(response.data);
+    //         }
+    //     } catch (err) {
+    //         setError('Failed to fetch parcel data. Please try again.');
+    //         console.log("Failed to fetch data", err);
+    //     }
+    // };
+
     const handleSearch = async (e) => {
         e.preventDefault();
         setError(null);
-
+    
         try {
             const response = await axios.get(`/package/fetchbyid/${searchTerm}`);
-            if (!response.data || Object.keys(response.data).length === 0) {
+    
+            // Handle the status code for canceled package
+            if (response.status === 400 && response.data.message === 'This package has been cancelled and cannot be viewed.') {
+                alert('This package has been cancelled and cannot be viewed.');
+                setParcelData(null); // Clear any previous parcel data
+            } else if (!response.data || Object.keys(response.data).length === 0) {
                 alert('No data found for the given Parcel ID.');
                 setParcelData(null);
             } else {
                 setParcelData(response.data);
             }
         } catch (err) {
-            setError('Failed to fetch parcel data. Please try again.');
-            console.log("Failed to fetch data", err);
+            if (err.response && err.response.status === 400) {
+                // Handle the case when the package is canceled
+                alert(err.response.data.message);
+                setParcelData(null);
+            } else {
+                setError('Failed to fetch parcel data. Please try again.');
+                console.error("Failed to fetch data", err);
+            }
         }
     };
+    
 
     const handleEdit = () => {
         setIsEditing(true);
