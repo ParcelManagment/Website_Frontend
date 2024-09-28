@@ -35,21 +35,22 @@ const ViewPage = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-
+    
         const receiverId = parcelData.package.receiver_id;
         if (!receiverId) {
             alert("Receiver ID is missing!");
             return;
         }
-
+    
         try {
-            const response = await axios.put(`/package/edituser/${receiverId}}`, {
+            // Remove the extra closing curly brace in the URL
+            const response = await axios.put(`/package/edituser/${receiverId}`, {
                 receiver_first_name: parcelData.receiver.first_name,
                 receiver_last_name: parcelData.receiver.last_name,
                 receiver_email: parcelData.receiver.email,
                 receiver_mobile_number: parcelData.receiver.mobile_number
             });
-
+    
             if (response.status === 200) {
                 alert('User details updated successfully');
                 setIsEditing(false);
@@ -61,6 +62,7 @@ const ViewPage = () => {
             alert('Failed to update user details');
         }
     };
+    
 
     const handleDelete = async () => {
         if (!searchTerm) {
