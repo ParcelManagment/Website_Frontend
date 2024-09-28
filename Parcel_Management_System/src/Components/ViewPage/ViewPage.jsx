@@ -60,7 +60,7 @@ const ViewPage = () => {
             }
         } catch (err) {
             console.error("Error updating user:", err);
-            alert('Failed to update user details');
+            alert('User already registed. Cannot Update Details for already registed Users.');
         }
     };
     
@@ -84,7 +84,7 @@ const ViewPage = () => {
             }
         } catch (err) {
             console.error("Error deleting package:", err);
-            alert("User already registed. Cannot Update Details for already registed Users. ");
+            alert('Failed to delete package');
         }
     };
     
