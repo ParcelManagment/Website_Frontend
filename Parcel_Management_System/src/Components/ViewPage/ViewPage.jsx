@@ -87,9 +87,9 @@ const ViewPage = () => {
     
 
     return (
-        <div className="search-form-container container">
+        <div className="search-form-container">
         <form className="form row justify-content-center" onSubmit={handleSearch}>
-          <div className="input_wrapper col-md-6 col-sm-8 d-flex">
+          <div className="input_wrapper col-md-6 col-sm-8">
             <input
               type="text"
               placeholder="Enter Parcel ID Here..."
