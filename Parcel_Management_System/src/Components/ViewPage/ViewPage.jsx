@@ -87,21 +87,21 @@ const ViewPage = () => {
     
 
     return (
-        <div className="search-form-container">
-            <form className="form" onSubmit={handleSearch}>
-                <div className='input_wrapper'>
-                    <input
-                        type="text"
-                        placeholder="Enter Parcel ID Here..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className='input_box'
-                    />
-                    <button type="submit" className='search_button'>
-                        <img src={Search_img} alt='search_image' className='search_img' />
-                    </button>
-                </div>
-            </form>
+        <div className="search-form-container container">
+        <form className="form row justify-content-center" onSubmit={handleSearch}>
+          <div className="input_wrapper col-md-6 col-sm-8 d-flex">
+            <input
+              type="text"
+              placeholder="Enter Parcel ID Here..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="input_box form-control"
+            />
+            <button type="submit" className="search_button btn btn-primary ml-2">
+              <img src={Search_img} alt="search_image" className="search_img" />
+            </button>
+          </div>
+        </form>
 
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
