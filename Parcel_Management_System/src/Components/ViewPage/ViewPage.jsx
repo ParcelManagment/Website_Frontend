@@ -84,7 +84,7 @@ const ViewPage = () => {
             }
         } catch (err) {
             console.error("Error deleting package:", err);
-            alert('Failed to delete package');
+            alert("User already registed. Cannot Update Details for already registed Users. ");
         }
     };
     
