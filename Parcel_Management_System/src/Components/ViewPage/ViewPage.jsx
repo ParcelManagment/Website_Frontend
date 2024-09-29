@@ -40,6 +40,7 @@ const ViewPage = () => {
               }
           }
       };
+        checkAuthorization();
       }, []);
     
     const handleSearch = async (e) => {
