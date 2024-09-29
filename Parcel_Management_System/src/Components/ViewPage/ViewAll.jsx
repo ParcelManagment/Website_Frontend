@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const PackageDetails = () => {
+    const navigate = useNavigate();
   const [packageDetails, setPackageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+      try {
+          await axios.get('/staff/profile');
+      } catch (error) {
+          if (error.response && error.response.status === 401) {
+              navigate('/');
+          }
+      }
+  };
+    checkAuthorization();
+  }, []);
 
   useEffect(() => {
     
@@ -24,7 +39,11 @@ const PackageDetails = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  console.log("view page All")
+
   return (
+
+
     <div>
       <h1>Package and Sender Details</h1>
       {packageDetails.length > 0 ? (
