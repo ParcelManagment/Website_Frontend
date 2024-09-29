@@ -9,7 +9,7 @@ const PackageDetails = () => {
     // Fetch package details when the component mounts
     const fetchPackageDetails = async () => {
       try {
-        const response = await axios.get("/view"); // Update URL to your backend endpoint
+        const response = await axios.get("/view/"); // Update URL to your backend endpoint
         setPackageDetails(response.data);
       } catch (error) {
         console.error("Error fetching package details:", error);
