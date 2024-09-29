@@ -1,85 +1,135 @@
 /* Profile Page Styling */
 .profile-page1 {
     display: flex;
-    justify-content: center;         /* Center items horizontally */
-    align-items: center;            /* Center items vertically */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    margin-top: 160px;               /* Space below the navbar */
-    padding: 40px;                  /* Added padding */
-    background-color: #FFFFFF;      /* White background */
-    border: 1px solid #87d094  ;      /* Green border */
-    border-radius: 10px;            /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    width: 100%;                    /* Full width */
-    min-width: 350px;
-    max-width: 500px;               /* Max width for better layout */
-    box-sizing: border-box;         /* Include padding and border in element's total width and height */
+    margin-top: 160px;
+    padding: 40px;
+    background-color: #FFFFFF;
+    border: 1px solid #87d094;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-page1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Title Styling */
 .profile-page1 h1 {
-    color: #4c41a2;                  /* Color for the title */
-    font-size: 32px;                 /* Font size for title */
-    font-weight: 700;                /* Bold title */
-    margin: 0 0 20px;                /* Margin adjustments */
-    text-align: center;              /* Center the title */
+    color: #4c41a2;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Profile Details Box */
+/* Profile Details Section - More modern look */
 .profile-details {
-    background-color: #dfebe1;      /* Light purple background */
-    padding: 20px;                  /* Padding for details box */
-    border-radius: 16px;            /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    width: 100%;                    /* Full width */
-    max-width: 350px;               /* Limit max width for better layout */
-    font-size: 18px;                /* Font size for details */
-    text-align: left;               /* Left align text */
-    margin: 0 auto;                 /* Center the box horizontally */
+    width: 100%;
+    max-width: 450px;
+    padding: 0;
+    margin: 0 auto 30px;
 }
 
-/* Change Password Button */
+/* Profile Detail Row */
+.detail-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ececec;  /* Light divider line */
+    color: #333333;
+}
+
+.detail-row:last-child {
+    border-bottom: none;               /* No divider on last item */
+}
+
+/* Label Styling */
+.label {
+    font-weight: 600;
+    min-width: 130px;
+    color: #4c41a2;                    /* Accent color for labels */
+    font-size: 15px;                   /* Slightly smaller, more modern font size */
+    text-transform: uppercase;         /* Modern uppercase styling */
+    letter-spacing: 0.5px;
+}
+
+/* Colon Styling */
+.colon {
+    margin: 0 10px;
+    color: #87d094;
+}
+
+/* Value Styling */
+.value {
+    flex-grow: 1;
+    text-align: left;
+    color: #555555;                    /* Softer text color */
+    font-size: 16px;
+}
+
 /* Change Password Button */
 .change-password-button {
-    width: 90%;
+    width: 100%;
     background: #EFEFEF;
     color: #1e3c72;
     border: 1px solid #87d094;
-    border-radius: 6px;
-    margin-top: 40px;
+    border-radius: 8px;
+    margin-top: 20px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Change Password Button Hover State */
 .change-password-button:hover {
-    background-color: #78d682;             /* Change color on hover */
-    transform: scale(1.05);                /* Slightly enlarge on hover */
+    background-color: #EFEFEF;
+    border: 3px solid #1e3c72;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Detail Row Styling */
-.detail-row {
-    display: flex;                  /* Flexbox for alignment */
-    align-items: center;           /* Center align items */
-    margin-bottom: 15px;           /* Margin between rows */
-    color: #000000;                /* Text color */
+/* Add an Arrow Icon on the Button */
+.change-password-button::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
 }
 
-.label {
-    min-width: 120px;              /* Minimum width for label */
-    text-align: left;              /* Left align text */
-    font-weight: bold;             /* Bold text */
+.change-password-button:hover::after {
+    transform: translateX(5px);
 }
 
-.colon {
-    margin: 0 10px;                /* Margin for colon */
-    flex-shrink: 0;                /* Prevent shrinking */
-}
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-page1 {
+        margin-top: 80px;
+        padding: 20px;
+    }
 
-.value {
-    flex-grow: 1;                  /* Grow to fill space */
-    text-align: left;              /* Left align value */
+    .profile-details {
+        padding: 20px;
+    }
+
+    .label {
+        min-width: 100px;
+    }
 }
