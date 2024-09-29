@@ -19,10 +19,10 @@ const ProfilePage = () => {
                     // Simulate a delay for development environment
                     setTimeout(() => {
                         const mockProfile = {
-                            employee_id: '12345',
-                            first_name: 'John',
-                            last_name: 'Doe',
-                            role: 'Admin',
+                            employee_id: 'null',
+                            first_name: 'null',
+                            last_name: 'null',
+                            role: 'null',
                         };
                         setProfile(mockProfile);
                         setLoading(false);
@@ -83,7 +83,7 @@ const ProfilePage = () => {
 </div>
 
 
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="change-password-button" onClick={handleChangePassword}>Change Password</button>
         </div>
     );
 };
