@@ -44,7 +44,7 @@ const ForgetPassword = () => {
             });
             setMessage('Password successfully updated!');
             setTimeout(() => {
-                navigate('/login'); // Redirect to login after success
+                navigate('/'); // Redirect to login after success
             }, 2000);
         } catch (error) {
             setMessage('Password reset failed: ' + (error.response ? error.response.data.Error : 'Server Error'));
@@ -114,7 +114,7 @@ const ForgetPassword = () => {
                         }
                     }}
                 >
-                    {loading ? <ClipLoader color={"#f00"} loading={loading} size={30} /> : 'Submit'}
+                    {loading ? <ClipLoader color={"#87d094 "} loading={loading} size={30} /> : 'Submit'}
                 </div>
             </div>
 

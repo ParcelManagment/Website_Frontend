@@ -141,7 +141,7 @@ const LoginSignup = () => {
                 </div>
                 {loading ? (
                     <div className="message">
-                        <ClipLoader color={"#f00"} loading={loading} size={30} />
+                        <ClipLoader color={"#87d094"} loading={loading} size={30} />
                     </div>
                 ) : (
                     message && (
