@@ -44,9 +44,30 @@ const InsertPage = () => {
   const [errors, setErrors] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const history = useHistory();
+
+  // Function to check if the user is logged in
+  const checkUserAuthorization = async () => {
+    try {
+      const response = await fetch('/staff/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 401) {
+        // User is unauthorized, redirect to home page (or login page)
+        history.push('/');
+      }
+    } catch (error) {
+      console.error('Error checking authorization:', error);
+    }
+  };
 
 
   useEffect(() => {
+    checkUserAuthorization();
     setFilteredCities(
       citiesInSriLanka.filter(city =>
         city.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -152,13 +173,7 @@ const InsertPage = () => {
         },
         body: JSON.stringify(data),
       });
-
-      if (response.status === 401) {
-        // Unauthorized - redirect to login page
-        alert('Unauthorized, please log in.');
-        history.push('/');
-        return;
-      }
+      
   
       if (response.ok) {
         const result = await response.json();
