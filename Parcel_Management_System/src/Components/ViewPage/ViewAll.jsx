@@ -24,9 +24,10 @@ const PackageDetails = () => {
   useEffect(() => {
     
     axios
-      .get(`/view/`)
+      .get('/view')
       .then((response) => {
         setPackageDetails(response.data);
+        console.log(response.data)
         setLoading(false);
       })
       .catch((error) => {
