@@ -45,6 +45,7 @@ const InsertPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
+
   useEffect(() => {
     setFilteredCities(
       citiesInSriLanka.filter(city =>
@@ -151,6 +152,13 @@ const InsertPage = () => {
         },
         body: JSON.stringify(data),
       });
+
+      if (response.status === 401) {
+        // Unauthorized - redirect to login page
+        alert('Unauthorized, please log in.');
+        history.push('/');
+        return;
+      }
   
       if (response.ok) {
         const result = await response.json();
