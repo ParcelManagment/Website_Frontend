@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProfilePage.css';
 
-
 const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -13,15 +12,33 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get(`/staff/profile`);
-                const { employee } = response.data; // Destructure the employee object from the response
-                setProfile(employee);
-                setLoading(false);
+                // Mocking the response locally for development
+                const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+                if (isDevelopment) {
+                    // Simulate a delay for development environment
+                    setTimeout(() => {
+                        const mockProfile = {
+                            employee_id: 'null',
+                            first_name: 'null',
+                            last_name: 'null',
+                            role: 'null',
+                        };
+                        setProfile(mockProfile);
+                        setLoading(false);
+                    }, 200); // 1-second delay to simulate API call
+                } else {
+                    // Use real API call in production or when backend is available
+                    const response = await axios.get(`/staff/profile`);
+                    const { employee } = response.data; // Destructure the employee object from the response
+                    setProfile(employee);
+                    setLoading(false);
+                }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     navigate('/');
                 } else {
-                setError('Failed to fetch profile data');
+                    setError('Failed to fetch profile data');
                 }
                 setLoading(false);
             }
@@ -30,14 +47,9 @@ const ProfilePage = () => {
         fetchProfile();
     }, [navigate]);
 
-    const handleLogout = async () => {
-        try {
-            await axios.get('/staff/logout');
-            localStorage.removeItem('employee_id');
-            navigate('/');
-        } catch (error) {
-            console.error('Logout failed:', error);
-        }
+    const handleChangePassword = () => {
+        // Navigate to the Change Password page
+        navigate('/ForgetPassword');
     };
 
     if (loading) return <div>Loading...</div>;
@@ -71,7 +83,7 @@ const ProfilePage = () => {
 </div>
 
 
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="change-password-button" onClick={handleChangePassword}>Change Password</button>
         </div>
     );
 };

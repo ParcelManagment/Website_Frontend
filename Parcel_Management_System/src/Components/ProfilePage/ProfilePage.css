@@ -1,86 +1,135 @@
-/* Ensure the profile page is not hidden under the navigation bar */
+/* Profile Page Styling */
 .profile-page1 {
     display: flex;
-    justify-content: center;         /* Center items horizontally */
-    align-items: center;         /* Align items to the start */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
+    margin-top: 160px;
+    padding: 40px;
+    background-color: #FFFFFF;
+    border: 1px solid #87d094;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-top: 180px;               /* Space below the navbar */
-    padding-top: 20px;              /* Reduced padding-top to avoid cover */
+    max-width: 500px;
     box-sizing: border-box;
-    /* You can adjust height if necessary, but it’s better to let it grow with content */
-    height: auto;                    /* Allow the height to adjust based on content */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Ensure the top part of the profile is not cut off */
+.profile-page1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Title Styling */
 .profile-page1 h1 {
     color: #4c41a2;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: center !important;
+    margin: 0 0 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Other styles remain the same */
-
-
-
-.profile-details {
-    background-color: #c0b9dc;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Set width to 100% to take available space */
-    max-width: 350px; /* Limit max width for better layout */
-    font-size: 18px;
-    text-align: left;
-    margin: 0 auto; /* Center the box horizontally */
-}
-
-
-.logout-button {
-    margin-top: 20px; /* Added margin for spacing */
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #2980b9;
-}
-
+/* Profile Details Section - More modern look */
 .profile-details {
     width: 100%;
+    max-width: 450px;
+    padding: 0;
+    margin: 0 auto 30px;
 }
 
+/* Profile Detail Row */
 .detail-row {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    color: #000000;
+    padding: 10px 0;
+    border-bottom: 1px solid #ececec;  /* Light divider line */
+    color: #333333;
 }
 
+.detail-row:last-child {
+    border-bottom: none;               /* No divider on last item */
+}
+
+/* Label Styling */
 .label {
-    min-width: 120px;
-    text-align: left;
-    font-weight: bold;
+    font-weight: 600;
+    min-width: 130px;
+    color: #4c41a2;                    /* Accent color for labels */
+    font-size: 15px;                   /* Slightly smaller, more modern font size */
+    text-transform: uppercase;         /* Modern uppercase styling */
+    letter-spacing: 0.5px;
 }
 
+/* Colon Styling */
 .colon {
-    margin: 0 10px; /* Consistent margin for better alignment */
-    flex-shrink: 0;
+    margin: 0 10px;
+    color: #87d094;
 }
 
+/* Value Styling */
 .value {
     flex-grow: 1;
     text-align: left;
+    color: #555555;                    /* Softer text color */
+    font-size: 16px;
+}
+
+/* Change Password Button */
+.change-password-button {
+    width: 100%;
+    background: #EFEFEF;
+    color: #1e3c72;
+    border: 1px solid #87d094;
+    border-radius: 8px;
+    margin-top: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Change Password Button Hover State */
+.change-password-button:hover {
+    background-color: #EFEFEF;
+    border: 3px solid #1e3c72;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add an Arrow Icon on the Button */
+.change-password-button::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.change-password-button:hover::after {
+    transform: translateX(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-page1 {
+        margin-top: 80px;
+        padding: 20px;
+    }
+
+    .profile-details {
+        padding: 20px;
+    }
+
+    .label {
+        min-width: 100px;
+    }
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const citiesInSriLanka = [
   'Colombo',
@@ -11,7 +13,7 @@ const citiesInSriLanka = [
   'Anuradhapura',
   'Trincomalee',
   'Batticaloa',
-  'Matara',
+  'Matara', 
   'Kurunegala',
   'Puttalam',
   'Vavuniya',
@@ -22,6 +24,8 @@ const citiesInSriLanka = [
 ];
 
 const InsertPage = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     senderFirstName: '',
     senderLastName: '',
@@ -45,7 +49,20 @@ const InsertPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
+
   useEffect(() => {
+    const checkAuthorization = async () => {
+      try {
+          await axios.get('/staff/profile');
+      } catch (error) {
+          if (error.response && error.response.status === 401) {
+              navigate('/');
+          }
+      }
+  };
+
+    checkAuthorization();
+
     setFilteredCities(
       citiesInSriLanka.filter(city =>
         city.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -151,6 +168,7 @@ const InsertPage = () => {
         },
         body: JSON.stringify(data),
       });
+      
   
       if (response.ok) {
         const result = await response.json();

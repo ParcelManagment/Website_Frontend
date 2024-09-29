@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ViewPage.css';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search_img from '../Assests/search3.png'; 
+import { useNavigate } from 'react-router-dom';
 
 const ViewPage = () => {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [parcelData, setParcelData] = useState(null);
     const [error, setError] = useState(null);
@@ -28,6 +30,19 @@ const ViewPage = () => {
     //     }
     // };
 
+    useEffect(() => {
+        const checkAuthorization = async () => {
+          try {
+              await axios.get('/staff/profile');
+          } catch (error) {
+              if (error.response && error.response.status === 401) {
+                  navigate('/');
+              }
+          }
+      };
+        checkAuthorization();
+      }, []);
+    
     const handleSearch = async (e) => {
         e.preventDefault();
         setError(null);
