@@ -26,7 +26,7 @@ const ProfilePage = () => {
                         };
                         setProfile(mockProfile);
                         setLoading(false);
-                    }, 1000); // 1-second delay to simulate API call
+                    }, 200); // 1-second delay to simulate API call
                 } else {
                     // Use real API call in production or when backend is available
                     const response = await axios.get(`/staff/profile`);
