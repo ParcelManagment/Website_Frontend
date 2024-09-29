@@ -10,6 +10,7 @@ import InsertPage from './Components/InsertPage/InsertPage';
 import NavigationBar from './Components/NavigationBar/NavigationBar';
 import Footer from './Components/Footer/footer'; // Ensure correct casing for import
 import ViewPage from './Components/ViewPage/ViewPage';
+import ViewAllPage from './Components/ViewPage/ViewAll';
 import ProfilePage from './Components/ProfilePage/ProfilePage';
 import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
 import Auth from './Components/Authentication/Auth';
@@ -37,6 +38,7 @@ const MainLayout = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/insert" element={<InsertPage />} />
           <Route path="/view" element={<ViewPage />} />
+          <Route path="/viewAll" element={<ViewAllPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Auth />} />
           {/* Add other routes here */}
