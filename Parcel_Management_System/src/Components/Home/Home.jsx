@@ -96,7 +96,7 @@ const Home = () => {
                     </div>
                     <div className="details-box">
                         <p>Find and manage existing packages with just a few clicks.</p>
-                        <button className="custom-button" onClick={() => navigate('/view')}>Search and Manage Packages</button>
+                        <button className="custom-button" onClick={() => navigate('/viewAll')}>Search and Manage Packages</button>
                     </div>
                 </div>
             </div>
