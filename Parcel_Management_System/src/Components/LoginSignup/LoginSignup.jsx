@@ -77,9 +77,13 @@ const LoginSignup = () => {
     return (
         <div>
             <div className="container">
+
+
                 <div className="logo-container">    
                     <img src={website_logo} alt="Website Logo" className="website-logo" />
                 </div>
+
+
                 <div className="header">
                     <div className="text">Login</div>
                     <div className="underline"></div>

@@ -59,31 +59,31 @@ const ProfilePage = () => {
         <div className="profile-page1">
             <h1>User Details</h1>
             <div className="profile-details">
-                <div className="detail-row">
-                    <strong className="label">Employee ID</strong>
-                    <span className="colon">:</span>
-                    <span className="value">{profile.employee_id}</span>
-                </div>
-                <div className="detail-row">
-                    <strong className="label">First Name</strong>
-                    <span className="colon">:</span>
-                    <span className="value">{profile.first_name}</span>
-                </div>
-                <div className="detail-row">
-                    <strong className="label">Last Name</strong>
-                    <span className="colon">:</span>
-                    <span className="value">{profile.last_name}</span>
-                </div>
-                <div className="detail-row">
-                    <strong className="label">Role</strong>
-                    <span className="colon">:</span>
-                    <span className="value">{profile.role}</span>
-                </div>
-            </div>
+    <div className="detail-row">
+        <strong className="label">Employee ID</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.employee_id}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">First Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.first_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Last Name</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.last_name}</span>
+    </div>
+    <div className="detail-row">
+        <strong className="label">Role</strong>
+        <span className="colon">:</span>
+        <span className="value">{profile.role} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
 
-            <button className="change-password-button" onClick={handleChangePassword}>
-                Change Password
-            </button>
+</div>
+
+
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );
 };
