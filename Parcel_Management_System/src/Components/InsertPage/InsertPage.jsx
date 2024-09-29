@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const citiesInSriLanka = [
   'Colombo',
@@ -49,21 +50,19 @@ const InsertPage = () => {
   const [submitError, setSubmitError] = useState('');
 
 
-  // Function to check if the user is logged in
-  const checkUserAuthorization = async () => {
-    try {
-      const response = await fetch('/staff/profile');
-      if (response.status === 401) {
-        navigate('/');
+  useEffect(() => {
+    const checkAuthorization = async () => {
+      try {
+          await axios.get('/staff/profile');
+      } catch (error) {
+          if (error.response && error.response.status === 401) {
+              navigate('/');
+          }
       }
-    } catch (error) {
-      console.error('Error checking authorization:', error);
-    }
   };
 
+    checkAuthorization();
 
-  useEffect(() => {
-    checkUserAuthorization();
     setFilteredCities(
       citiesInSriLanka.filter(city =>
         city.toLowerCase().startsWith(searchTerm.toLowerCase())
