@@ -37,7 +37,7 @@ const ForgetPassword = () => {
         }
 
         try {
-            const response = await axios.post('/staff/forgot-password', {
+            const response = await axios.post('/staff/changepass', {
                 employee_id: employeeId,
                 password: password,
                 new_password: newPassword
