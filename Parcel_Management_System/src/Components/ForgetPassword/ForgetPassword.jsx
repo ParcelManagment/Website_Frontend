@@ -106,17 +106,26 @@ const ForgetPassword = () => {
             </div>
 
             <div className="submit-container">
-                <div
-                    className="submit"
-                    onClick={() => {
-                        if (!loading) {
-                            handleSubmit();
-                        }
-                    }}
-                >
-                    {loading ? <ClipLoader color={"#87d094 "} loading={loading} size={30} /> : 'Submit'}
-                </div>
-            </div>
+    <div
+        className="submit"
+        onClick={() => {
+            if (!loading) {
+                handleSubmit();
+            }
+        }}
+    >
+        {loading ? <ClipLoader color={"#87d094 "} loading={loading} size={30} /> : 'Submit'}
+    </div>
+
+    {/* Back Button */}
+    <div
+        className="back"
+        onClick={() => navigate('/home')}  // Navigate to home when clicked
+    >
+        Back to Home
+    </div>
+</div>
+
 
             {message && <div className="message">{message}</div>}
         </div>
