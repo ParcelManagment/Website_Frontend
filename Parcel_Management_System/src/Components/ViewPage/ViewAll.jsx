@@ -1,78 +1,57 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 
 const PackageDetails = () => {
-    const navigate = useNavigate();
   const [packageDetails, setPackageDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const checkAuthorization = async () => {
+    // Fetch package details when the component mounts
+    const fetchPackageDetails = async () => {
       try {
-          await axios.get('/staff/profile');
-      } catch (error) {
-          if (error.response && error.response.status === 401) {
-              navigate('/');
-          }
-      }
-  };
-    checkAuthorization();
-  }, []);
-
-  useEffect(() => {
-    
-    axios
-      .get('/api/view')
-      .then((response) => {
+        const response = await axios.get("/view"); // Update URL to your backend endpoint
         setPackageDetails(response.data);
-        console.log(response.data)
-        setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching package details:", error);
         setError("Failed to load package details.");
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchPackageDetails();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
-  console.log("view page All")
-
   return (
-
-
     <div>
-      <h1>Package and Sender Details</h1>
-      {packageDetails.length > 0 ? (
-        <table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr>
-              <th>Package ID</th>
-              <th>Destination</th>
-              <th>Sender First Name</th>
-              <th>Sender Last Name</th>
-              <th>Sender Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {packageDetails.map((pkg) => (
-              <tr key={pkg.package_id}>
-                <td>{pkg.package_id}</td>
-                <td>{pkg.destination}</td>
-                <td>{pkg.senderUser.first_name}</td>
-                <td>{pkg.senderUser.last_name}</td>
-                <td>{pkg.senderUser.email}</td>
+      <h2>Package Details</h2>
+      {error && <p>{error}</p>}
+      <table border="1" style={{ width: "100%", textAlign: "left" }}>
+        <thead>
+          <tr>
+            <th>Package ID</th>
+            <th>Destination</th>
+            <th>Sender First Name</th>
+            <th>Sender Last Name</th>
+            <th>Sender Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {packageDetails.length > 0 ? (
+            packageDetails.map((packageDetail) => (
+              <tr key={packageDetail.package_id}>
+                <td>{packageDetail.package_id}</td>
+                <td>{packageDetail.destination}</td>
+                <td>{packageDetail.senderUser.first_name}</td>
+                <td>{packageDetail.senderUser.last_name}</td>
+                <td>{packageDetail.senderUser.email}</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No packages found.</p>
-      )}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">No packages found</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
