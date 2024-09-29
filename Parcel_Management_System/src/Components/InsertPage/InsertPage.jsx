@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './InsertPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 const citiesInSriLanka = [
   'Colombo',
@@ -11,7 +12,7 @@ const citiesInSriLanka = [
   'Anuradhapura',
   'Trincomalee',
   'Batticaloa',
-  'Matara',
+  'Matara', 
   'Kurunegala',
   'Puttalam',
   'Vavuniya',
@@ -22,6 +23,8 @@ const citiesInSriLanka = [
 ];
 
 const InsertPage = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     senderFirstName: '',
     senderLastName: '',
@@ -44,21 +47,14 @@ const InsertPage = () => {
   const [errors, setErrors] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const history = useHistory();
+
 
   // Function to check if the user is logged in
   const checkUserAuthorization = async () => {
     try {
-      const response = await fetch('/staff/profile', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
+      const response = await fetch('/staff/profile');
       if (response.status === 401) {
-        // User is unauthorized, redirect to home page (or login page)
-        history.push('/');
+        navigate('/');
       }
     } catch (error) {
       console.error('Error checking authorization:', error);
