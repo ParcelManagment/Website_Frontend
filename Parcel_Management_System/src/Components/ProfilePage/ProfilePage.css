@@ -1,86 +1,85 @@
-/* Ensure the profile page is not hidden under the navigation bar */
+/* Profile Page Styling */
 .profile-page1 {
     display: flex;
     justify-content: center;         /* Center items horizontally */
-    align-items: center;         /* Align items to the start */
+    align-items: center;            /* Center items vertically */
     flex-direction: column;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    width: 100%;
-    margin-top: 180px;               /* Space below the navbar */
-    padding-top: 20px;              /* Reduced padding-top to avoid cover */
-    box-sizing: border-box;
-    /* You can adjust height if necessary, but it’s better to let it grow with content */
-    height: auto;                    /* Allow the height to adjust based on content */
+    margin-top: 160px;               /* Space below the navbar */
+    padding: 40px;                  /* Added padding */
+    background-color: #FFFFFF;      /* White background */
+    border: 1px solid #87d094  ;      /* Green border */
+    border-radius: 10px;            /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 100%;                    /* Full width */
+    min-width: 350px;
+    max-width: 500px;               /* Max width for better layout */
+    box-sizing: border-box;         /* Include padding and border in element's total width and height */
 }
 
-/* Ensure the top part of the profile is not cut off */
+/* Title Styling */
 .profile-page1 h1 {
-    color: #4c41a2;
-    font-size: 32px;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: center !important;
+    color: #4c41a2;                  /* Color for the title */
+    font-size: 32px;                 /* Font size for title */
+    font-weight: 700;                /* Bold title */
+    margin: 0 0 20px;                /* Margin adjustments */
+    text-align: center;              /* Center the title */
 }
 
-/* Other styles remain the same */
-
-
-
+/* Profile Details Box */
 .profile-details {
-    background-color: #c0b9dc;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Set width to 100% to take available space */
-    max-width: 350px; /* Limit max width for better layout */
-    font-size: 18px;
-    text-align: left;
-    margin: 0 auto; /* Center the box horizontally */
+    background-color: #d9f1dd;      /* Light purple background */
+    padding: 20px;                  /* Padding for details box */
+    border-radius: 16px;            /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 100%;                    /* Full width */
+    max-width: 350px;               /* Limit max width for better layout */
+    font-size: 18px;                /* Font size for details */
+    text-align: left;               /* Left align text */
+    margin: 0 auto;                 /* Center the box horizontally */
 }
 
-
-.logout-button {
-    margin-top: 20px; /* Added margin for spacing */
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #2980b9;
-}
-
-.profile-details {
-    width: 100%;
-}
-
-.detail-row {
+/* Change Password Button */
+/* Change Password Button */
+.change-password-button {
+    width: 90%;
+    background: #EFEFEF;
+    color: #1e3c72;
+    border: 1px solid #87d094;
+    border-radius: 6px;
+    margin-top: 20px;
+    height: 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
-    color: #000000;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+/* Change Password Button Hover State */
+.change-password-button:hover {
+    background-color: #78d682;             /* Change color on hover */
+    transform: scale(1.05);                /* Slightly enlarge on hover */
+}
+
+/* Detail Row Styling */
+.detail-row {
+    display: flex;                  /* Flexbox for alignment */
+    align-items: center;           /* Center align items */
+    margin-bottom: 15px;           /* Margin between rows */
+    color: #000000;                /* Text color */
 }
 
 .label {
-    min-width: 120px;
-    text-align: left;
-    font-weight: bold;
+    min-width: 120px;              /* Minimum width for label */
+    text-align: left;              /* Left align text */
+    font-weight: bold;             /* Bold text */
 }
 
 .colon {
-    margin: 0 10px; /* Consistent margin for better alignment */
-    flex-shrink: 0;
+    margin: 0 10px;                /* Margin for colon */
+    flex-shrink: 0;                /* Prevent shrinking */
 }
 
 .value {
-    flex-grow: 1;
-    text-align: left;
+    flex-grow: 1;                  /* Grow to fill space */
+    text-align: left;              /* Left align value */
 }
