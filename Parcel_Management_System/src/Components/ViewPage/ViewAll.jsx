@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ViewPage.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+
 
 const ViewAll = () => {
   const navigate = useNavigate();
@@ -48,9 +52,14 @@ const ViewAll = () => {
 
         )
       );
+      toast.success(`Package ${packageId} marked as completed!`);
     } catch (err) {
       console.error("Failed to update package status", err);
     }
+  };
+
+  const handleRowClick = (packageId) => {
+    toast.info(`Package ID: ${packageId}`);
   };
 
   if (loading) {
@@ -78,7 +87,7 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {packages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover"> 
+              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name}</td>
