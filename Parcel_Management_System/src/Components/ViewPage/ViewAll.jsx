@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const ViewAll = () => {
-  
+
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ const ViewAll = () => {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await axios.get('/view');
+        const response = await axios.get('/view/');
         setPackages(response.data);
         setLoading(false);
       } catch (err) {
