@@ -178,7 +178,7 @@
 }
 .form-control {
     font-weight: 400 !important;
-  }
-.viewAll-container{
-    margin-top: 150px;
+}
+.custom-margin-top {
+    margin-top: 100px; /* Adjust this value as needed for more space */
 }
