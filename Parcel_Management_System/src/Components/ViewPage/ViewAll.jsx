@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ViewPage.css'; // Keep this for any additional custom styling
+import './ViewPage.css'; // Keep this for additional custom styling
 
 const ViewAll = () => {
-
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +21,6 @@ const ViewAll = () => {
     };
 
     checkAuthorization();
-
   }, [navigate]);
 
   useEffect(() => {
@@ -49,30 +47,32 @@ const ViewAll = () => {
   }
 
   return (
-    <div className="container" style={{ marginTop: '150px' }}> 
+    <div className="container mt-5"> {/* Bootstrap margin class added */}
       <h1 className="text-center mb-4">Package List</h1>
-      <table className="table table-striped table-bordered">
-        <thead className="thead-dark">
-          <tr>
-            <th>Package ID</th>
-            <th>Destination</th>
-            <th>Sender First Name</th>
-            <th>Sender Last Name</th>
-            <th>Sender Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {packages.map((pkg) => (
-            <tr key={pkg.package_id}>
-              <td>{pkg.package_id}</td>
-              <td>{pkg.destination}</td>
-              <td>{pkg.senderUser?.first_name}</td>
-              <td>{pkg.senderUser?.last_name}</td>
-              <td>{pkg.senderUser?.email}</td>
+      <div className="table-responsive"> {/* Bootstrap responsive table */}
+        <table className="table table-hover table-striped table-bordered" style={{ width: '90%', margin: '0 auto' }}>
+          <thead className="thead-dark">
+            <tr>
+              <th>Package ID</th>
+              <th>Destination</th>
+              <th>Sender First Name</th>
+              <th>Sender Last Name</th>
+              <th>Sender Email</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {packages.map((pkg) => (
+              <tr key={pkg.package_id} className="table-row-hover"> {/* Custom class for hover effect */}
+                <td>{pkg.package_id}</td>
+                <td>{pkg.destination}</td>
+                <td>{pkg.senderUser?.first_name}</td>
+                <td>{pkg.senderUser?.last_name}</td>
+                <td>{pkg.senderUser?.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

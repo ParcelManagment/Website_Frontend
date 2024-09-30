@@ -179,6 +179,18 @@
 .form-control {
     font-weight: 400 !important;
 }
-.custom-margin-top {
-    margin-top: 150px; /* Adjust this value as needed for more space */
-}
+/* Increase hover effect with a light blue color */
+.table-row-hover:hover {
+    background-color: #5bb2be; /* Light blue hover color */
+  }
+  
+  /* Adjusting the container's top margin and centering the table */
+  .container {
+    margin-top: 150px;
+  }
+  
+  .table-responsive {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
