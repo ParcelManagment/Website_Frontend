@@ -47,9 +47,9 @@ const ViewAll = () => {
   }
 
   return (
-    <div className="container">
-      <h1 className="text-center mb-4">Package List</h1>
-      <div className="table-responsive">
+    <div className="container" style={{ width: '100%', margin: '0 auto' }}>
+      <h1 className="text-center mb-4" >Package List</h1>
+      <div className="table-responsive" style={{ width: '100%', margin: '0 auto' }}>
         <table className="table table-hover table-striped table-bordered" style={{ width: '100%', margin: '0 auto' }}>
           <thead className="thead-dark">
             <tr>
