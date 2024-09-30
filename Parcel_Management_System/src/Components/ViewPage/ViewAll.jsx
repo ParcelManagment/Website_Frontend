@@ -1,10 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const PackageList = () => {
+const ViewAll = () => {
+  
+  const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+      try {
+          await axios.get('/staff/profile');
+      } catch (error) {
+          if (error.response && error.response.status === 401) {
+              navigate('/');
+          }
+      }
+  };
+
+    checkAuthorization();
+
+},[]);
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -58,4 +76,4 @@ const PackageList = () => {
   );
 };
 
-export default PackageList;
+export default ViewAll;
