@@ -42,8 +42,7 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
-  const handleCheckboxChange = async (e, packageId) => {
-    e.stopPropagation();
+  const handleCheckboxChange = async (packageId, completed) => {
     try {
       console.log("AAA")
       await axios.put(`/package/completepackage/${packageId}`);
@@ -108,6 +107,7 @@ const ViewAll = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </div>
   );
 };
