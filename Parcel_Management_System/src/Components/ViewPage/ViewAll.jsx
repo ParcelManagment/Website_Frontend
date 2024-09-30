@@ -27,7 +27,7 @@ const ViewAll = () => {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await axios.get('/view/');
+        const response = await axios.get('/view');
         setPackages(response.data);
         setLoading(false);
       } catch (err) {
