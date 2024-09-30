@@ -59,14 +59,21 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = async (pkg) => {
-    setParcelData(pkg); // Set the parcel data for the modal
-    setShowModal(true); // Show the modal
+  const handleRowClick = (packageId) => {
+    const selectedPackage = packages.find(pkg => pkg.package_id === packageId);
+    
+    if (selectedPackage) {
+      setParcelData(selectedPackage);
+      setShowModal(true); // Show the modal when a row is clicked
+    } else {
+      toast.error('Package not found!');
+    }
   };
+  
 
   const handleCloseModal = () => {
     setShowModal(false); // Close the modal
-    setIsEditing(false); // Reset editing state
+    setParcelData(null); // Reset editing state
   };
 
   const handleEdit = () => {
