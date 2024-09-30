@@ -41,10 +41,10 @@ const ViewAll = () => {
   const handleCheckboxChange = async (packageId, completed) => {
     try {
       console.log("AAA")
-      await axios.put(`/package/completepackage/${packageId}`, { completed });
+      await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
-          pkg.package_id === packageId ? { ...pkg, completed } : pkg
+          pkg.package_id === packageId ? { ...pkg, completed:true } : pkg
 
         )
       );
@@ -78,7 +78,7 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {packages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover"> {/* Custom class for hover effect */}
+              <tr key={pkg.package_id} className="table-row-hover"> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name}</td>
@@ -88,7 +88,7 @@ const ViewAll = () => {
                 <input
                     type="checkbox"
                     checked={pkg.completed}
-                    onChange={(e) => handleCheckboxChange(pkg.package_id, e.target.checked)} 
+                    onChange={() => handleCheckboxChange(pkg.package_id, true)} 
                     disabled={pkg.completed} 
                   />
                 </td>
