@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import './ViewPage.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
-
-
+import ViewPage from './ViewPage'; // Import ViewPage component
 
 const ViewAll = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [parcelData, setParcelData] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const checkAuthorization = async () => {
@@ -45,12 +47,10 @@ const ViewAll = () => {
   const handleCheckboxChange = async (e, packageId, completed) => {
     e.stopPropagation();
     try {
-      console.log("AAA")
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
-          pkg.package_id === packageId ? { ...pkg, completed:true } : pkg
-
+          pkg.package_id === packageId ? { ...pkg, completed: true } : pkg
         )
       );
       toast.success(`Package ${packageId} marked as completed!`);
@@ -59,9 +59,68 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = (packageId) => {
-    console.log("row clicked")
-    toast.info(`Package ID: ${packageId}`);
+  const handleRowClick = async (pkg) => {
+    setParcelData(pkg); // Set the parcel data for the modal
+    setShowModal(true); // Show the modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Close the modal
+    setIsEditing(false); // Reset editing state
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true); // Set editing state to true
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const receiverId = parcelData.package.receiver_id;
+    if (!receiverId) {
+      alert("Receiver ID is missing!");
+      return;
+    }
+
+    try {
+      const response = await axios.put(`/package/edituser/${receiverId}`, {
+        receiver_first_name: parcelData.receiver.first_name,
+        receiver_last_name: parcelData.receiver.last_name,
+        receiver_email: parcelData.receiver.email,
+        receiver_mobile_number: parcelData.receiver.mobile_number
+      });
+
+      if (response.status === 200) {
+        alert('User details updated successfully');
+        setIsEditing(false);
+      } else {
+        alert('Failed to update user details');
+      }
+    } catch (err) {
+      console.error("Error updating user:", err);
+      alert('User already registered. Cannot Update Details for already registered Users.');
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!parcelData) {
+      alert('No parcel data available to delete.');
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`/package/deletepackage/${parcelData.package_id}`);
+
+      if (response.status === 200) {
+        alert('Package deleted successfully');
+        setParcelData(null); // Clear the parcel data after deletion
+        setShowModal(false); // Close the modal after deletion
+      } else {
+        alert('Failed to delete package');
+      }
+    } catch (err) {
+      console.error("Error deleting package:", err);
+      alert('Failed to delete package');
+    }
   };
 
   if (loading) {
@@ -89,17 +148,17 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {packages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}> 
+              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg)}> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name}</td>
                 <td>{pkg.senderUser?.last_name}</td>
                 <td>{pkg.senderUser?.email}</td>
                 <td>
-                <input
+                  <input
                     type="checkbox"
                     checked={pkg.completed}
-                    onChange={() => handleCheckboxChange(pkg.package_id, true)} 
+                    onChange={(e) => handleCheckboxChange(e, pkg.package_id, pkg.completed)} 
                     disabled={pkg.completed} 
                   />
                 </td>
@@ -109,6 +168,13 @@ const ViewAll = () => {
         </table>
       </div>
       <ToastContainer />
+      <ViewPage 
+        show={showModal} 
+        onClose={handleCloseModal} 
+        parcelData={parcelData} 
+        onEdit={handleEdit} 
+        onDelete={handleDelete} 
+      />
     </div>
   );
 };
