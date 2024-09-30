@@ -170,6 +170,10 @@ const ViewPage = () => {
                             <label htmlFor='destination'>Destination:</label>
                             <input type="text" name="destination" value={parcelData.package.destination || ''} readOnly  className="form-control"/>
                         </div>
+                        <div className="form-group"> 
+                            <label>Price:</label>
+                            <input type="integer" name="price" value={parcelData.package.price || ''} readOnly  className="form-control"/>
+                        </div>
                     </div>
 
                     {/* Sender Details */}
