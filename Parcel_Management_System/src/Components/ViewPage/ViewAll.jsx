@@ -49,7 +49,7 @@ const ViewAll = () => {
   }
 
   return (
-    <div className="container mb-7"> {/* Adds margin-top */}
+    <div className="container" styles={{margintop:'100px'}}> 
       <h1 className="text-center mb-4">Package List</h1>
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
