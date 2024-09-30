@@ -45,6 +45,7 @@ const ViewAll = () => {
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
           pkg.package_id === packageId ? { ...pkg, completed } : pkg
+
         )
       );
     } catch (err) {
@@ -84,10 +85,11 @@ const ViewAll = () => {
                 <td>{pkg.senderUser?.last_name}</td>
                 <td>{pkg.senderUser?.email}</td>
                 <td>
-                  <input
+                <input
                     type="checkbox"
                     checked={pkg.completed}
                     onChange={(e) => handleCheckboxChange(pkg.package_id, e.target.checked)} 
+                    disabled={pkg.completed} 
                   />
                 </td>
               </tr>
