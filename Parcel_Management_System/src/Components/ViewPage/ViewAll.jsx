@@ -12,6 +12,8 @@ const ViewAll = () => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const checkAuthorization = async () => {
@@ -58,9 +60,14 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = (packageId) => {
-    console.log("row clicked")
-    toast.info(`Package ID: ${packageId}`);
+  const handleRowClick = (pkg) => {
+    setSelectedPackage(pkg); // Set selected package details
+    setShowModal(true); // Show modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Hide modal
+    setSelectedPackage(null); // Clear selected package
   };
 
   if (loading) {
@@ -107,6 +114,29 @@ const ViewAll = () => {
           </tbody>
         </table>
       </div>
+      {selectedPackage && (
+        <div className={`modal fade ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }} role="dialog" aria-modal="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Package Details (ID: {selectedPackage.package_id})</h5>
+                <button type="button" className="close" onClick={handleCloseModal}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p><strong>Destination:</strong> {selectedPackage.destination}</p>
+                <p><strong>Sender Name:</strong> {selectedPackage.senderUser?.first_name} {selectedPackage.senderUser?.last_name}</p>
+                <p><strong>Sender Email:</strong> {selectedPackage.senderUser?.email}</p>
+                <p><strong>Completed:</strong> {selectedPackage.completed ? 'Yes' : 'No'}</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <ToastContainer />
     </div>
   );
