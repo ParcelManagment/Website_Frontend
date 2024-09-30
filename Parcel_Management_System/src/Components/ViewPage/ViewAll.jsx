@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const PackageDetails = () => {
-  const [packageDetails, setPackageDetails] = useState([]);
-  const [error, setError] = useState("");
+const PackageList = () => {
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch package details when the component mounts
-    const fetchPackageDetails = async () => {
+    const fetchPackages = async () => {
       try {
-        const response = await axios.get("/view"); // Update URL to your backend endpoint
-        setPackageDetails(response.data);
-      } catch (error) {
-        console.error("Error fetching package details:", error);
-        setError("Failed to load package details.");
+        const response = await axios.get('/api/view');
+        setPackages(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
       }
     };
 
-    fetchPackageDetails();
+    fetchPackages();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
-      <h2>Package Details</h2>
-      {error && <p>{error}</p>}
-      <table border="1" style={{ width: "100%", textAlign: "left" }}>
+      <h1>Package List</h1>
+      <table>
         <thead>
           <tr>
             <th>Package ID</th>
@@ -35,25 +43,19 @@ const PackageDetails = () => {
           </tr>
         </thead>
         <tbody>
-          {packageDetails.length > 0 ? (
-            packageDetails.map((packageDetail) => (
-              <tr key={packageDetail.package_id}>
-                <td>{packageDetail.package_id}</td>
-                <td>{packageDetail.destination}</td>
-                <td>{packageDetail.senderUser.first_name}</td>
-                <td>{packageDetail.senderUser.last_name}</td>
-                <td>{packageDetail.senderUser.email}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5">No packages found</td>
+          {packages.map((pkg) => (
+            <tr key={pkg.package_id}>
+              <td>{pkg.package_id}</td>
+              <td>{pkg.destination}</td>
+              <td>{pkg.senderUser?.first_name}</td>
+              <td>{pkg.senderUser?.last_name}</td>
+              <td>{pkg.senderUser?.email}</td>
             </tr>
-          )}
+          ))}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default PackageDetails;
+export default PackageList;
