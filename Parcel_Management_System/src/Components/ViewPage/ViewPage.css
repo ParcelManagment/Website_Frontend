@@ -186,8 +186,8 @@
   
   /* Adjusting the container's top margin and centering the table */
   .container {
-    margin-top: 10000px;
-    padding-top: 200px;
+    margin-top: 8000px;
+    padding-top: 100px;
     max-width: 1500px;
 
   }
