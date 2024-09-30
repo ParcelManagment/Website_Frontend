@@ -59,11 +59,18 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = (pkg) => {
-    setParcelData(pkg);  // Use the passed package object directly
-    setShowModal(true);  // Show the modal when a row is clicked
+  const handleRowClick = (packageId) => {
+    const selectedPackage = packages.find(pkg => pkg.package_id === packageId);
+    console.log(selectedPackage)
+    
+    if (selectedPackage) {
+      setParcelData(selectedPackage); // Ensure selectedPackage has the expected structure
+      setShowModal(true);
+    } else {
+      toast.error('Package not found!');
+    }
   };
-
+  
   const handleCloseModal = () => {
     setShowModal(false); // Close the modal
     setParcelData(null); // Reset editing state
