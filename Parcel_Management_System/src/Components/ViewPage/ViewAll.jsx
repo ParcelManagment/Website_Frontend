@@ -128,6 +128,7 @@ const ViewAll = () => {
                 <p><strong>Destination:</strong> {selectedPackage.destination}</p>
                 <p><strong>Sender Name:</strong> {selectedPackage.senderUser?.first_name} {selectedPackage.senderUser?.last_name}</p>
                 <p><strong>Sender Email:</strong> {selectedPackage.senderUser?.email}</p>
+                <p><strong>Sender Mobile Number:</strong> {selectedPackage.senderUser?.mobile_number || 'N/A'}</p> {/* Add more sender details as needed */}
                 <p><strong>Completed:</strong> {selectedPackage.completed ? 'Yes' : 'No'}</p>
               </div>
               <div className="modal-footer">
