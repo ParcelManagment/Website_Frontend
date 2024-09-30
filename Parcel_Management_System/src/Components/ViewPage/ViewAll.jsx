@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './ViewPage.css';
 
 const ViewAll = () => {
 
@@ -48,8 +49,8 @@ const ViewAll = () => {
   }
 
   return (
-    <div>
-      <h1>Package List</h1>
+    <div className="viewAll-container">
+      <h1 >Package List</h1>
       <table>
         <thead>
           <tr>
