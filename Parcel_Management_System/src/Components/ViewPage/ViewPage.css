@@ -180,12 +180,12 @@
     font-weight: 400 !important;
 }
 /* Increase hover effect with a light blue color */
-/* .table-row-hover:hover {
+.table-row-hover:hover {
     background-color: #5bb2be; /* Light blue hover color */
- /* } */
+  }
   
   /* Adjusting the container's top margin and centering the table */
-  /* .container {
+  .container {
     margin-top: 7000px;
     padding-top: 2000px;
     max-width: 1500px;
@@ -195,15 +195,5 @@
   .table-responsive {
     max-width: 100%;
     overflow-x: auto;
-  } */
-  /* Remove top margin */
-.no-top-margin {
-    margin-top: 0; /* Ensure no space between header and content */
-    padding-top: 20px; /* Small padding for visual clarity */
-  }
-  
-  /* Hover effect */
-  .table-row-hover:hover {
-    background-color: #e0f7fa;
   }
   
