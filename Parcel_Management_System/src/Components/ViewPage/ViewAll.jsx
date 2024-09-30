@@ -59,6 +59,7 @@ const ViewAll = () => {
   };
 
   const handleRowClick = (packageId) => {
+    console.log("row clicked")
     toast.info(`Package ID: ${packageId}`);
   };
 
