@@ -186,9 +186,10 @@
   
   /* Adjusting the container's top margin and centering the table */
   .container {
-    margin-top: 350px;
-    max-width: 1000px;
-    background-color: #333;
+    margin-top: 550px;
+    padding-top: 100px;
+    max-width: 1500px;
+
   }
   
   .table-responsive {
