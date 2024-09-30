@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ViewPage.css';
+import './ViewPage.css'; // Keep this for any additional custom styling
 
 const ViewAll = () => {
 
@@ -13,17 +13,17 @@ const ViewAll = () => {
   useEffect(() => {
     const checkAuthorization = async () => {
       try {
-          await axios.get('/staff/profile');
+        await axios.get('/staff/profile');
       } catch (error) {
-          if (error.response && error.response.status === 401) {
-              navigate('/');
-          }
+        if (error.response && error.response.status === 401) {
+          navigate('/');
+        }
       }
-  };
+    };
 
     checkAuthorization();
 
-},[]);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -41,18 +41,18 @@ const ViewAll = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="alert alert-danger text-center">Error: {error}</div>;
   }
 
   return (
-    <div className="viewAll-container">
-      <h1 >Package List</h1>
-      <table>
-        <thead>
+    <div className="container mt-5"> {/* Adds margin-top */}
+      <h1 className="text-center mb-4">Package List</h1>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>Package ID</th>
             <th>Destination</th>
