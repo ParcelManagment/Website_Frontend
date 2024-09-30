@@ -60,6 +60,7 @@ const ViewAll = () => {
   };
 
   const handleRowClick = (packageId) => {
+    console.log(packageId)
     const selectedPackage = packages.find(pkg => pkg.package_id === packageId);
     console.log(selectedPackage)
     
