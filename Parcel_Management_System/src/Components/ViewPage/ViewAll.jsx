@@ -9,7 +9,7 @@ const PackageList = () => {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await axios.get('/api/view');
+        const response = await axios.get('/view');
         setPackages(response.data);
         setLoading(false);
       } catch (err) {
