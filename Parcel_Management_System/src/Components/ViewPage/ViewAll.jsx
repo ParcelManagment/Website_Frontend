@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ViewPage.css'; // Keep this for additional custom styling
+import './ViewPage.css';
 
 const ViewAll = () => {
   const navigate = useNavigate();
@@ -47,10 +47,10 @@ const ViewAll = () => {
   }
 
   return (
-    <div className="container mt-5"> {/* Bootstrap margin class added */}
+    <div className="container">
       <h1 className="text-center mb-4">Package List</h1>
-      <div className="table-responsive"> {/* Bootstrap responsive table */}
-        <table className="table table-hover table-striped table-bordered" style={{ width: '90%', margin: '0 auto' }}>
+      <div className="table-responsive">
+        <table className="table table-hover table-striped table-bordered" style={{ width: '100%', margin: '0 auto' }}>
           <thead className="thead-dark">
             <tr>
               <th>Package ID</th>
