@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ViewPage.css';
+import './ViewPage.css'; // Keep this for additional custom styling
 
 const ViewAll = () => {
   const navigate = useNavigate();
@@ -47,10 +47,10 @@ const ViewAll = () => {
   }
 
   return (
-    <div className="container" >
-      <h1 className="text-center mb-4" >Package List</h1>
-      <div className="table-responsive" style={{ width: '100%', margin: '0 auto' }}>
-        <table className="table table-hover table-striped table-bordered" style={{ width: '100%', margin: '0 auto' }}>
+    <div className="container no-top-margin"> {/* Removed top margin */}
+      <h1 className="text-center mb-4">Package List</h1>
+      <div className="table-responsive">
+        <table className="table table-hover table-striped table-bordered" style={{ width: '90%', margin: '0 auto' }}>
           <thead className="thead-dark">
             <tr>
               <th>Package ID</th>
@@ -62,7 +62,7 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {packages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover"> {/* Custom class for hover effect */}
+              <tr key={pkg.package_id} className="table-row-hover">
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name}</td>
