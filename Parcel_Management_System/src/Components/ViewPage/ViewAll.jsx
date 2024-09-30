@@ -40,6 +40,7 @@ const ViewAll = () => {
 
   const handleCheckboxChange = async (packageId, completed) => {
     try {
+      console.log("AAA")
       await axios.put(`/package/completepackage/${packageId}`, { completed });
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
