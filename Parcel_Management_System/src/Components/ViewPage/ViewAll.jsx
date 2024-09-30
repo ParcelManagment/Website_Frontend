@@ -38,6 +38,19 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
+  const handleCheckboxChange = async (packageId, completed) => {
+    try {
+      await axios.put(`/package/completepackage/${packageId}`, { completed });
+      setPackages((prevPackages) =>
+        prevPackages.map((pkg) =>
+          pkg.package_id === packageId ? { ...pkg, completed } : pkg
+        )
+      );
+    } catch (err) {
+      console.error("Failed to update package status", err);
+    }
+  };
+
   if (loading) {
     return <div className="text-center">Loading...</div>;
   }
@@ -58,6 +71,7 @@ const ViewAll = () => {
               <th>Sender First Name</th>
               <th>Sender Last Name</th>
               <th>Sender Email</th>
+              <th>Completed</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +82,13 @@ const ViewAll = () => {
                 <td>{pkg.senderUser?.first_name}</td>
                 <td>{pkg.senderUser?.last_name}</td>
                 <td>{pkg.senderUser?.email}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={pkg.completed}
+                    onChange={(e) => handleCheckboxChange(pkg.package_id, e.target.checked)} 
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
