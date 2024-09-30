@@ -59,17 +59,10 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = (packageId) => {
-    const selectedPackage = packages.find(pkg => pkg.package_id === packageId);
-    
-    if (selectedPackage) {
-      setParcelData(selectedPackage);
-      setShowModal(true); // Show the modal when a row is clicked
-    } else {
-      toast.error('Package not found!');
-    }
+  const handleRowClick = (pkg) => {
+    setParcelData(pkg);  // Use the passed package object directly
+    setShowModal(true);  // Show the modal when a row is clicked
   };
-  
 
   const handleCloseModal = () => {
     setShowModal(false); // Close the modal
