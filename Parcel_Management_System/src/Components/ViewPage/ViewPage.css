@@ -187,7 +187,7 @@
   /* Adjusting the container's top margin and centering the table */
   .container {
     margin-top: 150px;
-    width: 100%;
+    max-width: 500px;
   }
   
   .table-responsive {
