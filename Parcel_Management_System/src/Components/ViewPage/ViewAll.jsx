@@ -5,8 +5,6 @@ import './ViewPage.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 
-
-
 const ViewAll = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
@@ -14,7 +12,7 @@ const ViewAll = () => {
   const [error, setError] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // State for the search query
 
   useEffect(() => {
     const checkAuthorization = async () => {
@@ -45,14 +43,12 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
-  const handleCheckboxChange = async (packageId, completed) => {
+  const handleCheckboxChange = async (packageId) => {
     try {
-      console.log("AAA")
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
-          pkg.package_id === packageId ? { ...pkg, completed:true } : pkg
-
+          pkg.package_id === packageId ? { ...pkg, completed: true } : pkg
         )
       );
       toast.success(`Package ${packageId} marked as completed!`);
@@ -62,15 +58,16 @@ const ViewAll = () => {
   };
 
   const handleRowClick = (pkg) => {
-    setSelectedPackage(pkg); // Set selected package details
-    setShowModal(true); // Show modal
+    setSelectedPackage(pkg);
+    setShowModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Hide modal
-    setSelectedPackage(null); // Clear selected package
+    setShowModal(false);
+    setSelectedPackage(null);
   };
 
+  // Filtering packages based on the search query
   const filteredPackages = packages.filter((pkg) => {
     return (
       pkg.package_id.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -92,14 +89,14 @@ const ViewAll = () => {
   return (
     <div className="container">
       <h1 className="text-center mb-4">Package List</h1>
-       
-       <div className="mb-3">
+      {/* Search Bar */}
+      <div className="mb-3">
         <input
           type="text"
           className="form-control"
           placeholder="Search..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)} 
+          onChange={(e) => setSearchQuery(e.target.value)} // Update search query
         />
       </div>
       <div className="table-responsive">
@@ -115,19 +112,19 @@ const ViewAll = () => {
             </tr>
           </thead>
           <tbody>
-            {packages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}> 
+            {filteredPackages.map((pkg) => (
+              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg)}> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name}</td>
                 <td>{pkg.senderUser?.last_name}</td>
                 <td>{pkg.senderUser?.email}</td>
                 <td>
-                <input
+                  <input
                     type="checkbox"
                     checked={pkg.completed}
-                    onChange={() => handleCheckboxChange(pkg.package_id, true)} 
-                    disabled={pkg.completed} 
+                    onChange={() => handleCheckboxChange(pkg.package_id)}
+                    disabled={pkg.completed}
                   />
                 </td>
               </tr>
@@ -149,7 +146,7 @@ const ViewAll = () => {
                 <p><strong>Destination:</strong> {selectedPackage.destination}</p>
                 <p><strong>Sender Name:</strong> {selectedPackage.senderUser?.first_name} {selectedPackage.senderUser?.last_name}</p>
                 <p><strong>Sender Email:</strong> {selectedPackage.senderUser?.email}</p>
-                <p><strong>Sender Mobile Number:</strong> {selectedPackage.senderUser?.mobile_number || 'N/A'}</p> {/* Add more sender details as needed */}
+                <p><strong>Sender Mobile Number:</strong> {selectedPackage.senderUser?.mobile_number || 'N/A'}</p>
                 <p><strong>Completed:</strong> {selectedPackage.completed ? 'Yes' : 'No'}</p>
               </div>
               <div className="modal-footer">
