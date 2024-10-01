@@ -37,7 +37,9 @@ const MainLayout = () => {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/insert" element={<InsertPage />} />
-          <Route path="/view" element={<ViewPage />} />
+          {/* <Route path="/view" element={<ViewPage />} /> */}
+          <Route path="/view/:packageId" element={<ViewPage />} />
+
           <Route path="/viewAll" element={<ViewAllPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Auth />} />

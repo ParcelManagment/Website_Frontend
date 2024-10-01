@@ -6,6 +6,7 @@ import Search_img from '../Assests/search3.png';
 import { useNavigate } from 'react-router-dom';
 
 const ViewPage = () => {
+    const { packageId } = useParams(); 
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [parcelData, setParcelData] = useState(null);

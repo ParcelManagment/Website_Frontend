@@ -57,10 +57,10 @@ const ViewAll = () => {
     }
   };
 
-  const handleRowClick = (pkg) => {
-    setSelectedPackage(pkg);
-    setShowModal(true);
-  };
+    const handleRowClick = (packageId) => {
+        // Navigate to ViewPage with the packageId
+        navigate(`/view/${packageId}`);
+    };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -119,7 +119,7 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {filteredPackages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg)}> 
+              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.packageId)}> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
                 <td>{pkg.senderUser?.first_name || 'N/A'}</td>
