@@ -47,35 +47,56 @@ const ViewPage = () => {
       };
         checkAuthorization();
       }, []);
-    
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        setError(null);
-    
-        try {
-            const response = await axios.get(`/package/fetchbyid/${searchTerm}`);
-    
-            // Handle the status code for canceled package
-            if (response.status === 400 && response.data.message === 'This package has been cancelled and cannot be viewed.') {
-                alert('This package has been cancelled and cannot be viewed.');
-                setParcelData(null); // Clear any previous parcel data
-            } else if (!response.data || Object.keys(response.data).length === 0) {
-                alert('No data found for the given Parcel ID.');
-                setParcelData(null);
-            } else {
-                setParcelData(response.data);
-            }
-        } catch (err) {
-            if (err.response && err.response.status === 400) {
-                // Handle the case when the package is canceled
-                alert(err.response.data.message);
-                setParcelData(null);
-            } else {
+      
+      useEffect(() => {
+        const fetchParcelData = async () => {
+            try {
+                const response = await axios.get(`/package/fetchbyid/${packageId}`);
+                if (!response.data || Object.keys(response.data).length === 0) {
+                    alert('No data found for the given Parcel ID.');
+                    setParcelData(null);
+                } else {
+                    setParcelData(response.data);
+                }
+            } catch (err) {
                 setError('Failed to fetch parcel data. Please try again.');
                 console.error("Failed to fetch data", err);
             }
+        };
+
+        if (packageId) {
+            fetchParcelData(); // Fetch details when packageId changes
         }
-    };
+    }, [packageId]);
+    
+    // const handleSearch = async (e) => {
+    //     e.preventDefault();
+    //     setError(null);
+    
+    //     try {
+    //         const response = await axios.get(`/package/fetchbyid/${packageId}`);
+    
+    //         // Handle the status code for canceled package
+    //         if (response.status === 400 && response.data.message === 'This package has been cancelled and cannot be viewed.') {
+    //             alert('This package has been cancelled and cannot be viewed.');
+    //             setParcelData(null); // Clear any previous parcel data
+    //         } else if (!response.data || Object.keys(response.data).length === 0) {
+    //             alert('No data found for the given Parcel ID.');
+    //             setParcelData(null);
+    //         } else {
+    //             setParcelData(response.data);
+    //         }
+    //     } catch (err) {
+    //         if (err.response && err.response.status === 400) {
+    //             // Handle the case when the package is canceled
+    //             alert(err.response.data.message);
+    //             setParcelData(null);
+    //         } else {
+    //             setError('Failed to fetch parcel data. Please try again.');
+    //             console.error("Failed to fetch data", err);
+    //         }
+    //     }
+    // };
     
 
     const handleEdit = () => {
@@ -123,7 +144,7 @@ const ViewPage = () => {
         console.log(searchTerm)
 
         try {
-            const response = await axios.delete(`/package/deletepackage/${searchTerm}`);
+            const response = await axios.delete(`/package/deletepackage/${packageId}`);
 
             if (response.status === 200) {
                 alert('Package deleted successfully');
@@ -141,7 +162,7 @@ const ViewPage = () => {
 
     return (
         <div className="search-form-container">
-        <form className="form row justify-content-center" onSubmit={handleSearch}>
+        {/* <form className="form row justify-content-center" onSubmit={handleSearch}>
           <div className="input_wrapper col-md-6 col-sm-8">
             <input
               type="text"
@@ -154,7 +175,7 @@ const ViewPage = () => {
               <img src={Search_img} alt="search_image" className="search_img" />
             </button>
           </div>
-        </form>
+        </form> */}
 
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
