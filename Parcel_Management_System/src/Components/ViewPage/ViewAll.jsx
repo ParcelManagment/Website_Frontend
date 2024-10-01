@@ -58,7 +58,7 @@ const ViewAll = () => {
   };
 
     const handleRowClick = (packageId) => {
-        // Navigate to ViewPage with the packageId
+        console.log(packageId)
         navigate(`/view/${packageId}`);
     };
 
