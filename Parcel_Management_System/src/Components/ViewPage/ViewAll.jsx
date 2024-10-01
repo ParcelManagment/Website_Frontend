@@ -114,24 +114,25 @@ const ViewAll = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredPackages.map((pkg) => (
-              <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.packageId)}> 
-                <td>{pkg.package_id}</td>
-                <td>{pkg.destination}</td>
-                <td>{pkg.senderUser?.first_name || 'N/A'}</td>
-                <td>{pkg.senderUser?.last_name || 'N/A'}</td>
-                <td>{pkg.senderUser?.email || 'N/A'}</td>
-                <td>
-                  <input
+          {filteredPackages.map((pkg) => (
+          <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}>
+            <td>{pkg.package_id}</td>
+            <td>{pkg.destination}</td>
+            <td>{pkg.senderUser?.first_name || 'N/A'}</td>
+            <td>{pkg.senderUser?.last_name || 'N/A'}</td>
+            <td>{pkg.senderUser?.email || 'N/A'}</td>
+            <td>
+                <input
                     type="checkbox"
                     checked={pkg.completed}
                     onChange={() => handleCheckboxChange(pkg.package_id)}
                     disabled={pkg.completed}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                />
+            </td>
+        </tr>
+    ))}
+</tbody>
+
         </table>
       </div>
       <ToastContainer />
