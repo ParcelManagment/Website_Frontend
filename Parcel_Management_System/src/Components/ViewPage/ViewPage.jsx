@@ -11,6 +11,8 @@ import { useParams } from 'react-router-dom';
 
 const ViewPage = () => {
     const { packageId } = useParams(); 
+
+    console.log(packageId)
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [parcelData, setParcelData] = useState(null);
