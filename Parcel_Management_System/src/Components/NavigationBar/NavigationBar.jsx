@@ -47,7 +47,7 @@ const NavigationBar = () => {
             <div className="links">
                 <Link to="/home" className={getLinkClass('/home')}>Home</Link>
                 <Link to="/insert" className={getLinkClass('/insert')}>Insert</Link>
-                <Link to="/viewAll" className={getLinkClass('/viewAll')}>ViewAll</Link>
+                <Link to="/viewAll" className={getLinkClass('/viewAll')}>View</Link>
                 <Link to="/profile" className={getLinkClass('/profile')}>Profile</Link>
                 
                 <button onClick={handleLoginLogout} className="logout-button">
