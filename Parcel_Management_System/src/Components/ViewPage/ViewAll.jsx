@@ -14,6 +14,7 @@ const ViewAll = () => {
   const [error, setError] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const checkAuthorization = async () => {
@@ -70,6 +71,16 @@ const ViewAll = () => {
     setSelectedPackage(null); // Clear selected package
   };
 
+  const filteredPackages = packages.filter((pkg) => {
+    return (
+      pkg.package_id.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pkg.destination.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pkg.senderUser?.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pkg.senderUser?.last_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pkg.senderUser?.email.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+
   if (loading) {
     return <div className="text-center">Loading...</div>;
   }
@@ -81,6 +92,16 @@ const ViewAll = () => {
   return (
     <div className="container">
       <h1 className="text-center mb-4">Package List</h1>
+       
+       <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} 
+        />
+      </div>
       <div className="table-responsive">
         <table className="table table-hover table-striped table-bordered" style={{ width: '100%', margin: '0 auto' }}>
           <thead className="thead-dark">
