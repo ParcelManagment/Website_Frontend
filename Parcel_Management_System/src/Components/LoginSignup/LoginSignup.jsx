@@ -76,7 +76,7 @@ const LoginSignup = () => {
 
     return (
         <div>
-            <div className="container">
+            <div className="containerlgn">
 
 
                 <div className="logo-container">    
