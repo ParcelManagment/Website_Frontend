@@ -62,10 +62,6 @@ const ViewAll = () => {
         navigate(`/view/${packageId}`);
     };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedPackage(null);
-  };
 
   // Ensure each package has defined properties before attempting to filter
   const filteredPackages = packages.filter((pkg) => {
@@ -138,30 +134,6 @@ const ViewAll = () => {
           </tbody>
         </table>
       </div>
-      {selectedPackage && (
-        <div className={`modal fade ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }} role="dialog" aria-modal="true">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Package Details (ID: {selectedPackage.package_id})</h5>
-                <button type="button" className="close" onClick={handleCloseModal}>
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p><strong>Destination:</strong> {selectedPackage.destination}</p>
-                <p><strong>Sender Name:</strong> {selectedPackage.senderUser?.first_name} {selectedPackage.senderUser?.last_name}</p>
-                <p><strong>Sender Email:</strong> {selectedPackage.senderUser?.email}</p>
-                <p><strong>Sender Mobile Number:</strong> {selectedPackage.senderUser?.mobile_number || 'N/A'}</p>
-                <p><strong>Completed:</strong> {selectedPackage.completed ? 'Yes' : 'No'}</p>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <ToastContainer />
     </div>
   );
