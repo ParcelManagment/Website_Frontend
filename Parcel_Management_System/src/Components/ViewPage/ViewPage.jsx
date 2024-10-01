@@ -4,7 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search_img from '../Assests/search3.png'; 
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 
 
 const ViewPage = () => {
