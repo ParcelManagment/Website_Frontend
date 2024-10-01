@@ -67,14 +67,20 @@ const ViewAll = () => {
     setSelectedPackage(null);
   };
 
-  // Filtering packages based on the search query
+  // Ensure each package has defined properties before attempting to filter
   const filteredPackages = packages.filter((pkg) => {
+    const senderFirstName = pkg.senderUser?.first_name?.toLowerCase() || '';
+    const senderLastName = pkg.senderUser?.last_name?.toLowerCase() || '';
+    const senderEmail = pkg.senderUser?.email?.toLowerCase() || '';
+    const destination = pkg.destination?.toLowerCase() || '';
+    const packageId = pkg.package_id?.toString().toLowerCase() || '';
+
     return (
-      pkg.package_id.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pkg.destination.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pkg.senderUser?.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pkg.senderUser?.last_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pkg.senderUser?.email.toLowerCase().includes(searchQuery.toLowerCase())
+      packageId.includes(searchQuery.toLowerCase()) ||
+      destination.includes(searchQuery.toLowerCase()) ||
+      senderFirstName.includes(searchQuery.toLowerCase()) ||
+      senderLastName.includes(searchQuery.toLowerCase()) ||
+      senderEmail.includes(searchQuery.toLowerCase())
     );
   });
 
@@ -116,9 +122,9 @@ const ViewAll = () => {
               <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg)}> 
                 <td>{pkg.package_id}</td>
                 <td>{pkg.destination}</td>
-                <td>{pkg.senderUser?.first_name}</td>
-                <td>{pkg.senderUser?.last_name}</td>
-                <td>{pkg.senderUser?.email}</td>
+                <td>{pkg.senderUser?.first_name || 'N/A'}</td>
+                <td>{pkg.senderUser?.last_name || 'N/A'}</td>
+                <td>{pkg.senderUser?.email || 'N/A'}</td>
                 <td>
                   <input
                     type="checkbox"
