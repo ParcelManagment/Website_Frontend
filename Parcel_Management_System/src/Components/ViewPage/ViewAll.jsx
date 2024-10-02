@@ -59,7 +59,7 @@ const ViewAll = () => {
 
     const handleRowClick = ( packageId) => {
         console.log(packageId)
-        navigate(`/view/${packageId}`);
+        // navigate(`/view/${packageId}`);
     };
 
 
