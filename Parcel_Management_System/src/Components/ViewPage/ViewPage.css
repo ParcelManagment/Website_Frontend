@@ -67,8 +67,8 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #68aae4;
-    color: #000000;
+    background-color: #d7ebfd;
+    color: #1e3c72;
     border-radius: 8px;
     position: relative; 
     margin-top: 15px;
@@ -83,10 +83,10 @@
 }
 
 .form-section {
-    border:  1px solid #87d094;
+    border:  1px solid #1e3c72;
     border-radius: 8px;
-    background-color: #b8d7be; 
-    box-shadow:0 2px 4px rgba(0, 0, 0, 0.1); 
+    background-color: #ffffff; 
+    box-shadow:0 2px 4px rgba(156, 165, 230, 0.1); 
     padding: 1.5rem;
     flex:  1 1 calc(25% - 1rem);
     font-size: 1rem;
@@ -100,7 +100,7 @@
 
 .form-section h2 {
     font-size: 18px;
-    border-bottom: 1px solid #074165;
+    border-bottom: 1px solid #1e3c72;
     padding-bottom: 5px;
 }
 
@@ -169,7 +169,7 @@
     margin-right: 5px;
 }
 .submit_button:last-child {
-    margin-right: 0; /* Remove margin from the last button */
+    margin-right: 0; 
 }
 
 .submit_button:hover,
@@ -179,12 +179,12 @@
 .form-control {
     font-weight: 400 !important;
 }
-/* Increase hover effect with a light blue color */
+
 .table-row-hover:hover {
-    background-color: #5bb2be; /* Light blue hover color */
+    background-color: #5bb2be; 
   }
   
-  /* Adjusting the container's top margin and centering the table */
+
   .container {
     margin-top: 3300px;
     padding-top: 70px;
