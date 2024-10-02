@@ -57,7 +57,7 @@ const ViewAll = () => {
   };
 
     const handleRowClick = (e, packageId) => {
-      if (e.target.tagName !== 'INPUT') { // Prevent navigation if clicking on an input
+      if (e.target.tagName !== 'INPUT') { 
         navigate(`/view/${packageId}`);
       }
         // console.log(packageId)
@@ -65,7 +65,7 @@ const ViewAll = () => {
     };
 
 
-  // Ensure each package has defined properties before attempting to filter
+
   const filteredPackages = packages.filter((pkg) => {
     const senderFirstName = pkg.senderUser?.first_name?.toLowerCase() || '';
     const senderLastName = pkg.senderUser?.last_name?.toLowerCase() || '';
@@ -122,7 +122,7 @@ const ViewAll = () => {
             <td>{pkg.destination}</td>
             <td>{pkg.senderUser?.first_name || 'N/A'}</td>
             <td>{pkg.senderUser?.last_name || 'N/A'}</td>
-            <td>{pkg.senderUser?.email || 'N/A'}</td>
+            <td>{pkg.senderUser?.price || 'N/A'}</td>
             <td>
                 <input
                     type="checkbox"
