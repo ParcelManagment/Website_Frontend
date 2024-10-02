@@ -67,8 +67,7 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #d7ebfd;
-    border-color: #2f4d84;
+    border: 2px solid #1e3c72;
     border-radius: 8px;
     position: relative; 
     margin-top: 15px;
