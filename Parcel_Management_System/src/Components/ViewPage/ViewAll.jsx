@@ -42,8 +42,8 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
-  const handleCheckboxChange = async ( packageId) => {
-   
+  const handleCheckboxChange = async ( e, packageId) => {
+    e.stopPropagation();
     try {
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
