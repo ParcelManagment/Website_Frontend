@@ -11,7 +11,8 @@ const ViewAll = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(''); // State for the search query
+  const [searchQuery, setSearchQuery] = useState(''); 
+  const tableRef = useRef(null);
 
   useEffect(() => {
     const checkAuthorization = async () => {
@@ -43,7 +44,9 @@ const ViewAll = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (tableRef.current) {
+      tableRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, [searchQuery]);
 
   const handleCheckboxChange = async ( e, packageId) => {
