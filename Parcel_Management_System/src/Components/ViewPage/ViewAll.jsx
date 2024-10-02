@@ -42,7 +42,8 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
-  const handleCheckboxChange = async (packageId) => {
+  const handleCheckboxChange = async (e, packageId) => {
+    e.stopPropagation();
     try {
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
@@ -56,12 +57,9 @@ const ViewAll = () => {
     }
   };
 
-    const handleRowClick = (e, packageId) => {
-      if (e.target.tagName !== 'INPUT') { 
+    const handleRowClick = ( packageId) => {
+        console.log(packageId)
         navigate(`/view/${packageId}`);
-      }
-        // console.log(packageId)
-        // navigate(`/view/${packageId}`);
     };
 
 
