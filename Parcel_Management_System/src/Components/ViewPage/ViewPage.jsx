@@ -5,8 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Search_img from '../Assests/search3.png'; 
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
-//import { useParams } from 'react-router-dom';
+
 
 
 const ViewPage = () => {
@@ -55,50 +57,24 @@ const ViewPage = () => {
             try {
                 const response = await axios.get(`/package/fetchbyid/${packageId}`);
                 if (!response.data || Object.keys(response.data).length === 0) {
-                    alert('No data found for the given Parcel ID.');
+                    toast.error('No data found for the given Parcel ID.');
                     setParcelData(null);
                 } else {
                     setParcelData(response.data);
                 }
             } catch (err) {
                 setError('Failed to fetch parcel data. Please try again.');
+                toast.error("Failed to fetch data");
                 console.error("Failed to fetch data", err);
             }
         };
 
         if (packageId) {
-            fetchParcelData(); // Fetch details when packageId changes
+            fetchParcelData(); 
         }
     }, [packageId]);
     
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     setError(null);
     
-    //     try {
-    //         const response = await axios.get(`/package/fetchbyid/${packageId}`);
-    
-    //         // Handle the status code for canceled package
-    //         if (response.status === 400 && response.data.message === 'This package has been cancelled and cannot be viewed.') {
-    //             alert('This package has been cancelled and cannot be viewed.');
-    //             setParcelData(null); // Clear any previous parcel data
-    //         } else if (!response.data || Object.keys(response.data).length === 0) {
-    //             alert('No data found for the given Parcel ID.');
-    //             setParcelData(null);
-    //         } else {
-    //             setParcelData(response.data);
-    //         }
-    //     } catch (err) {
-    //         if (err.response && err.response.status === 400) {
-    //             // Handle the case when the package is canceled
-    //             alert(err.response.data.message);
-    //             setParcelData(null);
-    //         } else {
-    //             setError('Failed to fetch parcel data. Please try again.');
-    //             console.error("Failed to fetch data", err);
-    //         }
-    //     }
-    // };
     
 
     const handleEdit = () => {
@@ -112,12 +88,12 @@ const ViewPage = () => {
         const receiverId = parcelData.package.receiver_id;
         console.log(receiverId)
         if (!receiverId) {
-            alert("Receiver ID is missing!");
+            toast.error("Receiver ID is missing!");
             return;
         }
     
         try {
-            // Remove the extra closing curly brace in the URL
+            
             const response = await axios.put(`/package/edituser/${receiverId}`, {
                 receiver_first_name: parcelData.receiver.first_name,
                 receiver_last_name: parcelData.receiver.last_name,
@@ -126,21 +102,21 @@ const ViewPage = () => {
             });
     
             if (response.status === 200) {
-                alert('User details updated successfully');
+                toast.success('User details updated successfully');
                 setIsEditing(false);
             } else {
-                alert('Failed to update user details');
+                toast.error('Failed to update user details');
             }
         } catch (err) {
             console.error("Error updating user:", err);
-            alert('User already registed. Cannot Update Details for already registed Users.');
+            toast.error('User already registered. Cannot Update Details for already registered Users.');
         }
     };
     
 
     const handleDelete = async () => {
         if (!searchTerm) {
-            alert('Please enter a Parcel ID.');
+            toast.error('Please enter a Parcel ID.');
             return;
         }
         console.log(searchTerm)
@@ -149,36 +125,21 @@ const ViewPage = () => {
             const response = await axios.delete(`/package/deletepackage/${packageId}`);
 
             if (response.status === 200) {
-                alert('Package deleted successfully');
-                setParcelData(null); // Clear the parcel data after deletion
-                setSearchTerm('');    // Clear the search field after deletion
+                toast.success('Package deleted successfully');
+                setParcelData(null); 
+                setSearchTerm('');  
             } else {
                 alert('Failed to delete package');
             }
         } catch (err) {
             console.error("Error deleting package:", err);
-            alert('Failed to delete package');
+            toast.error('Failed to delete package');
         }
     };
     
 
     return (
         <div className="search-form-container">
-        {/* <form className="form row justify-content-center" onSubmit={handleSearch}>
-          <div className="input_wrapper col-md-6 col-sm-8">
-            <input
-              type="text"
-              placeholder="Enter Parcel ID Here..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="input_box form-control"
-            />
-            <button type="submit" className="search_button btn btn-primary ml-2">
-              <img src={Search_img} alt="search_image" className="search_img" />
-            </button>
-          </div>
-        </form> */}
-
             {error && <p className="error-message">{error}</p>}
             {parcelData && (
             <div className="form-container">
