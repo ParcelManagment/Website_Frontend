@@ -127,7 +127,7 @@ const ViewAll = () => {
                 <input
                     type="checkbox"
                     checked={pkg.completed}
-                    onChange={() => handleCheckboxChange(pkg.package_id)}
+                    onChange={(e) => handleCheckboxChange(e, pkg.package_id)}
                     disabled={pkg.completed}
                 />
             </td>
