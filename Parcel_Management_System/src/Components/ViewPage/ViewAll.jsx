@@ -11,7 +11,6 @@ const ViewAll = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState(''); // State for the search query
 
   useEffect(() => {
@@ -57,9 +56,12 @@ const ViewAll = () => {
     }
   };
 
-    const handleRowClick = (packageId) => {
-        console.log(packageId)
+    const handleRowClick = (e, packageId) => {
+      if (e.target.tagName !== 'INPUT') { // Prevent navigation if clicking on an input
         navigate(`/view/${packageId}`);
+      }
+        // console.log(packageId)
+        // navigate(`/view/${packageId}`);
     };
 
 
