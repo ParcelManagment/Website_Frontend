@@ -42,6 +42,10 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [searchQuery]);
+
   const handleCheckboxChange = async ( e, packageId) => {
     e.stopPropagation();
     try {
