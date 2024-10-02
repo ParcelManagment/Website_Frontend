@@ -123,6 +123,7 @@ const ViewPage = () => {
                 toast.success('Package deleted successfully');
                 setParcelData(null); 
                 setSearchTerm('');  
+                navigate('/viewAll');
             } else {
                 alert('Failed to delete package');
             }
