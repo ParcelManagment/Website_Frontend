@@ -111,7 +111,7 @@ const ViewAll = () => {
               <th>Destination</th>
               <th>Sender First Name</th>
               <th>Sender Last Name</th>
-              <th>Sender Email</th>
+              <th>Package Price</th>
               <th>Completed</th>
             </tr>
           </thead>
