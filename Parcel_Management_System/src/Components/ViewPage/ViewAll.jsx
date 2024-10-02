@@ -59,7 +59,7 @@ const ViewAll = () => {
 
     const handleRowClick = ( packageId) => {
         console.log(packageId)
-        // navigate(`/view/${packageId}`);
+        navigate(`/view/${packageId}`);
     };
 
 
@@ -128,7 +128,10 @@ const ViewAll = () => {
                 <input
                     type="checkbox"
                     checked={pkg.completed}
-                    onChange={(e) => handleCheckboxChange(e, pkg.package_id)}
+                    onChange={(e) => {
+                      e.stopPropagation(); // Prevent row click
+                      handleCheckboxChange(e, pkg.package_id);
+                  }}
                     disabled={pkg.completed}
                 />
             </td>
