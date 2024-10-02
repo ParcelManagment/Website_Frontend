@@ -48,7 +48,7 @@ const ViewAll = () => {
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
         prevPackages.map((pkg) =>
-          pkg.package_id === packageId ? { ...pkg, completed: true } : pkg
+          pkg.package_id === packageId ? { ...pkg, completed:true } : pkg
         )
       );
       toast.success(`Package ${packageId} marked as completed!`);
@@ -117,7 +117,8 @@ const ViewAll = () => {
           </thead>
           <tbody>
           {filteredPackages.map((pkg) => (
-          <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}>
+          // <tr key={pkg.package_id} className="table-row-hover" onClick={() => handleRowClick(pkg.package_id)}>
+          <tr key={pkg.package_id} className={`table-row-hover ${pkg.completed ? 'table-success' : ''}`} onClick={() => handleRowClick(pkg.package_id)}>
             <td>{pkg.package_id}</td>
             <td>{pkg.destination}</td>
             <td>{pkg.senderUser?.first_name || 'N/A'}</td>
