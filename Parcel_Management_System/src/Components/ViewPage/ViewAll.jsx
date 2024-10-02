@@ -42,8 +42,8 @@ const ViewAll = () => {
     fetchPackages();
   }, []);
 
-  const handleCheckboxChange = async (e, packageId) => {
-    e.stopPropagation();
+  const handleCheckboxChange = async ( packageId) => {
+   
     try {
       await axios.put(`/package/completepackage/${packageId}`);
       setPackages((prevPackages) =>
@@ -67,16 +67,18 @@ const ViewAll = () => {
   const filteredPackages = packages.filter((pkg) => {
     const senderFirstName = pkg.senderUser?.first_name?.toLowerCase() || '';
     const senderLastName = pkg.senderUser?.last_name?.toLowerCase() || '';
-    const senderEmail = pkg.senderUser?.email?.toLowerCase() || '';
+    // const senderEmail = pkg.senderUser?.email?.toLowerCase() || '';
     const destination = pkg.destination?.toLowerCase() || '';
     const packageId = pkg.package_id?.toString().toLowerCase() || '';
+    const price = pkg.price?.toString().toLowerCase() || '';
 
     return (
       packageId.includes(searchQuery.toLowerCase()) ||
       destination.includes(searchQuery.toLowerCase()) ||
       senderFirstName.includes(searchQuery.toLowerCase()) ||
       senderLastName.includes(searchQuery.toLowerCase()) ||
-      senderEmail.includes(searchQuery.toLowerCase())
+      // senderEmail.includes(searchQuery.toLowerCase())
+      price.includes(searchQuery.toLowerCase()) 
     );
   });
 
@@ -120,7 +122,7 @@ const ViewAll = () => {
             <td>{pkg.destination}</td>
             <td>{pkg.senderUser?.first_name || 'N/A'}</td>
             <td>{pkg.senderUser?.last_name || 'N/A'}</td>
-            <td>{pkg.senderUser?.price || 'N/A'}</td>
+            <td>{pkg.price || 'N/A'}</td>
             <td>
                 <input
                     type="checkbox"
