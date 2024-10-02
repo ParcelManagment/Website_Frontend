@@ -67,7 +67,6 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid #1e3c72;
     border-radius: 8px;
     position: relative; 
     margin-top: 15px;
@@ -82,7 +81,7 @@
 }
 
 .form-section {
-    border:  1px solid #1e3c72;
+    border:  1px solid #87d094;
     border-radius: 8px;
     background-color: #ffffff; 
     box-shadow:0 2px 4px rgba(156, 165, 230, 0.1); 
