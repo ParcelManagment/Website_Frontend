@@ -132,6 +132,7 @@ const ViewAll = () => {
                       e.stopPropagation(); // Prevent row click
                       handleCheckboxChange(e, pkg.package_id);
                   }}
+                    onClick={(e) => e.stopPropagation()} 
                     disabled={pkg.completed}
                 />
             </td>
