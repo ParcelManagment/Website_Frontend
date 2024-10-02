@@ -115,12 +115,7 @@ const ViewPage = () => {
     
 
     const handleDelete = async () => {
-        if (!searchTerm) {
-            toast.error('Please enter a Parcel ID.');
-            return;
-        }
-        console.log(searchTerm)
-
+    
         try {
             const response = await axios.delete(`/package/deletepackage/${packageId}`);
 
